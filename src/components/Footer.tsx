@@ -38,8 +38,8 @@ const Footer: React.FC = () => {
 
           <div className="flex-1 max-w-[1440px] w-full mx-auto px-6 md:px-12 lg:px-20 py-8 md:py-10 lg:py-12">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 xl:gap-24 items-start">
-              {/* Left side - Big tagline - centered vertically in white area */}
-              <div className="lg:flex-1 pt-16 md:pt-24 lg:pt-32">
+              {/* Left side - Big tagline - lower in white area */}
+              <div className="lg:flex-1 pt-28 md:pt-40 lg:pt-52">
                 <h2 className="font-ua-brand text-primary text-[36px] md:text-[48px] lg:text-[60px] xl:text-[68px] font-bold uppercase leading-[1.0] tracking-tight">
                   природа.
                   <br />
@@ -51,9 +51,9 @@ const Footer: React.FC = () => {
                 </h2>
               </div>
 
-              {/* Right side - Contact form */}
-              <div className="lg:flex-1 w-full max-w-[420px] lg:max-w-none">
-                <div className="border-2 border-primary p-5 md:p-6 lg:p-8 bg-transparent max-w-[400px]">
+              {/* Right side - Contact form - aligned with text, wider */}
+              <div className="lg:flex-1 w-full max-w-[520px] lg:max-w-none pt-28 md:pt-40 lg:pt-52">
+                <div className="border-2 border-primary p-6 md:p-8 lg:p-10 bg-transparent max-w-[520px] w-full">
                   <h3 className="font-ua-brand text-[#2E261D] text-[18px] md:text-[22px] lg:text-[28px] font-bold uppercase mb-4 md:mb-6 tracking-tight">
                     обсудим ваш визит
                   </h3>
