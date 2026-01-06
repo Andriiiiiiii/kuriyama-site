@@ -11,13 +11,13 @@ const Tariffs: React.FC = () => {
           тарифы
         </h2>
         
-        {/* Two columns with tablets */}
-        <div className="flex flex-col lg:flex-row justify-center gap-8 lg:gap-16 items-start">
+        {/* Two columns with tablets - aligned by bottom */}
+        <div className="flex flex-col lg:flex-row justify-center gap-8 lg:gap-16 items-end">
           
           {/* Left column - Japan */}
-          <div className="flex items-start gap-4 md:gap-6">
+          <div className="flex items-end gap-4 md:gap-6">
             {/* DAYPASS text */}
-            <div className="flex flex-col items-center pt-8">
+            <div className="flex flex-col items-center pb-8">
               <span className="font-ua-brand text-[#2E261D] text-xl md:text-2xl lg:text-[35px] font-bold uppercase whitespace-nowrap" style={{ writingMode: 'horizontal-tb' }}>
                 DAYPASS.
               </span>
@@ -69,8 +69,8 @@ const Tariffs: React.FC = () => {
           </div>
 
           {/* Right column - Paseka */}
-          <div className="flex items-start gap-4 md:gap-6">
-            {/* Right tablet */}
+          <div className="flex items-end gap-4 md:gap-6">
+            {/* Right tablet with button */}
             <div className="relative">
               <img 
                 src={rightTablet} 
@@ -104,10 +104,17 @@ const Tariffs: React.FC = () => {
                   </p>
                 </div>
               </div>
+              
+              {/* Visit button - positioned at bottom of this tablet */}
+              <button className="absolute -bottom-[60px] md:-bottom-[70px] lg:-bottom-[80px] right-0 w-[120px] h-[120px] md:w-[140px] md:h-[140px] lg:w-[160px] lg:h-[160px] rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 flex items-center justify-center z-10">
+                <span className="font-glametrix text-white text-sm md:text-base lg:text-lg text-center px-3">
+                  Посетить Курияму
+                </span>
+              </button>
             </div>
             
             {/* DAYPASS text */}
-            <div className="flex flex-col items-center pt-8">
+            <div className="flex flex-col items-center pb-8">
               <span className="font-ua-brand text-[#2E261D] text-xl md:text-2xl lg:text-[35px] font-bold uppercase whitespace-nowrap" style={{ writingMode: 'horizontal-tb' }}>
                 DAYPASS.
               </span>
@@ -123,14 +130,8 @@ const Tariffs: React.FC = () => {
           </div>
         </div>
 
-        {/* Visit button - positioned at bottom right */}
-        <div className="flex justify-end mt-8 lg:mt-0 lg:absolute lg:bottom-24 lg:right-20">
-          <button className="w-[140px] h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 flex items-center justify-center">
-            <span className="font-glametrix text-white text-base md:text-lg lg:text-xl text-center px-4">
-              Посетить Курияму
-            </span>
-          </button>
-        </div>
+        {/* Extra space for button */}
+        <div className="h-[80px] md:h-[100px] lg:h-[120px]" />
       </div>
     </section>
   );
