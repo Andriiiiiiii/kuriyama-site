@@ -46,11 +46,25 @@ const getSizeClasses = (size: string, orientation: string) => {
     : 'h-[25vh] w-[19vh] min-w-[95px]';
 };
 
+// Inertia weights: bigger images = heavier = slower response
+const getInertiaWeight = (size: string) => {
+  if (size === 'big') return 0.15; // Heavy, slow response
+  if (size === 'normal') return 0.25; // Medium weight
+  return 0.4; // Light, fast response
+};
+
 const HorizontalGallery = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isResetting = useRef(false);
+  
+  // Track scroll velocity for inertia
+  const scrollVelocity = useRef(0);
+  const lastScrollTime = useRef(Date.now());
+  const lastScrollLeft = useRef(0);
+  const animationFrame = useRef<number | null>(null);
+  const [imageOffsets, setImageOffsets] = useState<number[]>(galleryImages.map(() => 0));
 
   const checkInfiniteScroll = useCallback(() => {
     const container = scrollContainerRef.current;
@@ -89,6 +103,45 @@ const HorizontalGallery = () => {
     // Start in the middle
     const oneSetWidth = container.scrollWidth / 5;
     container.scrollLeft = oneSetWidth * 2;
+  }, []);
+
+  // Apply inertia to each image based on scroll velocity
+  useEffect(() => {
+    const updateInertia = () => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+      
+      const now = Date.now();
+      const dt = Math.max(1, now - lastScrollTime.current);
+      const currentScrollLeft = container.scrollLeft;
+      
+      // Calculate velocity
+      const newVelocity = (currentScrollLeft - lastScrollLeft.current) / dt;
+      scrollVelocity.current = newVelocity;
+      lastScrollTime.current = now;
+      lastScrollLeft.current = currentScrollLeft;
+      
+      // Apply different offsets based on velocity and weight
+      setImageOffsets(prev => 
+        prev.map((offset, index) => {
+          const imageIndex = index % baseImages.length;
+          const weight = getInertiaWeight(baseImages[imageIndex].size);
+          const targetOffset = -scrollVelocity.current * 50; // Base offset from velocity
+          // Lerp towards target with weight controlling speed
+          return offset + (targetOffset - offset) * weight;
+        })
+      );
+      
+      animationFrame.current = requestAnimationFrame(updateInertia);
+    };
+    
+    animationFrame.current = requestAnimationFrame(updateInertia);
+    
+    return () => {
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -130,6 +183,17 @@ const HorizontalGallery = () => {
             style={{ 
               marginBottom: `${image.offset}vh`,
               zIndex: hoveredIndex === index ? 50 : (image.size === 'small' ? 2 : image.size === 'normal' ? 1 : 0),
+              x: imageOffsets[index] || 0,
+            }}
+            animate={{
+              x: imageOffsets[index] || 0,
+            }}
+            transition={{
+              x: {
+                type: "spring",
+                stiffness: image.size === 'big' ? 80 : image.size === 'normal' ? 120 : 180,
+                damping: image.size === 'big' ? 20 : image.size === 'normal' ? 15 : 10,
+              }
             }}
             onMouseEnter={() => {
               setIsHovering(true);
