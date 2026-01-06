@@ -30,9 +30,16 @@ const galleryImages = [...baseImages, ...baseImages, ...baseImages, ...baseImage
 
 // Lerp values: smaller = more inertia/lag
 const getLerpValue = (size: string) => {
-  if (size === 'big') return 0.03; // Most inertia, slowest
-  if (size === 'normal') return 0.05; // Medium inertia
-  return 0.08; // Least inertia, fastest response
+  if (size === 'big') return 0.02; // Most inertia, slowest decay
+  if (size === 'normal') return 0.04; // Medium inertia
+  return 0.07; // Least inertia, fastest decay
+};
+
+// Friction/damping coefficients: smaller = slower decay to zero
+const getFriction = (size: string) => {
+  if (size === 'big') return 0.92; // Slowest decay, keeps moving longer
+  if (size === 'normal') return 0.88; // Medium decay
+  return 0.82; // Fastest decay, stops quicker
 };
 
 const getSizeClasses = (size: string, orientation: string) => {
@@ -62,8 +69,10 @@ const HorizontalGallery = () => {
   const targetScrollX = useRef(0);
   const currentScrollX = useRef(0);
   const imagePositions = useRef<number[]>(galleryImages.map(() => 0));
+  const imageVelocities = useRef<number[]>(galleryImages.map(() => 0));
   const [renderTrigger, setRenderTrigger] = useState(0);
   const animationFrame = useRef<number | null>(null);
+  const lastTargetScroll = useRef(0);
 
   // Linear interpolation
   const lerp = (start: number, end: number, factor: number) => {
@@ -112,10 +121,11 @@ const HorizontalGallery = () => {
     container.scrollLeft = initialScroll;
     targetScrollX.current = initialScroll;
     currentScrollX.current = initialScroll;
-    imagePositions.current = galleryImages.map(() => initialScroll);
+    imagePositions.current = galleryImages.map(() => 0);
+    imageVelocities.current = galleryImages.map(() => 0);
   }, []);
 
-  // Animation loop for smooth lerp scrolling
+  // Animation loop for smooth scrolling with velocity decay
   useEffect(() => {
     const animate = () => {
       const container = scrollContainerRef.current;
@@ -124,17 +134,37 @@ const HorizontalGallery = () => {
         return;
       }
 
+      // Calculate scroll delta (input velocity)
+      const scrollDelta = targetScrollX.current - lastTargetScroll.current;
+      lastTargetScroll.current = targetScrollX.current;
+
       // Lerp main scroll
       currentScrollX.current = lerp(currentScrollX.current, targetScrollX.current, 0.1);
       container.scrollLeft = currentScrollX.current;
 
-      // Lerp each image position with different speeds
+      // Update each image with velocity-based movement and friction decay
       let needsUpdate = false;
       imagePositions.current = imagePositions.current.map((pos, index) => {
         const imageIndex = index % baseImages.length;
-        const lerpValue = getLerpValue(baseImages[imageIndex].size);
-        const newPos = lerp(pos, targetScrollX.current, lerpValue);
-        if (Math.abs(newPos - pos) > 0.01) needsUpdate = true;
+        const size = baseImages[imageIndex].size;
+        const lerpValue = getLerpValue(size);
+        const friction = getFriction(size);
+        
+        // Add scroll delta to velocity
+        imageVelocities.current[index] += scrollDelta * lerpValue;
+        
+        // Apply friction to decay velocity towards zero
+        imageVelocities.current[index] *= friction;
+        
+        // Kill tiny velocities
+        if (Math.abs(imageVelocities.current[index]) < 0.01) {
+          imageVelocities.current[index] = 0;
+        }
+        
+        // Update position based on velocity
+        const newPos = pos + imageVelocities.current[index];
+        
+        if (Math.abs(imageVelocities.current[index]) > 0.01) needsUpdate = true;
         return newPos;
       });
 
@@ -174,11 +204,9 @@ const HorizontalGallery = () => {
     };
   }, [isHovering, checkInfiniteScroll]);
 
-  // Calculate individual image offset based on its lerped position vs current scroll
+  // Calculate individual image offset based on accumulated velocity position
   const getImageTransformX = (index: number) => {
-    const imagePos = imagePositions.current[index];
-    const diff = imagePos - currentScrollX.current;
-    return diff * 0.3; // Scale down the effect
+    return imagePositions.current[index] * 0.5; // Scale the effect
   };
 
   return (
