@@ -1,20 +1,35 @@
 import React from 'react';
 import kuriyamaImage from '@/assets/15-image-1.png';
-import backgroundImage from '@/assets/11-background.png';
+import inkSplash from '@/assets/15-image-2.png';
+import paperBackground from '@/assets/15-background.png';
 
 const Footer: React.FC = () => {
   return (
     <footer className="relative w-full overflow-hidden">
-      {/* Main content area with beige background */}
-      <div className="relative bg-[#F5F5F0] py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20">
+      {/* Main content area with paper background */}
+      <div className="relative min-h-[600px] md:min-h-[700px]">
+        {/* Paper texture background */}
+        <img
+          src={paperBackground}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        />
+
+        {/* Ink splash decoration - bottom left */}
+        <img
+          src={inkSplash}
+          alt=""
+          className="absolute bottom-0 left-0 h-[250px] md:h-[350px] lg:h-[450px] w-auto opacity-90 mix-blend-darken pointer-events-none"
+        />
+
         {/* Kuriyama calligraphy - top right */}
         <img
           src={kuriyamaImage}
           alt=""
-          className="absolute top-8 right-8 md:right-16 lg:right-20 h-[150px] md:h-[200px] lg:h-[280px] w-auto pointer-events-none"
+          className="absolute top-8 md:top-12 right-8 md:right-16 lg:right-20 h-[150px] md:h-[200px] lg:h-[280px] w-auto pointer-events-none"
         />
 
-        <div className="max-w-[1440px] mx-auto">
+        <div className="relative z-10 max-w-[1440px] mx-auto py-16 md:py-20 lg:py-24 px-6 md:px-12 lg:px-20">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
             {/* Left side - Big tagline */}
             <div className="lg:w-1/2">
@@ -31,7 +46,7 @@ const Footer: React.FC = () => {
 
             {/* Right side - Contact form */}
             <div className="lg:w-1/2 lg:pt-8">
-              <div className="border-2 border-primary p-6 md:p-8 max-w-[500px]">
+              <div className="border-2 border-primary p-6 md:p-8 max-w-[500px] bg-transparent">
                 <h3 className="font-ua-brand text-[#2E261D] text-xl md:text-2xl lg:text-[35px] font-bold uppercase mb-6 md:mb-8">
                   обсудим ваш визит
                 </h3>
@@ -79,12 +94,7 @@ const Footer: React.FC = () => {
 
       {/* Dark footer bottom */}
       <div className="relative bg-[#2E261D] py-8 md:py-12 px-6 md:px-12 lg:px-20">
-        {/* Decorative wave/curve at top */}
-        <div className="absolute top-0 left-0 right-0 h-16 md:h-24 bg-[#F5F5F0]" style={{
-          clipPath: 'ellipse(60% 100% at 50% 0%)'
-        }} />
-        
-        <div className="max-w-[1440px] mx-auto pt-8 md:pt-12">
+        <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
             {/* Navigation */}
             <div className="space-y-3 md:space-y-4">
@@ -103,7 +113,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Footer note */}
-            <p className="font-glametrix text-white/80 text-sm md:text-base max-w-[400px] text-right">
+            <p className="font-glametrix text-white/80 text-sm md:text-base max-w-[400px] md:text-right">
               Информация, которую необходимо расположить в футере.
             </p>
           </div>
