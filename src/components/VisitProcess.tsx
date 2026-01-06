@@ -76,7 +76,7 @@ const VisitProcess: React.FC = () => {
             </div>
             
             {/* Wood image positioned behind and extending below */}
-            <div className="absolute -top-16 md:-top-20 lg:-top-24 left-0 w-full max-w-[320px] lg:max-w-[380px] -z-0">
+            <div className="absolute -top-32 md:-top-40 lg:-top-48 left-0 w-full max-w-[320px] lg:max-w-[380px] -z-0">
               <img 
                 src={woodImage} 
                 alt="" 
