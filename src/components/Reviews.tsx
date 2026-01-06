@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+import backImage from '@/assets/13-back-image.png';
 
 interface Review {
   name: string;
@@ -22,7 +22,7 @@ const reviews: Review[] = [
     text: 'Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.',
   },
   {
-    name: 'Соболева Наталья',
+    name: 'Соколов Яков',
     text: 'Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.',
   },
   {
@@ -30,78 +30,130 @@ const reviews: Review[] = [
     text: 'Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.',
   },
   {
-    name: 'Соколов Яков',
+    name: 'Соболева Наталья',
     text: 'Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.',
   },
 ];
 
 const Reviews: React.FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
-
-  const handleWheel = (e: React.WheelEvent) => {
-    if (scrollRef.current && isHovering) {
-      e.preventDefault();
-      scrollRef.current.scrollLeft += e.deltaY;
-    }
-  };
-
   return (
-    <section className="relative w-full min-h-screen bg-[#F5F5F0] py-16 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-16">
-        {/* Title */}
-        <h2 className="font-ua-brand text-[#2E261D] text-5xl md:text-6xl lg:text-[80px] font-bold uppercase mb-4">
-          Отзывы
-        </h2>
-        
-        {/* Subtitle */}
-        <p className="font-glametrix text-black text-lg md:text-[22px] max-w-[500px] mb-8">
-          Текст, дополняющий заголовок. О ценности гостей и их визитов.
-        </p>
+    <section className="relative w-full min-h-screen bg-[#F5F5F0] py-12 md:py-16 px-6 md:px-12 lg:px-20 overflow-hidden">
+      {/* Background calligraphy image - centered */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <img
+          src={backImage}
+          alt=""
+          className="h-[500px] md:h-[600px] lg:h-[700px] w-auto opacity-40 mix-blend-darken"
+        />
       </div>
 
-      {/* Reviews carousel */}
-      <div
-        ref={scrollRef}
-        className="flex gap-6 px-6 md:px-16 overflow-x-auto pb-8"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        onWheel={handleWheel}
-      >
-        {reviews.map((review, index) => (
-          <motion.div
-            key={index}
-            className={`flex-shrink-0 bg-[#EFE3D6] border border-primary rounded-lg p-6 ${
-              review.isLarge ? 'w-[350px] md:w-[450px]' : 'w-[280px] md:w-[320px]'
-            }`}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            {/* Avatar placeholder */}
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-[#EFE9E3] border border-primary rounded-sm flex items-center justify-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-sm" />
+      <div className="max-w-[1440px] mx-auto relative z-10">
+        {/* Header row */}
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8 md:mb-12">
+          {/* Title */}
+          <h2 className="font-ua-brand text-[#2E261D] text-5xl md:text-6xl lg:text-[80px] font-bold uppercase">
+            отзывы
+          </h2>
+          
+          {/* Subtitle */}
+          <p className="font-glametrix text-black text-base md:text-lg lg:text-[22px] max-w-[300px] md:pt-4">
+            Текст, дополняющий заголовок. О ценности гостей и их визитов.
+          </p>
+        </div>
+
+        {/* Reviews grid - scattered layout */}
+        <div className="relative min-h-[500px] md:min-h-[600px]">
+          {/* Иванов Иван - large card, top left */}
+          <div className="absolute top-0 left-0 w-[280px] md:w-[300px] bg-[#EFE3D6] border border-primary p-4 md:p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300" />
               </div>
-              <h3 className="font-glametrix-bold text-black text-xl md:text-2xl">
-                {review.name}
+              <h3 className="font-glametrix font-bold text-black text-lg md:text-xl">
+                {reviews[0].name}
               </h3>
             </div>
-            
-            {/* Review text */}
-            <p className="font-glametrix text-black text-base md:text-lg leading-relaxed">
-              {review.text}
+            <p className="font-glametrix text-black text-sm md:text-base leading-relaxed">
+              {reviews[0].text}
             </p>
-          </motion.div>
-        ))}
-      </div>
+          </div>
 
-      {/* Hide scrollbar */}
-      <style>{`
-        div::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+          {/* Лебедева Дарья - center */}
+          <div className="absolute top-[180px] md:top-[200px] left-1/2 -translate-x-1/2 w-[280px] md:w-[320px] bg-[#EFE3D6] border border-primary p-4 md:p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300" />
+              </div>
+              <h3 className="font-glametrix font-bold text-black text-lg md:text-xl">
+                {reviews[1].name}
+              </h3>
+            </div>
+            <p className="font-glametrix text-black text-sm md:text-base leading-relaxed">
+              {reviews[1].text}
+            </p>
+          </div>
+
+          {/* Кулик Евгений - top right */}
+          <div className="absolute top-0 right-0 w-[240px] md:w-[280px] bg-[#EFE3D6] border border-primary p-4 md:p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300" />
+              </div>
+              <h3 className="font-glametrix font-bold text-black text-lg md:text-xl">
+                {reviews[2].name}
+              </h3>
+            </div>
+            <p className="font-glametrix text-black text-sm md:text-base leading-relaxed">
+              {reviews[2].text}
+            </p>
+          </div>
+
+          {/* Соколов Яков - right side, middle */}
+          <div className="absolute top-[160px] md:top-[180px] right-0 w-[240px] md:w-[280px] bg-[#EFE3D6] border border-primary p-4 md:p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300" />
+              </div>
+              <h3 className="font-glametrix font-bold text-black text-lg md:text-xl">
+                {reviews[3].name}
+              </h3>
+            </div>
+            <p className="font-glametrix text-black text-sm md:text-base leading-relaxed">
+              {reviews[3].text}
+            </p>
+          </div>
+
+          {/* Романов Сергей - bottom left */}
+          <div className="absolute top-[380px] md:top-[420px] left-[10%] md:left-[15%] w-[280px] md:w-[340px] bg-[#EFE3D6] border border-primary p-4 md:p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300" />
+              </div>
+              <h3 className="font-glametrix font-bold text-black text-lg md:text-xl">
+                {reviews[4].name}
+              </h3>
+            </div>
+            <p className="font-glametrix text-black text-sm md:text-base leading-relaxed">
+              {reviews[4].text}
+            </p>
+          </div>
+
+          {/* Соболева Наталья - bottom right */}
+          <div className="absolute top-[340px] md:top-[380px] right-[5%] md:right-[10%] w-[240px] md:w-[280px] bg-[#EFE3D6] border border-primary p-4 md:p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-300" />
+              </div>
+              <h3 className="font-glametrix font-bold text-black text-lg md:text-xl">
+                {reviews[5].name}
+              </h3>
+            </div>
+            <p className="font-glametrix text-black text-sm md:text-base leading-relaxed">
+              {reviews[5].text}
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
