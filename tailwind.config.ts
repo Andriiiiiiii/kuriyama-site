@@ -13,6 +13,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'ua-brand': ['UA-brand', 'Impact', 'sans-serif'],
+        'glametrix': ['Glametrix', 'Inter', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
