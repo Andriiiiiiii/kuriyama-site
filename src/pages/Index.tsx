@@ -1,4 +1,8 @@
 import React from 'react';
+import DayPassJapan from '@/components/DayPassJapan';
+import Products from '@/components/Products';
+import DailyPassBanner from '@/components/DailyPassBanner';
+import VisitProcess from '@/components/VisitProcess';
 import SeasonalActivities from '@/components/SeasonalActivities';
 import Rules from '@/components/Rules';
 import HorizontalGallery from '@/components/HorizontalGallery';
@@ -11,6 +15,10 @@ import Footer from '@/components/Footer';
 const Index = () => {
   return (
     <main className="w-full bg-background">
+      <DayPassJapan />
+      <Products />
+      <DailyPassBanner />
+      <VisitProcess />
       <SeasonalActivities />
       <Rules />
       <HorizontalGallery />
