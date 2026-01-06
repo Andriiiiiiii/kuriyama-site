@@ -26,20 +26,20 @@ const Footer: React.FC = () => {
           <img
             src={inkSplash}
             alt=""
-            className="absolute bottom-8 md:bottom-12 lg:bottom-16 left-0 h-[280px] md:h-[380px] lg:h-[480px] w-auto mix-blend-darken pointer-events-none"
+            className="absolute bottom-20 md:bottom-28 lg:bottom-36 left-0 h-[280px] md:h-[380px] lg:h-[480px] w-auto mix-blend-darken pointer-events-none"
           />
 
-          {/* Kuriyama calligraphy - 2x bigger, positioned more to the left */}
+          {/* Kuriyama calligraphy - raised higher, not overlapping contact form */}
           <img
             src={kuriyamaImage}
             alt=""
-            className="absolute -top-12 md:-top-16 lg:-top-24 right-[20%] md:right-[25%] lg:right-[30%] h-[280px] md:h-[400px] lg:h-[520px] w-auto pointer-events-none"
+            className="absolute -top-20 md:-top-28 lg:-top-36 right-[20%] md:right-[25%] lg:right-[30%] h-[280px] md:h-[400px] lg:h-[520px] w-auto pointer-events-none"
           />
 
           <div className="flex-1 max-w-[1440px] w-full mx-auto px-6 md:px-12 lg:px-20 py-8 md:py-10 lg:py-12">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 xl:gap-24 items-start">
               {/* Left side - Big tagline - lower in white area */}
-              <div className="lg:flex-1 pt-28 md:pt-40 lg:pt-52">
+              <div className="lg:flex-1 pt-40 md:pt-56 lg:pt-72">
                 <h2 className="font-ua-brand text-primary text-[36px] md:text-[48px] lg:text-[60px] xl:text-[68px] font-bold uppercase leading-[1.0] tracking-tight">
                   природа.
                   <br />
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               </div>
 
               {/* Right side - Contact form - aligned with text, wider */}
-              <div className="lg:flex-1 w-full max-w-[520px] lg:max-w-none pt-28 md:pt-40 lg:pt-52">
+              <div className="lg:flex-1 w-full max-w-[520px] lg:max-w-none pt-40 md:pt-56 lg:pt-72">
                 <div className="border-2 border-primary p-6 md:p-8 lg:p-10 bg-transparent max-w-[520px] w-full">
                   <h3 className="font-ua-brand text-[#2E261D] text-[18px] md:text-[22px] lg:text-[28px] font-bold uppercase mb-4 md:mb-6 tracking-tight">
                     обсудим ваш визит
