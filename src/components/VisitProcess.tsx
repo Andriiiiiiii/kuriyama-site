@@ -15,55 +15,64 @@ const VisitProcess: React.FC = () => {
         </h2>
 
         {/* Steps container */}
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:flex-row items-stretch">
           {/* Step 1 */}
-          <div className="flex-1 pr-6 lg:pr-12 pb-8 lg:pb-0 border-b lg:border-b-0 lg:border-r-2 border-primary">
-            <img 
-              src={number1} 
-              alt="1" 
-              className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
-            />
-            <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
-              Выберите тариф
-            </h3>
-            <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
-              Описание, подробнее раскрывающее заголовок
-            </p>
+          <div className="flex-1 pb-8 lg:pb-0 border-b lg:border-b-0">
+            <div className="h-full pr-6 lg:pr-12 border-r-2 border-primary">
+              <img 
+                src={number1} 
+                alt="1" 
+                className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
+              />
+              <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
+                Выберите тариф
+              </h3>
+              <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
+                Описание, подробнее раскрывающее заголовок
+              </p>
+            </div>
           </div>
 
           {/* Step 2 */}
-          <div className="flex-1 px-6 lg:px-12 py-8 lg:py-0 border-b lg:border-b-0 lg:border-r-2 border-primary">
-            <img 
-              src={number2} 
-              alt="2" 
-              className="h-[60px] md:h-[70px] lg:h-[78px] w-auto mb-4"
-            />
-            <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
-              Назначьте дату
-            </h3>
-            <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
-              Описание, подробнее раскрывающее заголовок
-            </p>
+          <div className="flex-1 py-8 lg:py-0">
+            <div className="h-full px-6 lg:px-12 border-r-2 border-primary">
+              <img 
+                src={number2} 
+                alt="2" 
+                className="h-[60px] md:h-[70px] lg:h-[78px] w-auto mb-4"
+              />
+              <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
+                Назначьте дату
+              </h3>
+              <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
+                Описание, подробнее раскрывающее заголовок
+              </p>
+            </div>
           </div>
 
           {/* Step 3 - on wood background */}
           <div className="flex-1 lg:flex-[1.2] pt-8 lg:pt-0">
-            <div 
-              className="relative h-[320px] md:h-[380px] lg:h-[420px] bg-cover bg-center p-6 md:p-8 flex flex-col"
-              style={{ backgroundImage: `url(${woodImage})` }}
-            >
-              <div>
-                <img 
-                  src={number3} 
-                  alt="3" 
-                  className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
-                />
-                <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
-                  Мы вас встретим
-                </h3>
-                <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
-                  Описание, подробнее раскрывающее заголовок
-                </p>
+            <div className="relative">
+              <img 
+                src={woodImage} 
+                alt="" 
+                className="w-full h-auto"
+              />
+              {/* Content overlay */}
+              <div className="absolute inset-0 p-6 md:p-8 flex flex-col">
+                <div>
+                  <img 
+                    src={number3} 
+                    alt="3" 
+                    className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
+                  />
+                  <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
+                    Мы вас встретим
+                  </h3>
+                  <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
+                    Описание, подробнее раскрывающее заголовок
+                  </p>
+                </div>
               </div>
             </div>
           </div>
