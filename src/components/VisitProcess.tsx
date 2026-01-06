@@ -1,27 +1,10 @@
 import React from 'react';
-
-// Placeholder for wood texture image - using the one from the uploaded reference
-import woodImage from '@/assets/8-photo.png';
+import woodImage from '@/assets/7-right-image.png';
+import number1 from '@/assets/number-1.svg';
+import number2 from '@/assets/number-2.svg';
+import number3 from '@/assets/number-3.svg';
 
 const VisitProcess: React.FC = () => {
-  const steps = [
-    {
-      number: '1',
-      title: 'Выберите тариф',
-      description: 'Описание, подробнее раскрывающее заголовок'
-    },
-    {
-      number: '2',
-      title: 'Назначьте дату',
-      description: 'Описание, подробнее раскрывающее заголовок'
-    },
-    {
-      number: '3',
-      title: 'Мы вас встретим',
-      description: 'Описание, подробнее раскрывающее заголовок'
-    }
-  ];
-
   return (
     <section className="relative w-full bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
@@ -31,54 +14,59 @@ const VisitProcess: React.FC = () => {
           ПОСЕЩЕНИЯ
         </h2>
 
-        {/* Steps grid */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-0">
-          {steps.map((step, index) => (
+        {/* Steps container */}
+        <div className="flex flex-col lg:flex-row">
+          {/* Step 1 */}
+          <div className="flex-1 pr-6 lg:pr-12 pb-8 lg:pb-0 border-b lg:border-b-0 lg:border-r-2 border-primary">
+            <img 
+              src={number1} 
+              alt="1" 
+              className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
+            />
+            <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
+              Выберите тариф
+            </h3>
+            <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
+              Описание, подробнее раскрывающее заголовок
+            </p>
+          </div>
+
+          {/* Step 2 */}
+          <div className="flex-1 px-6 lg:px-12 py-8 lg:py-0 border-b lg:border-b-0 lg:border-r-2 border-primary">
+            <img 
+              src={number2} 
+              alt="2" 
+              className="h-[60px] md:h-[70px] lg:h-[78px] w-auto mb-4"
+            />
+            <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
+              Назначьте дату
+            </h3>
+            <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
+              Описание, подробнее раскрывающее заголовок
+            </p>
+          </div>
+
+          {/* Step 3 - on wood background */}
+          <div className="flex-1 lg:flex-[1.2] pt-8 lg:pt-0">
             <div 
-              key={index} 
-              className={`flex-1 ${index < 2 ? 'lg:border-r-2 lg:border-primary lg:pr-8' : ''} ${index === 2 ? 'lg:pl-8' : ''}`}
+              className="relative h-[320px] md:h-[380px] lg:h-[420px] bg-cover bg-center p-6 md:p-8 flex flex-col"
+              style={{ backgroundImage: `url(${woodImage})` }}
             >
-              {index < 2 ? (
-                // Steps 1 and 2 - on white background
-                <div className="py-4">
-                  <span className="font-ua-brand text-[#2E261D] text-[80px] md:text-[100px] font-normal leading-[0.8] block mb-4">
-                    {step.number}
-                  </span>
-                  <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px]">
-                    {step.description}
-                  </p>
-                </div>
-              ) : (
-                // Step 3 - on wood background
-                <div 
-                  className="relative h-[300px] md:h-[400px] lg:h-full min-h-[350px] rounded-lg overflow-hidden bg-cover bg-center p-6 md:p-8 flex flex-col justify-between"
-                  style={{ backgroundImage: `url(${woodImage})` }}
-                >
-                  <div>
-                    <span className="font-ua-brand text-[#2E261D] text-[80px] md:text-[100px] font-normal leading-[0.8] block mb-4">
-                      {step.number}
-                    </span>
-                    <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px]">
-                      {step.description}
-                    </p>
-                  </div>
-                  
-                  {/* Kuriyama calligraphy signature in bottom right */}
-                  <div className="absolute bottom-4 right-4">
-                    <span className="font-ua-brand text-[#2E261D]/60 text-2xl md:text-3xl italic">
-                      クリヤマ
-                    </span>
-                  </div>
-                </div>
-              )}
+              <div>
+                <img 
+                  src={number3} 
+                  alt="3" 
+                  className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
+                />
+                <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
+                  Мы вас встретим
+                </h3>
+                <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[280px]">
+                  Описание, подробнее раскрывающее заголовок
+                </p>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
