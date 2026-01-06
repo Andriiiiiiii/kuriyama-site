@@ -18,7 +18,7 @@ const DailyPass: React.FC = () => {
       <div className="relative h-full max-w-[1440px] mx-auto px-6 md:px-16 py-6 flex flex-col md:flex-row justify-between items-start md:items-center">
         {/* Left side - Title */}
         <div>
-          <h1 className="text-white text-4xl md:text-6xl lg:text-[80px] font-bold uppercase leading-tight">
+          <h1 className="font-ua-brand text-white text-4xl md:text-6xl lg:text-[80px] font-bold uppercase leading-tight">
             daily pass.
             <br />
             пасека
@@ -34,12 +34,12 @@ const DailyPass: React.FC = () => {
           />
           
           {/* Button label */}
-          <button className="text-white text-lg md:text-[22px] font-medium mt-4 md:mt-8 hover:text-white/80 transition-colors">
+          <button className="font-glametrix text-white text-lg md:text-[22px] font-medium mt-4 md:mt-8 hover:text-white/80 transition-colors">
             Выбрать тариф
           </button>
 
           {/* Description */}
-          <p className="text-white text-base md:text-[22px] font-medium mt-4 max-w-[239px] text-center">
+          <p className="font-glametrix text-white text-base md:text-[22px] font-medium mt-4 max-w-[239px] text-center">
             Пропуск на посещение на день со всеми активностями
           </p>
         </div>

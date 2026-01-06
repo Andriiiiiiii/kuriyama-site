@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import MoreButton from '@/components/MoreButton';
 import photo1 from '@/assets/9-photo-1.png';
 import photo2 from '@/assets/9-photo-2.png';
 
@@ -22,7 +22,7 @@ const Rules: React.FC = () => {
   return (
     <section className="relative w-full max-w-[1204px] mx-auto px-4 md:px-8 py-12 md:py-20">
       {/* Title */}
-      <h1 className="text-primary text-4xl md:text-6xl lg:text-[80px] font-bold uppercase">
+      <h1 className="font-ua-brand text-primary text-4xl md:text-6xl lg:text-[80px] font-bold uppercase">
         правила
       </h1>
 
@@ -41,10 +41,10 @@ const Rules: React.FC = () => {
             className="ml-0"
             style={{ marginLeft: `${index * 100}px` }}
           >
-            <h2 className="text-secondary text-xl md:text-2xl lg:text-[32px] font-bold">
+            <h2 className="font-glametrix text-secondary text-xl md:text-2xl lg:text-[32px] font-bold">
               {rule.title}
             </h2>
-            <p className="text-foreground text-sm md:text-base font-normal mt-2 max-w-[690px]">
+            <p className="font-inter text-foreground text-sm md:text-base font-normal mt-2 max-w-[690px]">
               {rule.description}
             </p>
           </div>
@@ -60,10 +60,7 @@ const Rules: React.FC = () => {
 
       {/* More button */}
       <div className="flex justify-end mt-8">
-        <button className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground px-6 py-2 rounded-full text-lg md:text-[22px] font-medium hover:bg-primary/90 transition-colors">
-          Подробнее
-          <ChevronRight className="w-4 h-4" />
-        </button>
+        <MoreButton onClick={() => console.log('More clicked')} />
       </div>
     </section>
   );
