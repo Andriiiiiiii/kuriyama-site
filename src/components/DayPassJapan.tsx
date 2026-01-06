@@ -7,14 +7,14 @@ import { ChevronRight } from 'lucide-react';
 
 const DayPassJapan: React.FC = () => {
   return (
-    <section className="relative w-full bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
-      {/* Central vertical line - from top to middle of calligraphy */}
-      <div className="hidden lg:block absolute left-1/2 top-0 w-[2px] bg-primary h-[42%]" />
+    <section className="relative w-full bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-visible">
+      {/* Central vertical line - from top to calligraphy image */}
+      <div className="hidden lg:block absolute left-[38%] top-0 w-[2px] bg-primary h-[180px] md:h-[220px] lg:h-[260px]" />
       
       <div className="max-w-[1440px] mx-auto">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* Left column */}
-          <div className="lg:w-[45%]">
+          <div className="lg:w-[40%]">
             {/* DAY PASS title */}
             <h2 className="font-ua-brand text-primary text-[48px] md:text-[64px] lg:text-[80px] font-bold uppercase leading-[0.95] mb-4">
               DAY PASS
@@ -47,6 +47,15 @@ const DayPassJapan: React.FC = () => {
             </div>
           </div>
 
+          {/* Center - Calligraphy image */}
+          <div className="hidden lg:flex flex-col items-center pt-[260px]">
+            <img 
+              src={calligraphyImage} 
+              alt="Каллиграфия" 
+              className="w-[100px] md:w-[120px] lg:w-[140px] h-auto"
+            />
+          </div>
+
           {/* Right column */}
           <div className="lg:flex-1">
             {/* ЯПОНИЯ title and description */}
@@ -60,35 +69,23 @@ const DayPassJapan: React.FC = () => {
               </h2>
             </div>
 
-            {/* Calligraphy and Garden */}
-            <div className="flex gap-4 md:gap-6 mb-6">
-              {/* Calligraphy image - moved more to the left */}
-              <div className="w-[100px] md:w-[130px] lg:w-[160px] flex-shrink-0 -ml-8 md:-ml-12 lg:-ml-16">
-                <img 
-                  src={calligraphyImage} 
-                  alt="Каллиграфия" 
-                  className="w-full h-auto mix-blend-hard-light"
-                />
-              </div>
-              
-              {/* Rock garden card */}
-              <div className="flex-1">
-                <img 
-                  src={gardenImage} 
-                  alt="Сад камней" 
-                  className="w-full h-[140px] md:h-[180px] object-cover"
-                />
-                <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[30px] mt-3">
-                  Сад камней
-                </h3>
-                <p className="font-glametrix text-[#2E261D] text-sm md:text-base lg:text-[22px] mt-1">
-                  Описание, чуть подробнее раскрывающее заголовок
-                </p>
-                <button className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-glametrix text-sm md:text-base lg:text-[22px] px-4 md:px-5 py-2 rounded-full transition-colors mt-3">
-                  Подробнее
-                  <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
-                </button>
-              </div>
+            {/* Rock garden card - positioned higher */}
+            <div className="mb-6">
+              <img 
+                src={gardenImage} 
+                alt="Сад камней" 
+                className="w-full h-[140px] md:h-[160px] lg:h-[180px] object-cover"
+              />
+              <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[30px] mt-3">
+                Сад камней
+              </h3>
+              <p className="font-glametrix text-[#2E261D] text-sm md:text-base lg:text-[22px] mt-1">
+                Описание, чуть подробнее раскрывающее заголовок
+              </p>
+              <button className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-glametrix text-sm md:text-base lg:text-[22px] px-4 md:px-5 py-2 rounded-full transition-colors mt-3">
+                Подробнее
+                <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
             </div>
 
             {/* Photoshoot card */}
