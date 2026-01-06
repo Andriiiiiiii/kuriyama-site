@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
 
 import photo1 from '@/assets/gallery/photo-1.png';
 import photo2 from '@/assets/gallery/photo-2.png';
@@ -29,6 +28,13 @@ const baseImages: GalleryImage[] = [
 // Repeat images 5 times for seamless loop
 const galleryImages = [...baseImages, ...baseImages, ...baseImages, ...baseImages, ...baseImages];
 
+// Lerp values: smaller = more inertia/lag
+const getLerpValue = (size: string) => {
+  if (size === 'big') return 0.03; // Most inertia, slowest
+  if (size === 'normal') return 0.05; // Medium inertia
+  return 0.08; // Least inertia, fastest response
+};
+
 const getSizeClasses = (size: string, orientation: string) => {
   if (size === 'big') {
     return orientation === 'horizontal' 
@@ -46,97 +52,101 @@ const getSizeClasses = (size: string, orientation: string) => {
     : 'h-[25vh] w-[19vh] min-w-[95px]';
 };
 
-// Inertia weights: bigger images = heavier = slower response
-const getInertiaWeight = (size: string) => {
-  if (size === 'big') return 0.15; // Heavy, slow response
-  if (size === 'normal') return 0.25; // Medium weight
-  return 0.4; // Light, fast response
-};
-
 const HorizontalGallery = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isResetting = useRef(false);
   
-  // Track scroll velocity for inertia
-  const scrollVelocity = useRef(0);
-  const lastScrollTime = useRef(Date.now());
-  const lastScrollLeft = useRef(0);
+  // Smooth scroll state
+  const targetScrollX = useRef(0);
+  const currentScrollX = useRef(0);
+  const imagePositions = useRef<number[]>(galleryImages.map(() => 0));
+  const [renderTrigger, setRenderTrigger] = useState(0);
   const animationFrame = useRef<number | null>(null);
-  const [imageOffsets, setImageOffsets] = useState<number[]>(galleryImages.map(() => 0));
+
+  // Linear interpolation
+  const lerp = (start: number, end: number, factor: number) => {
+    return start + (end - start) * factor;
+  };
 
   const checkInfiniteScroll = useCallback(() => {
     const container = scrollContainerRef.current;
     if (!container || isResetting.current) return;
 
     const scrollWidth = container.scrollWidth;
-    const clientWidth = container.clientWidth;
-    const scrollLeft = container.scrollLeft;
-    
-    // Calculate the width of one set of images (1/5 of total)
     const oneSetWidth = scrollWidth / 5;
-    
-    // Start in the middle (at 2nd set)
     const minScroll = oneSetWidth;
     const maxScroll = oneSetWidth * 4;
 
-    if (scrollLeft < minScroll) {
+    if (targetScrollX.current < minScroll) {
       isResetting.current = true;
-      container.scrollLeft = scrollLeft + oneSetWidth * 2;
+      const offset = oneSetWidth * 2;
+      targetScrollX.current += offset;
+      currentScrollX.current += offset;
+      imagePositions.current = imagePositions.current.map(pos => pos + offset);
+      container.scrollLeft = targetScrollX.current;
       requestAnimationFrame(() => {
         isResetting.current = false;
       });
-    } else if (scrollLeft > maxScroll) {
+    } else if (targetScrollX.current > maxScroll) {
       isResetting.current = true;
-      container.scrollLeft = scrollLeft - oneSetWidth * 2;
+      const offset = oneSetWidth * 2;
+      targetScrollX.current -= offset;
+      currentScrollX.current -= offset;
+      imagePositions.current = imagePositions.current.map(pos => pos - offset);
+      container.scrollLeft = targetScrollX.current;
       requestAnimationFrame(() => {
         isResetting.current = false;
       });
     }
   }, []);
 
+  // Initialize scroll position
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    // Start in the middle
     const oneSetWidth = container.scrollWidth / 5;
-    container.scrollLeft = oneSetWidth * 2;
+    const initialScroll = oneSetWidth * 2;
+    container.scrollLeft = initialScroll;
+    targetScrollX.current = initialScroll;
+    currentScrollX.current = initialScroll;
+    imagePositions.current = galleryImages.map(() => initialScroll);
   }, []);
 
-  // Apply inertia to each image based on scroll velocity
+  // Animation loop for smooth lerp scrolling
   useEffect(() => {
-    const updateInertia = () => {
+    const animate = () => {
       const container = scrollContainerRef.current;
-      if (!container) return;
-      
-      const now = Date.now();
-      const dt = Math.max(1, now - lastScrollTime.current);
-      const currentScrollLeft = container.scrollLeft;
-      
-      // Calculate velocity
-      const newVelocity = (currentScrollLeft - lastScrollLeft.current) / dt;
-      scrollVelocity.current = newVelocity;
-      lastScrollTime.current = now;
-      lastScrollLeft.current = currentScrollLeft;
-      
-      // Apply different offsets based on velocity and weight
-      setImageOffsets(prev => 
-        prev.map((offset, index) => {
-          const imageIndex = index % baseImages.length;
-          const weight = getInertiaWeight(baseImages[imageIndex].size);
-          const targetOffset = -scrollVelocity.current * 50; // Base offset from velocity
-          // Lerp towards target with weight controlling speed
-          return offset + (targetOffset - offset) * weight;
-        })
-      );
-      
-      animationFrame.current = requestAnimationFrame(updateInertia);
+      if (!container) {
+        animationFrame.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      // Lerp main scroll
+      currentScrollX.current = lerp(currentScrollX.current, targetScrollX.current, 0.1);
+      container.scrollLeft = currentScrollX.current;
+
+      // Lerp each image position with different speeds
+      let needsUpdate = false;
+      imagePositions.current = imagePositions.current.map((pos, index) => {
+        const imageIndex = index % baseImages.length;
+        const lerpValue = getLerpValue(baseImages[imageIndex].size);
+        const newPos = lerp(pos, targetScrollX.current, lerpValue);
+        if (Math.abs(newPos - pos) > 0.01) needsUpdate = true;
+        return newPos;
+      });
+
+      if (needsUpdate || Math.abs(currentScrollX.current - targetScrollX.current) > 0.1) {
+        setRenderTrigger(prev => prev + 1);
+      }
+
+      animationFrame.current = requestAnimationFrame(animate);
     };
-    
-    animationFrame.current = requestAnimationFrame(updateInertia);
-    
+
+    animationFrame.current = requestAnimationFrame(animate);
+
     return () => {
       if (animationFrame.current) {
         cancelAnimationFrame(animationFrame.current);
@@ -144,6 +154,7 @@ const HorizontalGallery = () => {
     };
   }, []);
 
+  // Handle wheel events
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -151,72 +162,56 @@ const HorizontalGallery = () => {
     const handleWheel = (e: WheelEvent) => {
       if (isHovering) {
         e.preventDefault();
-        container.scrollLeft += e.deltaY;
+        targetScrollX.current += e.deltaY;
         checkInfiniteScroll();
       }
     };
 
-    const handleScroll = () => {
-      checkInfiniteScroll();
-    };
-
     container.addEventListener('wheel', handleWheel, { passive: false });
-    container.addEventListener('scroll', handleScroll);
     
     return () => {
       container.removeEventListener('wheel', handleWheel);
-      container.removeEventListener('scroll', handleScroll);
     };
   }, [isHovering, checkInfiniteScroll]);
 
+  // Calculate individual image offset based on its lerped position vs current scroll
+  const getImageTransformX = (index: number) => {
+    const imagePos = imagePositions.current[index];
+    const diff = imagePos - currentScrollX.current;
+    return diff * 0.3; // Scale down the effect
+  };
+
   return (
-    <section className="relative h-[60vh] overflow-hidden bg-[#F5F5F0]">
+    <section 
+      className="relative h-[60vh] overflow-hidden bg-[#F5F5F0]"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
       <div 
         ref={scrollContainerRef}
         className="flex items-center h-full px-8 py-6 overflow-x-auto"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {galleryImages.map((image, index) => (
-          <motion.div
+          <div
             key={index}
             className={`relative flex-shrink-0 ${getSizeClasses(image.size, image.orientation)} -mr-[6vh]`}
             style={{ 
               marginBottom: `${image.offset}vh`,
               zIndex: hoveredIndex === index ? 50 : (image.size === 'small' ? 2 : image.size === 'normal' ? 1 : 0),
-              x: imageOffsets[index] || 0,
             }}
-            animate={{
-              x: imageOffsets[index] || 0,
-            }}
-            transition={{
-              x: {
-                type: "spring",
-                stiffness: image.size === 'big' ? 80 : image.size === 'normal' ? 120 : 180,
-                damping: image.size === 'big' ? 20 : image.size === 'normal' ? 15 : 10,
-              }
-            }}
-            onMouseEnter={() => {
-              setIsHovering(true);
-              setHoveredIndex(index);
-            }}
-            onMouseLeave={() => {
-              setIsHovering(false);
-              setHoveredIndex(null);
-            }}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
-            <motion.img
+            <img
               src={image.src}
               alt={`Gallery image ${(index % baseImages.length) + 1}`}
-              className="h-full w-full object-cover cursor-default shadow-lg"
-              animate={{ 
-                scale: hoveredIndex === index ? 1.15 : 1,
-              }}
-              transition={{ duration: 0.3 }}
+              className="h-full w-full object-cover cursor-default shadow-lg transition-transform duration-300"
               style={{ 
-                position: 'relative',
+                transform: `translateX(${getImageTransformX(index)}px) scale(${hoveredIndex === index ? 1.15 : 1})`,
               }}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
       
