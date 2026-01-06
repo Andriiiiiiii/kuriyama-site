@@ -117,7 +117,7 @@ const HorizontalGallery = () => {
   }, [isHovering, checkInfiniteScroll]);
 
   return (
-    <section className="relative h-[60vh] overflow-hidden bg-[#F5F5F0]">
+    <section className="relative h-[60vh] overflow-hidden bg-white">
       <div 
         ref={scrollContainerRef}
         className="flex items-center h-full px-8 py-6 overflow-x-auto"
