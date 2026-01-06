@@ -59,29 +59,29 @@ const VisitProcess: React.FC = () => {
           </div>
 
           {/* Step 3 - on wood background */}
-          <div className="flex-1 pt-8 lg:pt-0">
-            <div className="relative w-full max-w-[320px] lg:max-w-[380px]">
+          <div className="flex-1 pt-8 lg:pt-0 relative">
+            {/* Content - aligned with other numbers */}
+            <div className="relative z-10 pl-6 lg:pl-8">
+              <img 
+                src={number3} 
+                alt="3" 
+                className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
+              />
+              <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
+                Мы вас встретим
+              </h3>
+              <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[240px]">
+                Описание, подробнее раскрывающее заголовок
+              </p>
+            </div>
+            
+            {/* Wood image positioned behind and extending below */}
+            <div className="absolute top-0 left-0 w-full max-w-[320px] lg:max-w-[380px] -z-0">
               <img 
                 src={woodImage} 
                 alt="" 
                 className="w-full h-auto"
               />
-              {/* Content overlay - centered vertically */}
-              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center">
-                <div>
-                  <img 
-                    src={number3} 
-                    alt="3" 
-                    className="h-[60px] md:h-[70px] lg:h-[77px] w-auto mb-4"
-                  />
-                  <h3 className="font-glametrix font-bold text-[#2E261D] text-xl md:text-2xl lg:text-[32px] mb-2">
-                    Мы вас встретим
-                  </h3>
-                  <p className="font-glametrix text-[#2E261D] text-base md:text-lg lg:text-[22px] max-w-[240px]">
-                    Описание, подробнее раскрывающее заголовок
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
