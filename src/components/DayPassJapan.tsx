@@ -9,7 +9,7 @@ const DayPassJapan: React.FC = () => {
   return (
     <section className="relative w-full bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
       {/* Central vertical line - from top to middle of calligraphy */}
-      <div className="hidden lg:block absolute left-1/2 top-0 w-[2px] bg-primary h-[50%]" />
+      <div className="hidden lg:block absolute left-1/2 top-0 w-[2px] bg-primary h-[42%]" />
       
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
@@ -63,7 +63,7 @@ const DayPassJapan: React.FC = () => {
             {/* Calligraphy and Garden */}
             <div className="flex gap-4 md:gap-6 mb-6">
               {/* Calligraphy image - moved more to the left */}
-              <div className="w-[120px] md:w-[160px] lg:w-[200px] flex-shrink-0 -ml-8 md:-ml-12 lg:-ml-16">
+              <div className="w-[100px] md:w-[130px] lg:w-[160px] flex-shrink-0 -ml-8 md:-ml-12 lg:-ml-16">
                 <img 
                   src={calligraphyImage} 
                   alt="Каллиграфия" 
