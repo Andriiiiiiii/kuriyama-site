@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 import photo1 from '@/assets/gallery/photo-1.png';
 import photo2 from '@/assets/gallery/photo-2.png';
@@ -18,79 +18,97 @@ interface GalleryImage {
 
 const galleryImages: GalleryImage[] = [
   { src: photo1, size: 'normal', orientation: 'vertical', offset: 0 },
-  { src: photo2, size: 'small', orientation: 'vertical', offset: 15 },
-  { src: photo3, size: 'big', orientation: 'horizontal', offset: -10 },
+  { src: photo2, size: 'small', orientation: 'vertical', offset: 10 },
+  { src: photo3, size: 'big', orientation: 'horizontal', offset: -8 },
   { src: photo4, size: 'normal', orientation: 'vertical', offset: 5 },
   { src: photo5, size: 'big', orientation: 'horizontal', offset: -5 },
-  { src: photo6, size: 'normal', orientation: 'horizontal', offset: 10 },
-  { src: photo7, size: 'small', orientation: 'vertical', offset: -15 },
+  { src: photo6, size: 'normal', orientation: 'horizontal', offset: 8 },
+  { src: photo7, size: 'small', orientation: 'vertical', offset: -10 },
 ];
 
 const getSizeClasses = (size: string, orientation: string) => {
   if (size === 'big') {
     return orientation === 'horizontal' 
-      ? 'h-[60vh] w-[80vh] min-w-[400px]' 
-      : 'h-[80vh] w-[60vh] min-w-[300px]';
+      ? 'h-[35vh] w-[47vh] min-w-[220px]' 
+      : 'h-[45vh] w-[34vh] min-w-[170px]';
   }
   if (size === 'normal') {
     return orientation === 'horizontal' 
-      ? 'h-[45vh] w-[60vh] min-w-[300px]' 
-      : 'h-[60vh] w-[45vh] min-w-[225px]';
+      ? 'h-[28vh] w-[37vh] min-w-[180px]' 
+      : 'h-[35vh] w-[26vh] min-w-[130px]';
   }
   // small
   return orientation === 'horizontal' 
-    ? 'h-[30vh] w-[40vh] min-w-[200px]' 
-    : 'h-[40vh] w-[30vh] min-w-[150px]';
+    ? 'h-[20vh] w-[27vh] min-w-[130px]' 
+    : 'h-[25vh] w-[19vh] min-w-[95px]';
 };
 
 const HorizontalGallery = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isHovering) {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      }
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, [isHovering]);
 
   return (
-    <section 
-      ref={containerRef}
-      className="relative h-screen overflow-hidden bg-[#F5F5F0]"
-    >
-      <motion.div 
-        style={{ x }}
-        className="flex items-center gap-[-10vh] h-full px-[10vh] py-[10vh]"
+    <section className="relative h-[60vh] overflow-hidden bg-[#F5F5F0]">
+      <div 
+        ref={scrollContainerRef}
+        className="flex items-center gap-4 h-full px-8 py-6 overflow-x-auto scrollbar-hide"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {galleryImages.map((image, index) => (
           <motion.div
             key={index}
-            className={`relative flex-shrink-0 ${getSizeClasses(image.size, image.orientation)} -mr-[10vh]`}
+            className={`relative flex-shrink-0 ${getSizeClasses(image.size, image.orientation)}`}
             style={{ 
               marginBottom: `${image.offset}vh`,
-              zIndex: image.size === 'small' ? 2 : image.size === 'normal' ? 1 : 0
             }}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            transition={{ duration: 0.5, delay: index * 0.05 }}
+            onMouseEnter={() => {
+              setIsHovering(true);
+              setHoveredIndex(index);
+            }}
+            onMouseLeave={() => {
+              setIsHovering(false);
+              setHoveredIndex(null);
+            }}
           >
             <motion.img
               src={image.src}
               alt={`Gallery image ${index + 1}`}
               className="h-full w-full object-cover cursor-default"
-              whileHover={{ 
-                scale: 1.08, 
-                zIndex: 10,
-                transition: { duration: 0.3 }
+              animate={{ 
+                scale: hoveredIndex === index ? 1.1 : 1,
+                zIndex: hoveredIndex === index ? 50 : 1,
               }}
+              transition={{ duration: 0.3 }}
               style={{ 
                 position: 'relative',
               }}
             />
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 };
