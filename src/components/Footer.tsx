@@ -22,24 +22,24 @@ const Footer: React.FC = () => {
         
         {/* Content positioned over the paper */}
         <div className="absolute inset-0 flex flex-col">
-          {/* Ink splash decoration - bottom left, extends beyond container */}
+          {/* Ink splash decoration - bottom left, positioned higher */}
           <img
             src={inkSplash}
             alt=""
-            className="absolute -bottom-16 md:-bottom-20 lg:-bottom-24 left-0 h-[280px] md:h-[380px] lg:h-[480px] w-auto mix-blend-darken pointer-events-none"
+            className="absolute bottom-8 md:bottom-12 lg:bottom-16 left-0 h-[280px] md:h-[380px] lg:h-[480px] w-auto mix-blend-darken pointer-events-none"
           />
 
-          {/* Kuriyama calligraphy - top right, extends beyond container */}
+          {/* Kuriyama calligraphy - 2x bigger, positioned more to the left */}
           <img
             src={kuriyamaImage}
             alt=""
-            className="absolute -top-8 md:-top-12 lg:-top-16 right-8 md:right-16 lg:right-24 h-[140px] md:h-[200px] lg:h-[260px] w-auto pointer-events-none"
+            className="absolute -top-12 md:-top-16 lg:-top-24 right-[20%] md:right-[25%] lg:right-[30%] h-[280px] md:h-[400px] lg:h-[520px] w-auto pointer-events-none"
           />
 
           <div className="flex-1 max-w-[1440px] w-full mx-auto px-6 md:px-12 lg:px-20 py-8 md:py-10 lg:py-12">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 xl:gap-24 items-start">
-              {/* Left side - Big tagline */}
-              <div className="lg:flex-1 pt-4 md:pt-6 lg:pt-8">
+              {/* Left side - Big tagline - centered vertically in white area */}
+              <div className="lg:flex-1 pt-16 md:pt-24 lg:pt-32">
                 <h2 className="font-ua-brand text-primary text-[36px] md:text-[48px] lg:text-[60px] xl:text-[68px] font-bold uppercase leading-[1.0] tracking-tight">
                   природа.
                   <br />
