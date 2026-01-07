@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import heroPhoto from '@/assets/1-photo.png';
 import heroBg from '@/assets/1-background.png';
+import buttonBuy from '@/assets/1-button-buy.svg';
+import buttonContact from '@/assets/1-button-contact.svg';
+import buttonAllActions from '@/assets/1-button-all-actions.svg';
 
 const HeroVisit = () => {
   return (
@@ -17,10 +20,10 @@ const HeroVisit = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-20 flex items-center justify-between px-8 md:px-16 lg:px-24 py-6"
+        className="relative z-20 flex items-center justify-between px-8 md:px-12 lg:px-16 py-6"
       >
         <div className="font-['Glametrix'] text-3xl text-foreground">К</div>
-        <div className="hidden md:flex items-center gap-6 lg:gap-10 font-['Glametrix'] text-xl lg:text-[22px] text-foreground">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8 font-['Glametrix'] text-lg lg:text-xl text-foreground">
           <a href="#" className="hover:text-primary transition-colors">Агротуризм</a>
           <a href="#" className="hover:text-primary transition-colors">Пчеловодство</a>
           <a href="#" className="hover:text-primary transition-colors">Продукция</a>
@@ -28,8 +31,8 @@ const HeroVisit = () => {
           <a href="#" className="hover:text-primary transition-colors">Цены</a>
           <a href="#" className="hover:text-primary transition-colors">Ресурсы</a>
         </div>
-        <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-['Glametrix'] text-xl hover:opacity-90 transition-opacity">
-          Связаться
+        <button className="hover:opacity-90 transition-opacity">
+          <img src={buttonContact} alt="Связаться" className="h-[43px] w-auto" />
         </button>
       </motion.nav>
 
@@ -38,13 +41,13 @@ const HeroVisit = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="relative z-10 px-8 md:px-16 lg:px-24 mt-6 font-['Glametrix'] text-xl lg:text-[22px] text-foreground"
+        className="relative z-10 px-8 md:px-12 lg:px-16 mt-4 font-['Glametrix'] text-lg lg:text-xl text-foreground"
       >
         Главная/Посещение Куриямы
       </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex px-8 md:px-16 lg:px-24 mt-8">
+      <div className="relative z-10 flex px-8 md:px-12 lg:px-16 mt-6">
         {/* Left Side */}
         <div className="w-full lg:w-[55%] relative">
           {/* Title */}
@@ -52,7 +55,7 @@ const HeroVisit = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="font-['UA-brand'] font-bold text-6xl md:text-7xl lg:text-[80px] xl:text-[100px] text-foreground uppercase leading-[0.95] tracking-tight"
+            className="font-['UA-brand'] font-bold text-5xl md:text-6xl lg:text-[80px] xl:text-[90px] text-foreground uppercase leading-[0.95] tracking-tight"
           >
             Посещение
           </motion.h1>
@@ -62,15 +65,15 @@ const HeroVisit = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="absolute left-0 top-[110px] md:top-[130px] lg:top-[140px] font-['Glametrix'] font-bold text-xl md:text-2xl lg:text-[30px] text-foreground flex flex-col items-center" 
-            style={{ lineHeight: '0.75' }}
+            className="absolute left-0 top-[80px] md:top-[100px] lg:top-[110px] font-['Glametrix'] font-bold text-lg md:text-xl lg:text-2xl text-foreground flex flex-col items-center" 
+            style={{ lineHeight: '1.4' }}
           >
-            <span className="mb-1">К</span>
-            <span className="mb-1">у</span>
-            <span className="mb-1">р</span>
-            <span className="mb-1">и</span>
-            <span className="mb-1">я</span>
-            <span className="mb-1">м</span>
+            <span>К</span>
+            <span>у</span>
+            <span>р</span>
+            <span>и</span>
+            <span>я</span>
+            <span>м</span>
             <span>ы</span>
           </motion.div>
 
@@ -79,7 +82,7 @@ const HeroVisit = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-24 md:mt-32 lg:mt-36 ml-[60px] md:ml-[120px] lg:ml-[280px] max-w-[340px] font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-foreground leading-relaxed"
+            className="mt-20 md:mt-24 lg:mt-28 ml-[50px] md:ml-[100px] lg:ml-[280px] max-w-[320px] font-['Glametrix'] text-base md:text-lg lg:text-xl text-foreground leading-relaxed"
           >
             Посетите пасеку Курияма - прогулки, отдых, знакомство с пчелами
           </motion.p>
@@ -89,26 +92,16 @@ const HeroVisit = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.8 }}
-            className="mt-16 md:mt-20 lg:mt-24 ml-[60px] md:ml-[100px] lg:ml-[140px] flex items-center gap-6 lg:gap-10"
+            className="mt-12 md:mt-16 lg:mt-20 ml-[30px] md:ml-[60px] lg:ml-[100px] flex items-center gap-6 lg:gap-8"
           >
-            {/* Circle Button with decorative rings */}
-            <div className="relative">
-              {/* Outer decorative ring */}
-              <div className="absolute -inset-3 rounded-full border border-primary opacity-60"></div>
-              {/* Main circle button */}
-              <button className="relative w-36 h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full bg-primary flex items-center justify-center group hover:scale-105 transition-transform">
-                <span className="font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-primary-foreground text-center px-4">
-                  Выбрать тариф
-                </span>
-              </button>
-              {/* Decorative lines from button */}
-              <div className="absolute top-1/2 -left-8 w-8 h-px bg-primary opacity-40"></div>
-              <div className="absolute -bottom-12 left-1/2 w-px h-12 bg-primary opacity-40"></div>
-            </div>
+            {/* Circle Button - using SVG */}
+            <button className="hover:scale-105 transition-transform flex-shrink-0">
+              <img src={buttonBuy} alt="Выбрать тариф" className="w-[160px] h-[160px] md:w-[180px] md:h-[180px] lg:w-[219px] lg:h-[219px]" />
+            </button>
 
-            {/* Outline Button */}
-            <button className="px-8 py-4 border border-primary rounded-full font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-foreground hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap">
-              Просмотреть все активности
+            {/* Outline Button - using SVG */}
+            <button className="hover:opacity-80 transition-opacity flex-shrink-0">
+              <img src={buttonAllActions} alt="Просмотреть все активности" className="h-[40px] md:h-[43px] w-auto" />
             </button>
           </motion.div>
         </div>
@@ -118,7 +111,7 @@ const HeroVisit = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="hidden lg:block absolute right-0 top-0 w-[45%] h-full"
+          className="hidden lg:block absolute right-0 top-[-80px] w-[42%] h-[calc(100vh-40px)]"
         >
           <img 
             src={heroPhoto} 
