@@ -6,7 +6,7 @@ import number3 from '@/assets/number-3.svg';
 
 const VisitProcess: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-visible flex items-center">
+    <section className="relative w-full bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-visible">
       <div className="max-w-[1440px] mx-auto">
         {/* Title */}
         <h2 className="font-ua-brand text-primary text-[48px] md:text-[64px] lg:text-[80px] font-bold uppercase leading-[0.95] mb-12 md:mb-16">

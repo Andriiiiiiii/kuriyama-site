@@ -10,8 +10,11 @@ import photo5 from '@/assets/gallery/photo-5.png';
 
 const Products: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-hidden flex items-center">
-      <div className="max-w-[1440px] mx-auto w-full">
+    <section className="relative w-full bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
+      {/* Vertical line on right side */}
+      <div className="absolute right-12 md:right-20 lg:right-32 top-0 bottom-0 w-[2px] bg-primary hidden lg:block" />
+      
+      <div className="max-w-[1440px] mx-auto">
         {/* Top row images */}
         <div className="flex justify-center gap-8 md:gap-16 lg:gap-32 mb-8">
           <div className="w-[160px] md:w-[200px] lg:w-[240px]">

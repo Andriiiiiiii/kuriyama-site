@@ -4,7 +4,7 @@ import rightTablet from '@/assets/14-right-back-image.png';
 
 const Tariffs: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-white py-12 md:py-16 px-6 md:px-12 lg:px-20 overflow-hidden flex items-center">
+    <section className="relative w-full min-h-screen bg-white py-12 md:py-16 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
         {/* Title */}
         <h2 className="font-ua-brand text-[#2E261D] text-5xl md:text-6xl lg:text-[80px] font-bold uppercase mb-8 md:mb-12">

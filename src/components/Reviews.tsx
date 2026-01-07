@@ -3,7 +3,7 @@ import backImage from '@/assets/13-back-image.png';
 
 const Reviews: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-white py-16 md:py-20 lg:py-24 px-6 md:px-12 lg:px-20 overflow-hidden flex items-center">
+    <section className="relative w-full bg-white py-16 md:py-20 lg:py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
       {/* Background ink splash - centered */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <img

@@ -7,7 +7,10 @@ import { ChevronRight } from 'lucide-react';
 
 const DayPassJapan: React.FC = () => {
   return (
-    <section className="relative w-full h-[354px] bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
+    <section className="relative w-full bg-white py-12 md:py-16 lg:py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
+      {/* Central vertical line - from top to middle of calligraphy */}
+      <div className="hidden lg:block absolute left-1/2 top-0 w-[2px] bg-primary h-[50%]" />
+      
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* Left column */}
