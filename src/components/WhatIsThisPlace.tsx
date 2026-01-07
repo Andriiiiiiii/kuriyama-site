@@ -5,7 +5,7 @@ import rightImage from '@/assets/2-right-image.png';
 
 const WhatIsThisPlace = () => {
   return (
-    <section className="relative w-full min-h-screen bg-white py-16 overflow-hidden">
+    <section className="relative w-full h-screen bg-white py-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-start justify-center px-8 md:px-16 gap-8 lg:gap-16">
         {/* Left Side - Composite Image */}
         <div className="relative w-full lg:w-[35%] h-[450px] md:h-[550px]">

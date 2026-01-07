@@ -17,7 +17,7 @@ const KuriyamaPlan = () => {
   ];
 
   return (
-    <section className="relative w-full min-h-screen bg-[#EFE9E3] py-12 md:py-16 overflow-hidden">
+    <section className="relative w-full h-screen bg-[#EFE9E3] py-12 md:py-16 overflow-hidden">
       {/* Header Section */}
       <div className="max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start gap-4 mb-6">
         {/* Title */}
