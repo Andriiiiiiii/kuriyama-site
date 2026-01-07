@@ -5,7 +5,7 @@ import paperBackground from '@/assets/15-background.png';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative w-full overflow-visible">
+    <footer className="relative w-full h-screen overflow-visible flex flex-col justify-end">
       {/* Dark background layer - smaller height, positioned at bottom */}
       <div 
         className="absolute bottom-0 left-0 right-0 bg-[#2E261D]"
