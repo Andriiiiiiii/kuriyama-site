@@ -10,7 +10,7 @@ const DayPassJapan: React.FC = () => {
     <section 
       className="relative w-full bg-white overflow-hidden"
       style={{ 
-        aspectRatio: '1440 / 992'
+        aspectRatio: '1440 / 995.5'
       }}
     >
       {/* 4 line 1 - horizontal top */}
@@ -43,10 +43,10 @@ const DayPassJapan: React.FC = () => {
         transition={{ duration: 0.7 }}
         className="absolute font-['UA-brand'] font-bold text-primary uppercase leading-[0.95]"
         style={{
-          left: '8.63%',
+          left: '8.56%',
           top: '3.79%',
           width: '30.03%',
-          height: '6.00%',
+          height: '5.99%',
           fontSize: 'clamp(36px, 4vw, 60px)'
         }}
       >
@@ -61,11 +61,11 @@ const DayPassJapan: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute font-['Glametrix'] text-foreground leading-relaxed"
         style={{
-          left: '7.00%',
-          top: '13.08%',
+          left: '8.24%',
+          top: '13.14%',
           width: '26.54%',
           height: '3.83%',
-          fontSize: 'clamp(12px, 1.1vw, 16px)'
+          fontSize: 'clamp(14px, 1.4vw, 20px)'
         }}
       >
         Описание, чуть подробнее раскрывающее заголовок. Про активности и атмосферу.
@@ -83,7 +83,7 @@ const DayPassJapan: React.FC = () => {
           top: '3.80%',
           width: '26.54%',
           height: '3.83%',
-          fontSize: 'clamp(12px, 1.1vw, 16px)'
+          fontSize: 'clamp(14px, 1.4vw, 20px)'
         }}
       >
         Описание, чуть подробнее раскрывающее заголовок. Про активности и атмосферу.
@@ -115,8 +115,8 @@ const DayPassJapan: React.FC = () => {
         transition={{ duration: 0.7, delay: 0.2 }}
         className="absolute"
         style={{
-          left: '0.83%',
-          top: '21.44%',
+          left: '8.33%',
+          top: '21.45%',
           width: '40.97%',
           height: '56.25%'
         }}
@@ -136,8 +136,8 @@ const DayPassJapan: React.FC = () => {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="absolute font-['Glametrix'] font-bold text-foreground"
         style={{
-          left: '0.88%',
-          top: '80.76%',
+          left: '8.37%',
+          top: '80.57%',
           width: '11.93%',
           height: '2.05%',
           fontSize: 'clamp(14px, 1.18vw, 17px)'
@@ -154,11 +154,11 @@ const DayPassJapan: React.FC = () => {
         transition={{ duration: 0.5, delay: 0.35 }}
         className="absolute font-['Glametrix'] text-foreground leading-relaxed"
         style={{
-          left: '0.87%',
-          top: '84.75%',
+          left: '8.37%',
+          top: '84.56%',
           width: '21.02%',
           height: '3.83%',
-          fontSize: 'clamp(12px, 1.1vw, 16px)'
+          fontSize: 'clamp(14px, 1.4vw, 20px)'
         }}
       >
         Описание, чуть подробнее раскрывающее заголовок. Про активности и атмосферу.
@@ -173,7 +173,7 @@ const DayPassJapan: React.FC = () => {
         className="absolute bg-primary text-primary-foreground rounded-full font-['Glametrix'] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
         style={{
           left: '39.24%',
-          top: '84.11%',
+          top: '84.93%',
           width: '10.07%',
           height: '3.72%',
           fontSize: 'clamp(10px, 0.87vw, 13px)'
@@ -192,7 +192,7 @@ const DayPassJapan: React.FC = () => {
         className="absolute"
         style={{
           left: '51.60%',
-          top: '27.08%',
+          top: '27.07%',
           width: '10.00%',
           height: '27.83%'
         }}
@@ -213,8 +213,8 @@ const DayPassJapan: React.FC = () => {
         className="absolute"
         style={{
           left: '64.79%',
-          top: '27.78%',
-          width: '26.88%',
+          top: '27.77%',
+          width: '26.87%',
           height: '16.47%'
         }}
       >
@@ -234,7 +234,7 @@ const DayPassJapan: React.FC = () => {
         className="absolute font-['Glametrix'] font-bold text-foreground"
         style={{
           left: '64.85%',
-          top: '45.75%',
+          top: '45.98%',
           width: '8.26%',
           height: '1.90%',
           fontSize: 'clamp(12px, 1.1vw, 16px)'
@@ -252,7 +252,7 @@ const DayPassJapan: React.FC = () => {
         className="absolute font-['Glametrix'] text-foreground"
         style={{
           left: '64.84%',
-          top: '48.87%',
+          top: '49.10%',
           width: '26.34%',
           height: '1.52%',
           fontSize: 'clamp(10px, 0.87vw, 13px)'
@@ -270,7 +270,7 @@ const DayPassJapan: React.FC = () => {
         className="absolute bg-primary text-primary-foreground rounded-full font-['Glametrix'] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
         style={{
           left: '64.79%',
-          top: '51.89%',
+          top: '51.88%',
           width: '10.07%',
           height: '3.72%',
           fontSize: 'clamp(10px, 0.87vw, 13px)'
@@ -309,8 +309,8 @@ const DayPassJapan: React.FC = () => {
         transition={{ duration: 0.5, delay: 0.6 }}
         className="absolute font-['Glametrix'] font-bold text-foreground"
         style={{
-          left: '50.67%',
-          top: '92.58%',
+          left: '50.74%',
+          top: '92.53%',
           width: '23.55%',
           height: '1.46%',
           fontSize: 'clamp(10px, 0.84vw, 12px)'
@@ -345,8 +345,8 @@ const DayPassJapan: React.FC = () => {
         transition={{ duration: 0.5, delay: 0.7 }}
         className="absolute bg-primary text-primary-foreground rounded-full font-['Glametrix'] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
         style={{
-          left: '81.77%',
-          top: '96.27%',
+          left: '81.60%',
+          top: '96.28%',
           width: '10.07%',
           height: '3.72%',
           fontSize: 'clamp(10px, 0.87vw, 13px)'
