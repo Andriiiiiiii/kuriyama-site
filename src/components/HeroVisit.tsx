@@ -1,13 +1,20 @@
 import React from 'react';
 import heroPhoto from '@/assets/1-photo.png';
+import heroBg from '@/assets/1-background.png';
 
 const HeroVisit = () => {
   return (
-    <section className="relative w-full min-h-screen bg-[#EFE9E3] overflow-hidden">
+    <section className="relative w-full min-h-screen overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+
       {/* Navigation */}
-      <nav className="relative z-20 flex items-center justify-between px-8 md:px-16 py-6">
+      <nav className="relative z-20 flex items-center justify-between px-8 md:px-16 lg:px-24 py-6">
         <div className="font-['Glametrix'] text-3xl text-foreground">К</div>
-        <div className="hidden md:flex items-center gap-8 font-['Glametrix'] text-lg text-foreground">
+        <div className="hidden md:flex items-center gap-6 lg:gap-10 font-['Glametrix'] text-xl lg:text-[22px] text-foreground">
           <a href="#" className="hover:text-primary transition-colors">Агротуризм</a>
           <a href="#" className="hover:text-primary transition-colors">Пчеловодство</a>
           <a href="#" className="hover:text-primary transition-colors">Продукция</a>
@@ -15,75 +22,91 @@ const HeroVisit = () => {
           <a href="#" className="hover:text-primary transition-colors">Цены</a>
           <a href="#" className="hover:text-primary transition-colors">Ресурсы</a>
         </div>
-        <button className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-['Glametrix'] text-lg hover:opacity-90 transition-opacity">
+        <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-['Glametrix'] text-xl hover:opacity-90 transition-opacity">
           Связаться
         </button>
       </nav>
 
       {/* Breadcrumb */}
-      <div className="px-8 md:px-16 mt-4 font-['Glametrix'] text-lg text-foreground">
+      <div className="relative z-10 px-8 md:px-16 lg:px-24 mt-6 font-['Glametrix'] text-xl lg:text-[22px] text-foreground">
         Главная/Посещение Куриямы
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col lg:flex-row px-8 md:px-16 mt-8 gap-8">
+      <div className="relative z-10 flex px-8 md:px-16 lg:px-24 mt-8">
         {/* Left Side */}
-        <div className="flex-1 relative">
+        <div className="w-full lg:w-[55%] relative">
           {/* Title */}
-          <h1 className="font-['UA-brand'] font-bold text-6xl md:text-7xl lg:text-8xl text-foreground uppercase leading-tight">
+          <h1 className="font-['UA-brand'] font-bold text-6xl md:text-7xl lg:text-[80px] xl:text-[100px] text-foreground uppercase leading-[0.95] tracking-tight">
             Посещение
           </h1>
 
-          {/* Vertical Text */}
-          <div className="absolute left-0 top-[120px] md:top-[140px] font-['Glametrix'] font-bold text-2xl md:text-3xl text-foreground flex flex-col items-center leading-[0.75]">
-            <span>К</span>
-            <span>у</span>
-            <span>р</span>
-            <span>и</span>
-            <span>я</span>
-            <span>м</span>
+          {/* Vertical Text "Куриямы" */}
+          <div className="absolute left-0 top-[110px] md:top-[130px] lg:top-[140px] font-['Glametrix'] font-bold text-xl md:text-2xl lg:text-[30px] text-foreground flex flex-col items-center" style={{ lineHeight: '0.75' }}>
+            <span className="mb-1">К</span>
+            <span className="mb-1">у</span>
+            <span className="mb-1">р</span>
+            <span className="mb-1">и</span>
+            <span className="mb-1">я</span>
+            <span className="mb-1">м</span>
             <span>ы</span>
           </div>
 
           {/* Description */}
-          <p className="mt-32 md:mt-40 ml-12 md:ml-24 max-w-md font-['Glametrix'] text-lg md:text-xl text-foreground">
+          <p className="mt-24 md:mt-32 lg:mt-36 ml-[60px] md:ml-[120px] lg:ml-[280px] max-w-[340px] font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-foreground leading-relaxed">
             Посетите пасеку Курияма - прогулки, отдых, знакомство с пчелами
           </p>
 
-          {/* Buttons */}
-          <div className="mt-12 ml-12 md:ml-24 flex items-center gap-6 flex-wrap">
-            {/* Circle Button */}
-            <button className="relative w-40 h-40 md:w-48 md:h-48">
-              <div className="absolute inset-0 rounded-full bg-primary"></div>
-              <div className="absolute inset-[-8px] rounded-full border border-primary"></div>
-              <span className="absolute inset-0 flex items-center justify-center font-['Glametrix'] text-lg md:text-xl text-primary-foreground">
-                Выбрать тариф
-              </span>
-            </button>
+          {/* Buttons Container */}
+          <div className="mt-16 md:mt-20 lg:mt-24 ml-[60px] md:ml-[100px] lg:ml-[140px] flex items-center gap-6 lg:gap-10">
+            {/* Circle Button with decorative rings */}
+            <div className="relative">
+              {/* Outer decorative ring */}
+              <div className="absolute -inset-3 rounded-full border border-primary opacity-60"></div>
+              {/* Main circle button */}
+              <button className="relative w-36 h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full bg-primary flex items-center justify-center group hover:scale-105 transition-transform">
+                <span className="font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-primary-foreground text-center px-4">
+                  Выбрать тариф
+                </span>
+              </button>
+              {/* Decorative lines from button */}
+              <div className="absolute top-1/2 -left-8 w-8 h-px bg-primary opacity-40"></div>
+              <div className="absolute -bottom-12 left-1/2 w-px h-12 bg-primary opacity-40"></div>
+            </div>
 
             {/* Outline Button */}
-            <button className="px-6 py-3 border border-primary rounded-full font-['Glametrix'] text-lg text-foreground hover:bg-primary hover:text-primary-foreground transition-colors">
+            <button className="px-8 py-4 border border-primary rounded-full font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-foreground hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap">
               Просмотреть все активности
             </button>
           </div>
         </div>
 
         {/* Right Side - Photo */}
-        <div className="flex-1 relative">
+        <div className="hidden lg:block absolute right-0 top-0 w-[45%] h-full">
           <img 
             src={heroPhoto} 
             alt="Пасека Курияма" 
-            className="w-full h-auto max-h-[70vh] object-cover"
+            className="w-full h-full object-cover object-center"
           />
         </div>
       </div>
 
-      {/* Decorative Lines */}
-      <div className="absolute bottom-0 left-0 right-0 h-24">
-        <svg className="w-full h-full" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
-          <path d="M0 50 Q 360 0, 720 50 T 1440 50" stroke="hsl(var(--primary))" strokeWidth="1" fill="none"/>
-          <path d="M0 60 Q 360 10, 720 60 T 1440 60" stroke="hsl(var(--primary))" strokeWidth="1" fill="none"/>
-          <path d="M0 70 Q 360 20, 720 70 T 1440 70" stroke="hsl(var(--primary))" strokeWidth="1" fill="none"/>
+      {/* Mobile Photo */}
+      <div className="lg:hidden mt-12 px-8">
+        <img 
+          src={heroPhoto} 
+          alt="Пасека Курияма" 
+          className="w-full h-auto object-cover"
+        />
+      </div>
+
+      {/* Decorative Wavy Lines at Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 z-10 pointer-events-none">
+        <svg className="w-full h-full" viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none">
+          <path d="M0 40 Q 180 20, 360 40 T 720 40 T 1080 40 T 1440 40" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.5"/>
+          <path d="M0 50 Q 180 30, 360 50 T 720 50 T 1080 50 T 1440 50" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.4"/>
+          <path d="M0 60 Q 180 40, 360 60 T 720 60 T 1080 60 T 1440 60" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.3"/>
+          <path d="M0 70 Q 180 50, 360 70 T 720 70 T 1080 70 T 1440 70" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.2"/>
         </svg>
       </div>
     </section>
