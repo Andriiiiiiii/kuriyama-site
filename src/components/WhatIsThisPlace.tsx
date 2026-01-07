@@ -62,7 +62,7 @@ const WhatIsThisPlace = () => {
           top: '5.98%',
           width: '36.48%',
           height: '18.16%',
-          fontSize: 'clamp(48px, 8vw, 120px)'
+          fontSize: 'clamp(60px, 8vw, 120px)'
         }}
       >
         что это<br/>за место?
