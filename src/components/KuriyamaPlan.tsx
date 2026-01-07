@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import mapBackground from '@/assets/3-map-background.png';
 import sectionBackground from '@/assets/3-background.png';
 import rightCalligraphy from '@/assets/3-right-image.png';
@@ -28,21 +29,39 @@ const KuriyamaPlan = () => {
       {/* Header Section - z-10 */}
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start gap-4 mb-6">
         {/* Title */}
-        <h2 className="font-['UA-brand'] font-bold text-5xl md:text-6xl lg:text-[80px] text-foreground uppercase leading-[0.95]">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+          className="font-['UA-brand'] font-bold text-5xl md:text-6xl lg:text-[80px] text-foreground uppercase leading-[0.95]"
+        >
           План Куриямы
-        </h2>
+        </motion.h2>
 
         {/* Top Right Description */}
-        <p className="max-w-sm font-['Glametrix'] text-lg lg:text-[22px] text-foreground leading-relaxed lg:text-right">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-sm font-['Glametrix'] text-lg lg:text-[22px] text-foreground leading-relaxed lg:text-right"
+        >
           Описание в две строчки о том, что есть на Курияме. 
           Про возможность выбрать и подробнее узнать про активность по клику
-        </p>
+        </motion.p>
       </div>
 
       {/* Main Content Container - z-10 */}
       <div className="relative z-10 max-w-[1400px] mx-auto flex px-8 md:px-16">
         {/* Map Section */}
-        <div className="relative w-full lg:w-[75%] mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="relative w-full lg:w-[75%] mx-auto"
+        >
           {/* Map Image */}
           <img 
             src={mapBackground} 
@@ -51,12 +70,16 @@ const KuriyamaPlan = () => {
           />
 
           {/* Map Points */}
-          {mapItems.map((item) => {
+          {mapItems.map((item, index) => {
             const isHovered = hoveredItem === item.id;
             
             return (
-              <div 
+              <motion.div 
                 key={item.id}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                 className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
                 style={{ left: item.x, top: item.y }}
                 onMouseEnter={() => setHoveredItem(item.id)}
@@ -88,40 +111,64 @@ const KuriyamaPlan = () => {
                     <span className="text-primary text-lg font-light">›</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
 
           {/* Left Point Marker */}
-          <div className="absolute left-[5%] top-[50%] transform -translate-y-1/2">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="absolute left-[5%] top-[50%] transform -translate-y-1/2"
+          >
             <div className="relative">
               <div className="w-4 h-4 rounded-full bg-primary"></div>
               <div className="absolute inset-[-6px] rounded-full border border-primary"></div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Right Calligraphy Image */}
-        <div className="hidden lg:flex absolute right-8 md:right-12 bottom-0 w-[150px] lg:w-[180px] items-end justify-end">
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="hidden lg:flex absolute right-8 md:right-12 bottom-0 w-[150px] lg:w-[180px] items-end justify-end"
+        >
           <img 
             src={rightCalligraphy} 
             alt="Курияма каллиграфия" 
             className="w-full h-auto object-contain"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Bottom Section - z-10 */}
       <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 mt-8">
         <div className="max-w-md">
-          <p className="font-['Glametrix'] text-lg lg:text-[22px] text-foreground mb-6 leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="font-['Glametrix'] text-lg lg:text-[22px] text-foreground mb-6 leading-relaxed"
+          >
             Описание в две строчки о том, что есть на Курияме. 
             Про возможность выбрать и подробнее узнать про активность по клику
-          </p>
-          <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-['Glametrix'] text-lg lg:text-xl flex items-center gap-3 hover:opacity-90 transition-opacity">
+          </motion.p>
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-['Glametrix'] text-lg lg:text-xl flex items-center gap-3 hover:opacity-90 transition-opacity"
+          >
             Подробнее
             <span className="text-xl">›</span>
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>
