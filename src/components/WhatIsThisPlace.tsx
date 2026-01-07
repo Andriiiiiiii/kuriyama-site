@@ -68,7 +68,7 @@ const WhatIsThisPlace = () => {
         что это<br/>за место?
       </motion.h2>
 
-      {/* Main Text */}
+      {/* Main Text - same width as central image below */}
       <motion.p 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -76,11 +76,11 @@ const WhatIsThisPlace = () => {
         transition={{ duration: 0.6, delay: 0.3 }}
         className="absolute font-['Glametrix'] text-foreground"
         style={{
-          left: '44.59%',
+          left: '44.51%',
           top: '41.58%',
-          width: '24.35%',
+          width: '29.93%',
           height: '14.94%',
-          fontSize: 'clamp(14px, 1.25vw, 18px)',
+          fontSize: 'clamp(16px, 1.5vw, 22px)',
           lineHeight: '1.6'
         }}
       >

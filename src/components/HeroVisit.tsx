@@ -8,18 +8,28 @@ import buttonAllActions from '@/assets/1-button-all-actions.svg';
 
 const HeroVisit = () => {
   return (
-    <section className="relative w-full h-[750px] overflow-hidden">
-      {/* Background Image - left 0.05%W, top 0.00%H, size 99.93%W × 100.00%H */}
+    <section 
+      className="relative w-full overflow-hidden"
+      style={{ 
+        aspectRatio: '1440 / 750'
+      }}
+    >
+      {/* Background Image */}
       <div 
-        className="absolute bg-cover bg-center bg-no-repeat"
+        className="absolute"
         style={{ 
-          left: '0.05%',
+          left: '0%',
           top: '0%',
-          width: '99.93%',
-          height: '100%',
-          backgroundImage: `url(${heroBg})` 
+          width: '100%',
+          height: '100%'
         }}
-      />
+      >
+        <img 
+          src={heroBg} 
+          alt="" 
+          className="w-full h-full object-fill"
+        />
+      </div>
 
       {/* Navigation - left 8.14%W, top 3.47%H, size 64.47%W × 6.00%H */}
       <motion.nav 
@@ -136,17 +146,18 @@ const HeroVisit = () => {
         <span>ы</span>
       </motion.div>
 
-      {/* Description - left 33.37%W, top 46.73%H, size 21.99%W × 4.49%H */}
+      {/* Description */}
       <motion.p 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="absolute z-10 font-['Glametrix'] text-[15px] text-foreground leading-relaxed"
+        className="absolute z-10 font-['Glametrix'] text-foreground leading-relaxed"
         style={{
           left: '33.37%',
           top: '46.73%',
           width: '21.99%',
-          height: '4.49%'
+          height: '4.49%',
+          fontSize: 'clamp(16px, 1.5vw, 22px)'
         }}
       >
         Посетите пасеку Курияма - прогулки, отдых, знакомство с пчелами
