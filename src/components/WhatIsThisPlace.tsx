@@ -62,7 +62,7 @@ const WhatIsThisPlace = () => {
           top: '5.98%',
           width: '36.48%',
           height: '18.16%',
-          fontSize: 'clamp(60px, 8vw, 120px)'
+          fontSize: 'clamp(48px, 5.5vw, 80px)'
         }}
       >
         что это<br/>за место?
@@ -74,18 +74,22 @@ const WhatIsThisPlace = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="absolute font-['Glametrix'] text-foreground leading-relaxed"
+        className="absolute font-['Glametrix'] text-foreground"
         style={{
           left: '44.59%',
           top: '41.58%',
           width: '24.35%',
           height: '14.94%',
-          fontSize: 'clamp(14px, 1.25vw, 18px)'
+          fontSize: 'clamp(14px, 1.25vw, 18px)',
+          lineHeight: '1.6'
         }}
       >
-        Курияма — это уголок спокойствия, спрятанный в лесах Тульской области. 
-        Здесь, на границе Московской области, мы создали уникальное пространство, 
-        где философия созерцания и природная мудрость встречаются с русским раздольем.
+        Курияма — это уголок спокойствия, спрятанный<br/>
+        в лесах Тульской области. Здесь, на границе<br/>
+        Московской области, мы создали уникальное<br/>
+        пространство, где философия созерцания<br/>
+        и природная мудрость встречаются<br/>
+        с русским раздольем.
       </motion.p>
 
       {/* 2 central image */}

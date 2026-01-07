@@ -93,13 +93,13 @@ const KuriyamaPlan = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="absolute font-['UA-brand'] font-bold text-foreground uppercase leading-[0.95] z-[5]"
+        className="absolute font-['UA-brand'] font-bold text-foreground uppercase leading-[0.95] z-[5] whitespace-nowrap"
         style={{
           left: '8.833%',
           top: '7.353%',
           width: '53.454%',
           height: '5.324%',
-          fontSize: 'clamp(60px, 8vw, 120px)'
+          fontSize: 'clamp(48px, 5.5vw, 80px)'
         }}
       >
         План Куриямы
