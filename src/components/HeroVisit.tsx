@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import heroPhoto from '@/assets/1-photo.png';
 import heroBg from '@/assets/1-background.png';
 
@@ -12,7 +13,12 @@ const HeroVisit = () => {
       />
 
       {/* Navigation */}
-      <nav className="relative z-20 flex items-center justify-between px-8 md:px-16 lg:px-24 py-6">
+      <motion.nav 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative z-20 flex items-center justify-between px-8 md:px-16 lg:px-24 py-6"
+      >
         <div className="font-['Glametrix'] text-3xl text-foreground">К</div>
         <div className="hidden md:flex items-center gap-6 lg:gap-10 font-['Glametrix'] text-xl lg:text-[22px] text-foreground">
           <a href="#" className="hover:text-primary transition-colors">Агротуризм</a>
@@ -25,24 +31,40 @@ const HeroVisit = () => {
         <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-['Glametrix'] text-xl hover:opacity-90 transition-opacity">
           Связаться
         </button>
-      </nav>
+      </motion.nav>
 
       {/* Breadcrumb */}
-      <div className="relative z-10 px-8 md:px-16 lg:px-24 mt-6 font-['Glametrix'] text-xl lg:text-[22px] text-foreground">
+      <motion.div 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="relative z-10 px-8 md:px-16 lg:px-24 mt-6 font-['Glametrix'] text-xl lg:text-[22px] text-foreground"
+      >
         Главная/Посещение Куриямы
-      </div>
+      </motion.div>
 
       {/* Main Content */}
       <div className="relative z-10 flex px-8 md:px-16 lg:px-24 mt-8">
         {/* Left Side */}
         <div className="w-full lg:w-[55%] relative">
           {/* Title */}
-          <h1 className="font-['UA-brand'] font-bold text-6xl md:text-7xl lg:text-[80px] xl:text-[100px] text-foreground uppercase leading-[0.95] tracking-tight">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="font-['UA-brand'] font-bold text-6xl md:text-7xl lg:text-[80px] xl:text-[100px] text-foreground uppercase leading-[0.95] tracking-tight"
+          >
             Посещение
-          </h1>
+          </motion.h1>
 
           {/* Vertical Text "Куриямы" */}
-          <div className="absolute left-0 top-[110px] md:top-[130px] lg:top-[140px] font-['Glametrix'] font-bold text-xl md:text-2xl lg:text-[30px] text-foreground flex flex-col items-center" style={{ lineHeight: '0.75' }}>
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="absolute left-0 top-[110px] md:top-[130px] lg:top-[140px] font-['Glametrix'] font-bold text-xl md:text-2xl lg:text-[30px] text-foreground flex flex-col items-center" 
+            style={{ lineHeight: '0.75' }}
+          >
             <span className="mb-1">К</span>
             <span className="mb-1">у</span>
             <span className="mb-1">р</span>
@@ -50,15 +72,25 @@ const HeroVisit = () => {
             <span className="mb-1">я</span>
             <span className="mb-1">м</span>
             <span>ы</span>
-          </div>
+          </motion.div>
 
           {/* Description */}
-          <p className="mt-24 md:mt-32 lg:mt-36 ml-[60px] md:ml-[120px] lg:ml-[280px] max-w-[340px] font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-foreground leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-24 md:mt-32 lg:mt-36 ml-[60px] md:ml-[120px] lg:ml-[280px] max-w-[340px] font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-foreground leading-relaxed"
+          >
             Посетите пасеку Курияма - прогулки, отдых, знакомство с пчелами
-          </p>
+          </motion.p>
 
           {/* Buttons Container */}
-          <div className="mt-16 md:mt-20 lg:mt-24 ml-[60px] md:ml-[100px] lg:ml-[140px] flex items-center gap-6 lg:gap-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.8 }}
+            className="mt-16 md:mt-20 lg:mt-24 ml-[60px] md:ml-[100px] lg:ml-[140px] flex items-center gap-6 lg:gap-10"
+          >
             {/* Circle Button with decorative rings */}
             <div className="relative">
               {/* Outer decorative ring */}
@@ -78,27 +110,37 @@ const HeroVisit = () => {
             <button className="px-8 py-4 border border-primary rounded-full font-['Glametrix'] text-lg md:text-xl lg:text-[22px] text-foreground hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap">
               Просмотреть все активности
             </button>
-          </div>
+          </motion.div>
         </div>
 
         {/* Right Side - Photo */}
-        <div className="hidden lg:block absolute right-0 top-0 w-[45%] h-full">
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="hidden lg:block absolute right-0 top-0 w-[45%] h-full"
+        >
           <img 
             src={heroPhoto} 
             alt="Пасека Курияма" 
             className="w-full h-full object-cover object-center"
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Mobile Photo */}
-      <div className="lg:hidden mt-12 px-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="lg:hidden mt-12 px-8"
+      >
         <img 
           src={heroPhoto} 
           alt="Пасека Курияма" 
           className="w-full h-auto object-cover"
         />
-      </div>
+      </motion.div>
 
     </section>
   );
