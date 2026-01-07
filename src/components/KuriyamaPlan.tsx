@@ -10,12 +10,12 @@ const KuriyamaPlan = () => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
   const mapItems = [
-    { id: 1, name: 'Апи-домики', left: '18.403%', top: '35.202%', size: '5.5%', image: object1 },
-    { id: 2, name: 'Пасека', left: '31.736%', top: '46.875%', size: '4.5%', image: object4 },
-    { id: 3, name: 'Чайная', left: '41.736%', top: '54.136%', size: '4.5%', image: object4 },
-    { id: 4, name: 'Магазин', left: '49.028%', top: '43.566%', size: '4.5%', image: object4 },
-    { id: 5, name: 'Сад', left: '56.944%', top: '50.000%', size: '4.5%', image: object4 },
-    { id: 6, name: 'Беседка', left: '69.444%', top: '32.904%', size: '4.5%', image: object4 },
+    { id: 1, name: 'Апи-домики', left: '18.403%', top: '35.202%', image: object1 },
+    { id: 2, name: 'Пасека', left: '31.736%', top: '46.875%', image: object4 },
+    { id: 3, name: 'Чайная', left: '41.736%', top: '54.136%', image: object4 },
+    { id: 4, name: 'Магазин', left: '49.028%', top: '43.566%', image: object4 },
+    { id: 5, name: 'Сад', left: '56.944%', top: '50.000%', image: object4 },
+    { id: 6, name: 'Беседка', left: '69.444%', top: '32.904%', image: object4 },
   ];
 
   return (
@@ -59,17 +59,22 @@ const KuriyamaPlan = () => {
         }}
       />
 
-      {/* 3 main background */}
+      {/* 3 main background - full size to show torn edges */}
       <div 
-        className="absolute bg-cover bg-center bg-no-repeat z-[2]"
+        className="absolute z-[2]"
         style={{ 
           left: '0%',
           top: '8.824%',
           width: '100%',
-          height: '82.353%',
-          backgroundImage: `url(${sectionBackground})`
+          height: '82.353%'
         }}
-      />
+      >
+        <img 
+          src={sectionBackground} 
+          alt="" 
+          className="w-full h-full object-fill"
+        />
+      </div>
 
       {/* 3 map background */}
       <div 
@@ -160,7 +165,7 @@ const KuriyamaPlan = () => {
         />
       </motion.div>
 
-      {/* Map Points - square items that expand on hover */}
+      {/* Map Points - framed square items that expand on hover */}
       {mapItems.map((item, index) => {
         const isHovered = hoveredItem === item.id;
         
@@ -179,18 +184,20 @@ const KuriyamaPlan = () => {
             onMouseEnter={() => setHoveredItem(item.id)}
             onMouseLeave={() => setHoveredItem(null)}
           >
+            {/* Outer frame container */}
             <div 
-              className="bg-[#EFE9E3] border border-primary transition-all duration-300 ease-out flex items-center overflow-hidden"
+              className="bg-[#EFE9E3] border border-primary transition-all duration-300 ease-out flex items-center"
               style={{
+                padding: '4px',
                 boxShadow: isHovered ? '0 4px 12px rgba(0,0,0,0.15)' : 'none'
               }}
             >
-              {/* Square image container */}
+              {/* Inner frame with photo */}
               <div 
-                className="flex-shrink-0 overflow-hidden"
+                className="border border-primary overflow-hidden flex-shrink-0"
                 style={{ 
-                  width: `calc(${item.size} * 14.4)`,
-                  height: `calc(${item.size} * 14.4)`
+                  width: 'clamp(40px, 4vw, 60px)',
+                  height: 'clamp(40px, 4vw, 60px)'
                 }}
               >
                 <img 
@@ -202,21 +209,21 @@ const KuriyamaPlan = () => {
               
               {/* Text content - appears on hover */}
               <div 
-                className="flex items-center gap-1 overflow-hidden transition-all duration-300 border-l border-primary"
+                className="flex items-center gap-2 overflow-hidden transition-all duration-300"
                 style={{
                   maxWidth: isHovered ? '150px' : '0px',
                   opacity: isHovered ? 1 : 0,
-                  paddingLeft: isHovered ? '8px' : '0px',
+                  paddingLeft: isHovered ? '12px' : '0px',
                   paddingRight: isHovered ? '8px' : '0px'
                 }}
               >
                 <span 
                   className="font-['Glametrix'] font-bold text-foreground whitespace-nowrap" 
-                  style={{ fontSize: 'clamp(10px, 0.9vw, 14px)' }}
+                  style={{ fontSize: 'clamp(12px, 1vw, 16px)' }}
                 >
                   {item.name}
                 </span>
-                <span className="text-primary font-light">›</span>
+                <span className="text-primary text-lg">›</span>
               </div>
             </div>
           </motion.div>
