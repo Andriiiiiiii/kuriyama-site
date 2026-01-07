@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import backgroundImage from '@/assets/6-background.png';
 
 const DailyPassBanner: React.FC = () => {
@@ -18,22 +19,39 @@ const DailyPassBanner: React.FC = () => {
           <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 lg:px-20">
             <div className="flex items-center justify-between">
               {/* Left content */}
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7 }}
+              >
                 <h2 className="font-ua-brand text-white text-[36px] md:text-[56px] lg:text-[80px] font-bold uppercase leading-[0.95]">
                   DAILY PASS.<br />
                   ЯПОНИЯ
                 </h2>
-              </div>
+              </motion.div>
 
               {/* Center content */}
-              <div className="hidden md:block text-center">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="hidden md:block text-center"
+              >
                 <p className="font-glametrix text-white text-base md:text-lg lg:text-[22px] max-w-[300px]">
                   Пропуск на посещение на день со всеми активностями
                 </p>
-              </div>
+              </motion.div>
 
               {/* Right - Button */}
-              <div className="relative">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="relative"
+              >
                 {/* Decorative circle border */}
                 <div className="absolute -inset-3 md:-inset-4 rounded-full border-2 border-primary" />
                 <button className="relative w-[100px] h-[100px] md:w-[140px] md:h-[140px] lg:w-[160px] lg:h-[160px] rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 flex items-center justify-center">
@@ -41,7 +59,7 @@ const DailyPassBanner: React.FC = () => {
                     Выбрать тариф
                   </span>
                 </button>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

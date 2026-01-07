@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import forestImage from '@/assets/4-image-1.png';
 import gardenImage from '@/assets/4-image-2.png';
 import photoshootImage from '@/assets/4-image-3.png';
@@ -16,15 +17,33 @@ const DayPassJapan: React.FC = () => {
           {/* Left column */}
           <div className="lg:w-[45%]">
             {/* DAY PASS title */}
-            <h2 className="font-ua-brand text-primary text-[48px] md:text-[64px] lg:text-[80px] font-bold uppercase leading-[0.95] mb-4">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+              className="font-ua-brand text-primary text-[48px] md:text-[64px] lg:text-[80px] font-bold uppercase leading-[0.95] mb-4"
+            >
               DAY PASS
-            </h2>
-            <p className="font-glametrix text-[#2E261D] text-lg md:text-xl lg:text-[22px] mb-8 max-w-[400px]">
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-glametrix text-[#2E261D] text-lg md:text-xl lg:text-[22px] mb-8 max-w-[400px]"
+            >
               Описание, чуть подробнее раскрывающее заголовок. Про активности и атмосферу.
-            </p>
+            </motion.p>
             
             {/* Forest walk card */}
-            <div className="relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="relative"
+            >
               <img 
                 src={forestImage} 
                 alt="Лесная прогулка" 
@@ -44,13 +63,19 @@ const DayPassJapan: React.FC = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right column */}
           <div className="lg:flex-1">
             {/* ЯПОНИЯ title and description */}
-            <div className="text-right mb-6">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-right mb-6"
+            >
               <p className="font-glametrix text-[#2E261D] text-lg md:text-xl lg:text-[22px] mb-2">
                 Описание, чуть подробнее раскрывающее заголовок.<br />
                 Про активности и атмосферу.
@@ -58,21 +83,33 @@ const DayPassJapan: React.FC = () => {
               <h2 className="font-ua-brand text-primary text-[48px] md:text-[64px] lg:text-[80px] font-bold uppercase leading-[0.95]">
                 ЯПОНИЯ
               </h2>
-            </div>
+            </motion.div>
 
             {/* Calligraphy and Garden */}
             <div className="flex gap-4 md:gap-6 mb-6">
               {/* Calligraphy image - moved more to the left */}
-              <div className="w-[120px] md:w-[160px] lg:w-[200px] flex-shrink-0 -ml-8 md:-ml-12 lg:-ml-16">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="w-[120px] md:w-[160px] lg:w-[200px] flex-shrink-0 -ml-8 md:-ml-12 lg:-ml-16"
+              >
                 <img 
                   src={calligraphyImage} 
                   alt="Каллиграфия" 
                   className="w-full h-auto mix-blend-hard-light"
                 />
-              </div>
+              </motion.div>
               
               {/* Rock garden card */}
-              <div className="flex-1">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex-1"
+              >
                 <img 
                   src={gardenImage} 
                   alt="Сад камней" 
@@ -88,11 +125,17 @@ const DayPassJapan: React.FC = () => {
                   Подробнее
                   <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
                 </button>
-              </div>
+              </motion.div>
             </div>
 
             {/* Photoshoot card */}
-            <div className="relative">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="relative"
+            >
               <img 
                 src={photoshootImage} 
                 alt="Фотосессия в японском тематике" 
@@ -112,7 +155,7 @@ const DayPassJapan: React.FC = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

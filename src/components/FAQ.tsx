@@ -42,27 +42,46 @@ const FAQ: React.FC = () => {
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* Left side - Title */}
-          <div className="lg:w-[35%]">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="lg:w-[35%]"
+          >
             <h2 className="font-ua-brand text-[#2E261D] text-4xl md:text-5xl lg:text-6xl xl:text-[80px] font-bold uppercase leading-[0.95]">
               частые
               <br />
               вопросы
             </h2>
-          </div>
+          </motion.div>
 
           {/* Center - Calligraphy image */}
-          <div className="hidden lg:block lg:w-[20%] relative">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden lg:block lg:w-[20%] relative"
+          >
             <img
               src={backImage}
               alt=""
               className="absolute top-0 left-1/2 -translate-x-1/2 h-[400px] xl:h-[500px] w-auto opacity-100"
             />
-          </div>
+          </motion.div>
 
           {/* Right side - FAQ items */}
           <div className="lg:w-[45%]">
             {faqItems.map((item, index) => (
-              <div key={index} className="border-b border-primary">
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                className="border-b border-primary"
+              >
                 <button
                   className="w-full py-5 md:py-6 flex items-center justify-between text-left group"
                   onClick={() => toggleItem(index)}
@@ -90,7 +109,7 @@ const FAQ: React.FC = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
