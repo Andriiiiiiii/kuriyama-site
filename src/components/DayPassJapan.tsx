@@ -47,7 +47,7 @@ const DayPassJapan: React.FC = () => {
           top: '3.79%',
           width: '30.03%',
           height: '6.00%',
-          fontSize: 'clamp(36px, 3.45vw, 50px)'
+          fontSize: 'clamp(36px, 4vw, 60px)'
         }}
       >
         DAY PASS
@@ -101,7 +101,7 @@ const DayPassJapan: React.FC = () => {
           top: '11.44%',
           width: '28.05%',
           height: '5.95%',
-          fontSize: 'clamp(36px, 3.43vw, 50px)'
+          fontSize: 'clamp(36px, 4vw, 60px)'
         }}
       >
         ЯПОНИЯ

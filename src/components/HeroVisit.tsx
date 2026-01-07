@@ -102,12 +102,13 @@ const HeroVisit = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.3 }}
-        className="absolute z-10 font-['UA-brand'] font-bold text-[80px] text-foreground uppercase leading-[0.88] tracking-tight"
+        className="absolute z-10 font-['UA-brand'] font-bold text-foreground uppercase leading-[0.88] tracking-tight"
         style={{
           left: '8.84%',
           top: '22.45%',
           width: '42.61%',
-          height: '9.44%'
+          height: '9.44%',
+          fontSize: 'clamp(48px, 5.5vw, 80px)'
         }}
       >
         Посещение
