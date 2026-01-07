@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import backgroundImage from '@/assets/11-background.png';
 
 const DailyPass: React.FC = () => {
@@ -17,16 +18,27 @@ const DailyPass: React.FC = () => {
       {/* Content */}
       <div className="relative h-full max-w-[1440px] mx-auto px-6 md:px-16 py-6 flex flex-col md:flex-row justify-between items-start md:items-center">
         {/* Left side - Title */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+        >
           <h1 className="font-ua-brand text-white text-4xl md:text-6xl lg:text-[80px] font-bold uppercase leading-tight">
             daily pass.
             <br />
             пасека
           </h1>
-        </div>
+        </motion.div>
 
         {/* Right side - Button and description */}
-        <div className="flex flex-col items-center mt-6 md:mt-0">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col items-center mt-6 md:mt-0"
+        >
           {/* Circular button */}
           <button 
             className="w-[120px] h-[120px] md:w-[179px] md:h-[179px] rounded-full bg-primary hover:bg-primary/90 transition-all duration-300 hover:scale-105 cursor-pointer"
@@ -42,7 +54,7 @@ const DailyPass: React.FC = () => {
           <p className="font-glametrix text-white text-base md:text-[22px] font-medium mt-4 max-w-[239px] text-center">
             Пропуск на посещение на день со всеми активностями
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

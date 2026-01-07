@@ -1,37 +1,62 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import backImage from '@/assets/13-back-image.png';
 
 const Reviews: React.FC = () => {
   return (
     <section className="relative w-full bg-white py-16 md:py-20 lg:py-24 px-6 md:px-12 lg:px-20 overflow-hidden">
       {/* Background ink splash - centered */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      >
         <img
           src={backImage}
           alt=""
           className="h-[400px] md:h-[500px] lg:h-[600px] w-auto opacity-60"
         />
-      </div>
+      </motion.div>
 
       <div className="max-w-[1200px] mx-auto relative z-10">
         {/* Header row */}
         <div className="flex items-start justify-between gap-8 mb-12 md:mb-16">
           {/* Title */}
-          <h2 className="font-ua-brand text-primary text-5xl md:text-6xl lg:text-[80px] font-bold uppercase leading-[0.9]">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="font-ua-brand text-primary text-5xl md:text-6xl lg:text-[80px] font-bold uppercase leading-[0.9]"
+          >
             отзывы
-          </h2>
+          </motion.h2>
           
           {/* Subtitle - positioned to the right of title */}
-          <p className="font-glametrix text-black text-base md:text-lg lg:text-[22px] max-w-[280px] pt-2">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-glametrix text-black text-base md:text-lg lg:text-[22px] max-w-[280px] pt-2"
+          >
             Текст, дополняющий заголовок. О ценности гостей и их визитов.
-          </p>
+          </motion.p>
         </div>
 
         {/* Reviews layout */}
         <div className="relative min-h-[500px] md:min-h-[550px]">
           
           {/* Иванов Иван - top left, WITH border */}
-          <div className="absolute top-0 left-0 w-[260px] md:w-[280px] bg-[#EFE3D6] border border-primary p-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="absolute top-0 left-0 w-[260px] md:w-[280px] bg-[#EFE3D6] border border-primary p-4"
+          >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-[52px] h-[52px] bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden flex-shrink-0">
                 <div className="w-[44px] h-[44px] bg-gray-300" />
@@ -43,10 +68,16 @@ const Reviews: React.FC = () => {
             <p className="font-glametrix text-black text-sm leading-relaxed">
               Отзыв в три-четыре строчки, подчеркивающий надежность, скорость и профит наших услуг. Здесь можно вставить отзыв покрупнее, чтобы он заполнил плашку. Впечатления о посещении и слова благодарности гидам и управляющим
             </p>
-          </div>
+          </motion.div>
 
           {/* Лебедева Дарья - center, WITH border */}
-          <div className="absolute top-[200px] md:top-[180px] left-1/2 -translate-x-1/2 w-[280px] md:w-[320px] bg-[#EFE3D6] border border-primary p-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="absolute top-[200px] md:top-[180px] left-1/2 -translate-x-1/2 w-[280px] md:w-[320px] bg-[#EFE3D6] border border-primary p-4"
+          >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-[52px] h-[52px] bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden flex-shrink-0">
                 <div className="w-[44px] h-[44px] bg-gray-300" />
@@ -58,10 +89,16 @@ const Reviews: React.FC = () => {
             <p className="font-glametrix text-black text-sm leading-relaxed">
               Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.
             </p>
-          </div>
+          </motion.div>
 
           {/* Кулик Евгений - top right, NO border */}
-          <div className="absolute top-0 right-0 w-[220px] md:w-[250px]">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="absolute top-0 right-0 w-[220px] md:w-[250px]"
+          >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-[52px] h-[52px] bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden flex-shrink-0">
                 <div className="w-[44px] h-[44px] bg-gray-300" />
@@ -73,10 +110,16 @@ const Reviews: React.FC = () => {
             <p className="font-glametrix text-black text-sm leading-relaxed">
               Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.
             </p>
-          </div>
+          </motion.div>
 
           {/* Соколов Яков - right middle, NO border */}
-          <div className="absolute top-[140px] md:top-[130px] right-0 w-[220px] md:w-[250px]">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="absolute top-[140px] md:top-[130px] right-0 w-[220px] md:w-[250px]"
+          >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-[52px] h-[52px] bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden flex-shrink-0">
                 <div className="w-[44px] h-[44px] bg-gray-300" />
@@ -88,10 +131,16 @@ const Reviews: React.FC = () => {
             <p className="font-glametrix text-black text-sm leading-relaxed">
               Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.
             </p>
-          </div>
+          </motion.div>
 
           {/* Романов Сергей - bottom center-left, NO border */}
-          <div className="absolute top-[380px] md:top-[360px] left-[15%] md:left-[20%] w-[280px] md:w-[340px]">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="absolute top-[380px] md:top-[360px] left-[15%] md:left-[20%] w-[280px] md:w-[340px]"
+          >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-[52px] h-[52px] bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden flex-shrink-0">
                 <div className="w-[44px] h-[44px] bg-gray-300" />
@@ -103,10 +152,16 @@ const Reviews: React.FC = () => {
             <p className="font-glametrix text-black text-sm leading-relaxed">
               Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.
             </p>
-          </div>
+          </motion.div>
 
           {/* Соболева Наталья - bottom right, WITH border */}
-          <div className="absolute top-[340px] md:top-[320px] right-[5%] md:right-[8%] w-[240px] md:w-[260px] bg-[#EFE3D6] border border-primary p-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="absolute top-[340px] md:top-[320px] right-[5%] md:right-[8%] w-[240px] md:w-[260px] bg-[#EFE3D6] border border-primary p-4"
+          >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-[52px] h-[52px] bg-[#EFE9E3] border border-primary flex items-center justify-center overflow-hidden flex-shrink-0">
                 <div className="w-[44px] h-[44px] bg-gray-300" />
@@ -118,7 +173,7 @@ const Reviews: React.FC = () => {
             <p className="font-glametrix text-black text-sm leading-relaxed">
               Отзыв в три-четыре строчки, подчеркивающий надежность, скорость.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

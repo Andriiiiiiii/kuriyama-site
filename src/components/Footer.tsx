@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import kuriyamaImage from '@/assets/15-image-1.png';
 import inkSplash from '@/assets/15-image-2.svg';
 import paperBackground from '@/assets/15-background.png';
@@ -23,14 +24,22 @@ const Footer: React.FC = () => {
         {/* Content positioned over the paper */}
         <div className="absolute inset-0 flex flex-col">
           {/* Ink splash decoration - bottom left, positioned higher */}
-          <img
+          <motion.img
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
             src={inkSplash}
             alt=""
             className="absolute bottom-20 md:bottom-28 lg:bottom-36 left-0 h-[280px] md:h-[380px] lg:h-[480px] w-auto mix-blend-darken pointer-events-none"
           />
 
           {/* Kuriyama calligraphy - raised higher, not overlapping contact form */}
-          <img
+          <motion.img
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             src={kuriyamaImage}
             alt=""
             className="absolute -top-20 md:-top-28 lg:-top-36 right-[20%] md:right-[25%] lg:right-[30%] h-[280px] md:h-[400px] lg:h-[520px] w-auto pointer-events-none"
@@ -39,7 +48,13 @@ const Footer: React.FC = () => {
           <div className="flex-1 max-w-[1440px] w-full mx-auto px-6 md:px-12 lg:px-20 py-8 md:py-10 lg:py-12">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 xl:gap-24 items-start">
               {/* Left side - Big tagline - lower in white area */}
-              <div className="lg:flex-1 pt-40 md:pt-56 lg:pt-72">
+              <motion.div 
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7 }}
+                className="lg:flex-1 pt-40 md:pt-56 lg:pt-72"
+              >
                 <h2 className="font-ua-brand text-primary text-[36px] md:text-[48px] lg:text-[60px] xl:text-[68px] font-bold uppercase leading-[1.0] tracking-tight">
                   природа.
                   <br />
@@ -49,10 +64,16 @@ const Footer: React.FC = () => {
                   <br />
                   курияма.
                 </h2>
-              </div>
+              </motion.div>
 
               {/* Right side - Contact form - aligned with text, wider */}
-              <div className="lg:flex-1 w-full max-w-[520px] lg:max-w-none pt-40 md:pt-56 lg:pt-72">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="lg:flex-1 w-full max-w-[520px] lg:max-w-none pt-40 md:pt-56 lg:pt-72"
+              >
                 <div className="border-2 border-primary p-6 md:p-8 lg:p-10 bg-transparent max-w-[520px] w-full">
                   <h3 className="font-ua-brand text-[#2E261D] text-[18px] md:text-[22px] lg:text-[28px] font-bold uppercase mb-4 md:mb-6 tracking-tight">
                     обсудим ваш визит
@@ -78,11 +99,17 @@ const Footer: React.FC = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Contact info row */}
-            <div className="flex flex-wrap gap-4 md:gap-8 lg:gap-12 mt-6 md:mt-8 lg:mt-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-4 md:gap-8 lg:gap-12 mt-6 md:mt-8 lg:mt-10"
+            >
               <a href="tel:+79999999999" className="font-glametrix text-[#2E261D] text-sm md:text-base lg:text-lg hover:text-primary transition-colors">
                 +79999999999
               </a>
@@ -95,13 +122,19 @@ const Footer: React.FC = () => {
               <span className="font-glametrix text-[#2E261D] text-sm md:text-base lg:text-lg">
                 ул. Такая-то, д. 12
               </span>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
 
       {/* Dark footer bottom content */}
-      <div className="relative z-20 bg-[#2E261D] py-6 md:py-8 px-6 md:px-12 lg:px-20">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative z-20 bg-[#2E261D] py-6 md:py-8 px-6 md:px-12 lg:px-20"
+      >
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
             {/* Navigation */}
@@ -126,7 +159,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 };
