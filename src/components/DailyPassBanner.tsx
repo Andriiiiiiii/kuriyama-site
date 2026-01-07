@@ -10,9 +10,6 @@ const DailyPassBanner: React.FC = () => {
         className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        {/* Vertical lines */}
-        <div className="absolute left-[30%] top-0 bottom-0 w-[2px] bg-primary hidden md:block" />
-        <div className="absolute right-[30%] top-0 bottom-0 w-[2px] bg-primary hidden md:block" />
         
         {/* Content overlay */}
         <div className="absolute inset-0 flex items-center">
