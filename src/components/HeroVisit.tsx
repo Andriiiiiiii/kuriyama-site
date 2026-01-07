@@ -100,15 +100,6 @@ const HeroVisit = () => {
         />
       </div>
 
-      {/* Decorative Wavy Lines at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 z-10 pointer-events-none">
-        <svg className="w-full h-full" viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none">
-          <path d="M0 40 Q 180 20, 360 40 T 720 40 T 1080 40 T 1440 40" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.5"/>
-          <path d="M0 50 Q 180 30, 360 50 T 720 50 T 1080 50 T 1440 50" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.4"/>
-          <path d="M0 60 Q 180 40, 360 60 T 720 60 T 1080 60 T 1440 60" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.3"/>
-          <path d="M0 70 Q 180 50, 360 70 T 720 70 T 1080 70 T 1440 70" stroke="hsl(var(--primary))" strokeWidth="1" fill="none" opacity="0.2"/>
-        </svg>
-      </div>
     </section>
   );
 };

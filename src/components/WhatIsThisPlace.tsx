@@ -6,9 +6,6 @@ import rightImage from '@/assets/2-right-image.png';
 const WhatIsThisPlace = () => {
   return (
     <section className="relative w-full min-h-screen bg-white py-16 overflow-hidden">
-      {/* Decorative vertical line left */}
-      <div className="absolute left-[5%] top-0 bottom-0 w-px bg-primary opacity-50"></div>
-
       <div className="flex flex-col lg:flex-row items-start justify-between px-8 md:px-16 gap-8">
         {/* Left Side - Composite Image */}
         <div className="relative w-full lg:w-[40%] h-[500px] md:h-[600px]">
@@ -55,9 +52,6 @@ const WhatIsThisPlace = () => {
           </div>
         </div>
       </div>
-
-      {/* Decorative vertical line right */}
-      <div className="absolute right-[15%] top-[20%] h-[60%] w-px bg-primary opacity-30"></div>
     </section>
   );
 };
