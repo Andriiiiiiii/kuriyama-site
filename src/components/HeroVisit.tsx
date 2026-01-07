@@ -59,11 +59,12 @@ const HeroVisit = () => {
         
         {/* Nav Links */}
         <div 
-          className="absolute flex items-center font-['Glametrix'] text-[15px] text-foreground"
+          className="absolute flex items-center font-['Glametrix'] text-foreground"
           style={{
             left: '23.4%',
             top: '48%',
-            gap: '50px'
+            gap: '50px',
+            fontSize: 'clamp(14px, 1.2vw, 18px)'
           }}
         >
           <a href="#" className="hover:text-primary transition-colors">Агротуризм</a>
@@ -91,17 +92,18 @@ const HeroVisit = () => {
         <img src={buttonContact} alt="Связаться" className="w-full h-full object-contain" />
       </motion.button>
 
-      {/* Breadcrumb - left 8.43%W, top 12.67%H, size 14.84%W × 2.18%H */}
+      {/* Breadcrumb */}
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="absolute z-10 font-['Glametrix'] text-[16px] text-foreground/50"
+        className="absolute z-10 font-['Glametrix'] text-foreground/50"
         style={{
           left: '8.43%',
           top: '12.67%',
           width: '14.84%',
-          height: '2.18%'
+          height: '2.18%',
+          fontSize: 'clamp(14px, 1.2vw, 18px)'
         }}
       >
         Главная/Посещение Куриямы
@@ -124,17 +126,18 @@ const HeroVisit = () => {
         Посещение
       </motion.h1>
 
-      {/* Vertical Text "Куриямы" - left 8.75%W, top 32.75%H, size 0.92%W × 20.32%H */}
+      {/* Vertical Text "Куриямы" */}
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="absolute z-10 font-['Glametrix'] font-bold text-[13px] text-foreground flex flex-col items-center leading-[1.6]"
+        className="absolute z-10 font-['Glametrix'] font-bold text-foreground flex flex-col items-center leading-[1.6]"
         style={{
           left: '8.75%',
           top: '32.75%',
           width: '0.92%',
-          height: '20.32%'
+          height: '20.32%',
+          fontSize: 'clamp(14px, 1.2vw, 18px)'
         }}
       >
         <span>К</span>
