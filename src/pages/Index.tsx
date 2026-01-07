@@ -1,4 +1,7 @@
 import React from 'react';
+import HeroVisit from '@/components/HeroVisit';
+import WhatIsThisPlace from '@/components/WhatIsThisPlace';
+import KuriyamaPlan from '@/components/KuriyamaPlan';
 import DayPassJapan from '@/components/DayPassJapan';
 import Products from '@/components/Products';
 import DailyPassBanner from '@/components/DailyPassBanner';
@@ -15,6 +18,9 @@ import Footer from '@/components/Footer';
 const Index = () => {
   return (
     <main className="w-full bg-background">
+      <HeroVisit />
+      <WhatIsThisPlace />
+      <KuriyamaPlan />
       <DayPassJapan />
       <Products />
       <DailyPassBanner />
