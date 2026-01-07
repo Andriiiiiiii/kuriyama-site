@@ -22,13 +22,12 @@ const KuriyamaPlan = () => {
     <section 
       className="relative w-full overflow-hidden"
       style={{ 
-        aspectRatio: '1440 / 816',
-        maxHeight: '100vh'
+        aspectRatio: '1440 / 900'
       }}
     >
-      {/* 3 line 1 - vertical left (behind everything) */}
+      {/* 3 line 1 - vertical left */}
       <div 
-        className="absolute bg-primary z-[1]"
+        className="absolute bg-primary z-[20]"
         style={{
           left: '3.854%',
           top: '0%',
@@ -37,9 +36,9 @@ const KuriyamaPlan = () => {
         }}
       />
 
-      {/* 3 line 2 - horizontal bottom (behind everything) */}
+      {/* 3 line 2 - horizontal bottom */}
       <div 
-        className="absolute bg-primary z-[1]"
+        className="absolute bg-primary z-[20]"
         style={{
           left: '3.889%',
           top: '82.950%',
@@ -48,9 +47,9 @@ const KuriyamaPlan = () => {
         }}
       />
 
-      {/* 3 line 3 - vertical right (behind everything) */}
+      {/* 3 line 3 - vertical right */}
       <div 
-        className="absolute bg-primary z-[1]"
+        className="absolute bg-primary z-[20]"
         style={{
           left: '81.215%',
           top: '82.996%',
