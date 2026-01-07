@@ -10,12 +10,12 @@ const KuriyamaPlan = () => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
   const mapItems = [
-    { id: 1, name: 'Апи-домики', left: '18.403%', top: '35.202%', width: '14.097%', height: '5.974%', image: object1 },
-    { id: 2, name: 'Пасека', left: '31.736%', top: '46.875%', width: '4.792%', height: '6.342%', image: object4 },
-    { id: 3, name: 'Чайная', left: '41.736%', top: '54.136%', width: '4.792%', height: '6.342%', image: object4 },
-    { id: 4, name: 'Магазин', left: '49.028%', top: '43.566%', width: '4.792%', height: '6.342%', image: object4 },
-    { id: 5, name: 'Сад', left: '56.944%', top: '50.000%', width: '4.792%', height: '6.342%', image: object4 },
-    { id: 6, name: 'Беседка', left: '69.444%', top: '32.904%', width: '4.792%', height: '6.342%', image: object4 },
+    { id: 1, name: 'Апи-домики', left: '18.403%', top: '35.202%', size: '5.5%', image: object1 },
+    { id: 2, name: 'Пасека', left: '31.736%', top: '46.875%', size: '4.5%', image: object4 },
+    { id: 3, name: 'Чайная', left: '41.736%', top: '54.136%', size: '4.5%', image: object4 },
+    { id: 4, name: 'Магазин', left: '49.028%', top: '43.566%', size: '4.5%', image: object4 },
+    { id: 5, name: 'Сад', left: '56.944%', top: '50.000%', size: '4.5%', image: object4 },
+    { id: 6, name: 'Беседка', left: '69.444%', top: '32.904%', size: '4.5%', image: object4 },
   ];
 
   return (
@@ -26,9 +26,42 @@ const KuriyamaPlan = () => {
         maxHeight: '100vh'
       }}
     >
+      {/* 3 line 1 - vertical left (behind everything) */}
+      <div 
+        className="absolute bg-primary z-[1]"
+        style={{
+          left: '3.854%',
+          top: '0%',
+          width: '1px',
+          height: '82.445%'
+        }}
+      />
+
+      {/* 3 line 2 - horizontal bottom (behind everything) */}
+      <div 
+        className="absolute bg-primary z-[1]"
+        style={{
+          left: '3.889%',
+          top: '82.950%',
+          width: '77.361%',
+          height: '1px'
+        }}
+      />
+
+      {/* 3 line 3 - vertical right (behind everything) */}
+      <div 
+        className="absolute bg-primary z-[1]"
+        style={{
+          left: '81.215%',
+          top: '82.996%',
+          width: '1px',
+          height: '17.555%'
+        }}
+      />
+
       {/* 3 main background */}
       <div 
-        className="absolute bg-cover bg-center bg-no-repeat"
+        className="absolute bg-cover bg-center bg-no-repeat z-[2]"
         style={{ 
           left: '0%',
           top: '8.824%',
@@ -40,7 +73,7 @@ const KuriyamaPlan = () => {
 
       {/* 3 map background */}
       <div 
-        className="absolute bg-cover bg-center bg-no-repeat"
+        className="absolute bg-cover bg-center bg-no-repeat z-[3]"
         style={{ 
           left: '6.250%',
           top: '11.213%',
@@ -56,7 +89,7 @@ const KuriyamaPlan = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="absolute font-['UA-brand'] font-bold text-foreground uppercase leading-[0.95]"
+        className="absolute font-['UA-brand'] font-bold text-foreground uppercase leading-[0.95] z-[5]"
         style={{
           left: '8.833%',
           top: '7.353%',
@@ -74,7 +107,7 @@ const KuriyamaPlan = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="absolute font-['Glametrix'] text-foreground leading-relaxed"
+        className="absolute font-['Glametrix'] text-foreground leading-relaxed z-[5]"
         style={{
           left: '64.281%',
           top: '15.655%',
@@ -93,7 +126,7 @@ const KuriyamaPlan = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="absolute font-['Glametrix'] text-foreground leading-relaxed"
+        className="absolute font-['Glametrix'] text-foreground leading-relaxed z-[5]"
         style={{
           left: '8.449%',
           top: '72.365%',
@@ -112,7 +145,7 @@ const KuriyamaPlan = () => {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.5 }}
-        className="absolute"
+        className="absolute z-[5]"
         style={{
           left: '81.667%',
           top: '56.066%',
@@ -127,10 +160,9 @@ const KuriyamaPlan = () => {
         />
       </motion.div>
 
-      {/* Map Points */}
+      {/* Map Points - square items that expand on hover */}
       {mapItems.map((item, index) => {
         const isHovered = hoveredItem === item.id;
-        const isFirstItem = item.id === 1;
         
         return (
           <motion.div 
@@ -139,24 +171,28 @@ const KuriyamaPlan = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-            className="absolute cursor-pointer z-10"
+            className="absolute cursor-pointer z-[10]"
             style={{ 
               left: item.left, 
-              top: item.top,
-              width: item.width,
-              height: item.height
+              top: item.top
             }}
             onMouseEnter={() => setHoveredItem(item.id)}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            <div className={`
-              w-full h-full bg-[#EFE9E3] border border-primary 
-              transition-all duration-300 ease-out
-              flex items-center
-              ${isHovered ? 'shadow-lg' : 'hover:shadow-md'}
-            `}>
-              {/* Image container */}
-              <div className="h-full aspect-square overflow-hidden flex-shrink-0 border-r border-primary">
+            <div 
+              className="bg-[#EFE9E3] border border-primary transition-all duration-300 ease-out flex items-center overflow-hidden"
+              style={{
+                boxShadow: isHovered ? '0 4px 12px rgba(0,0,0,0.15)' : 'none'
+              }}
+            >
+              {/* Square image container */}
+              <div 
+                className="flex-shrink-0 overflow-hidden"
+                style={{ 
+                  width: `calc(${item.size} * 14.4)`,
+                  height: `calc(${item.size} * 14.4)`
+                }}
+              >
                 <img 
                   src={item.image} 
                   alt={item.name}
@@ -164,25 +200,24 @@ const KuriyamaPlan = () => {
                 />
               </div>
               
-              {/* Text content - visible for first item or on hover */}
-              {isFirstItem ? (
-                <div className="flex items-center gap-1 px-2 overflow-hidden">
-                  <span className="font-['Glametrix'] font-bold text-foreground whitespace-nowrap" style={{ fontSize: 'clamp(10px, 0.9vw, 14px)' }}>
-                    {item.name}
-                  </span>
-                  <span className="text-primary font-light">›</span>
-                </div>
-              ) : (
-                <div className={`
-                  flex items-center gap-1 px-2 overflow-hidden transition-all duration-300
-                  ${isHovered ? 'max-w-[150px] opacity-100' : 'max-w-0 opacity-0 px-0'}
-                `}>
-                  <span className="font-['Glametrix'] font-bold text-foreground whitespace-nowrap" style={{ fontSize: 'clamp(10px, 0.9vw, 14px)' }}>
-                    {item.name}
-                  </span>
-                  <span className="text-primary font-light">›</span>
-                </div>
-              )}
+              {/* Text content - appears on hover */}
+              <div 
+                className="flex items-center gap-1 overflow-hidden transition-all duration-300 border-l border-primary"
+                style={{
+                  maxWidth: isHovered ? '150px' : '0px',
+                  opacity: isHovered ? 1 : 0,
+                  paddingLeft: isHovered ? '8px' : '0px',
+                  paddingRight: isHovered ? '8px' : '0px'
+                }}
+              >
+                <span 
+                  className="font-['Glametrix'] font-bold text-foreground whitespace-nowrap" 
+                  style={{ fontSize: 'clamp(10px, 0.9vw, 14px)' }}
+                >
+                  {item.name}
+                </span>
+                <span className="text-primary font-light">›</span>
+              </div>
             </div>
           </motion.div>
         );
@@ -194,7 +229,7 @@ const KuriyamaPlan = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="absolute"
+        className="absolute z-[5]"
         style={{
           left: '2.708%',
           top: '43.566%',
@@ -214,7 +249,7 @@ const KuriyamaPlan = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.7 }}
-        className="absolute bg-primary text-primary-foreground rounded-full font-['Glametrix'] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+        className="absolute bg-primary text-primary-foreground rounded-full font-['Glametrix'] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity z-[5]"
         style={{
           left: '8.056%',
           top: '79.504%',
@@ -226,39 +261,6 @@ const KuriyamaPlan = () => {
         Подробнее
         <span>›</span>
       </motion.button>
-
-      {/* 3 line 1 - vertical left */}
-      <div 
-        className="absolute bg-primary"
-        style={{
-          left: '3.854%',
-          top: '0%',
-          width: '1px',
-          height: '82.445%'
-        }}
-      />
-
-      {/* 3 line 2 - horizontal bottom */}
-      <div 
-        className="absolute bg-primary"
-        style={{
-          left: '3.889%',
-          top: '82.950%',
-          width: '77.361%',
-          height: '1px'
-        }}
-      />
-
-      {/* 3 line 3 - vertical right */}
-      <div 
-        className="absolute bg-primary"
-        style={{
-          left: '81.215%',
-          top: '82.996%',
-          width: '1px',
-          height: '17.555%'
-        }}
-      />
     </section>
   );
 };
