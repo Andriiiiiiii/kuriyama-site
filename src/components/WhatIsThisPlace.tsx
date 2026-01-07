@@ -7,29 +7,29 @@ import rightImage from '@/assets/2-right-image.png';
 const WhatIsThisPlace = () => {
   return (
     <section className="relative w-full h-screen bg-white overflow-hidden">
-      {/* Vertical Line 1 */}
+      {/* 2 line 1 - Vertical Line */}
       <div 
         className="absolute bg-accent"
         style={{
-          left: '20.97%',
+          left: '22.40%',
           top: '0%',
-          width: '1px',
-          height: '99.83%'
+          width: '0.07%',
+          height: '99.94%'
         }}
       />
       
-      {/* Horizontal Line 2 */}
+      {/* 2 line 2 - Horizontal Line */}
       <div 
         className="absolute bg-accent"
         style={{
-          left: '0%',
+          left: '3.89%',
           top: '99.89%',
-          width: '21.01%',
-          height: '1px'
+          width: '18.54%',
+          height: '0.11%'
         }}
       />
 
-      {/* Left Object */}
+      {/* 2 left object 1 */}
       <motion.div 
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -37,10 +37,10 @@ const WhatIsThisPlace = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="absolute"
         style={{
-          left: '4.96%',
-          top: '3.65%',
-          width: '36.82%',
-          height: '71.99%'
+          left: '7.57%',
+          top: '1.51%',
+          width: '34.43%',
+          height: '76.27%'
         }}
       >
         <img 
@@ -58,9 +58,10 @@ const WhatIsThisPlace = () => {
         transition={{ duration: 0.7, delay: 0.1 }}
         className="absolute font-['UA-brand'] font-bold text-primary uppercase leading-[0.9]"
         style={{
-          left: '57.46%',
+          left: '57.83%',
           top: '5.98%',
-          width: '41.33%',
+          width: '36.48%',
+          height: '18.16%',
           fontSize: 'clamp(48px, 8vw, 120px)'
         }}
       >
@@ -75,9 +76,10 @@ const WhatIsThisPlace = () => {
         transition={{ duration: 0.6, delay: 0.3 }}
         className="absolute font-['Glametrix'] text-foreground leading-relaxed"
         style={{
-          left: '45.09%',
+          left: '44.59%',
           top: '41.58%',
-          width: '27.59%',
+          width: '24.35%',
+          height: '14.94%',
           fontSize: 'clamp(14px, 1.4vw, 20px)'
         }}
       >
@@ -86,7 +88,7 @@ const WhatIsThisPlace = () => {
         где философия созерцания и природная мудрость встречаются с русским раздольем.
       </motion.p>
 
-      {/* Central Image */}
+      {/* 2 central image */}
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -94,9 +96,9 @@ const WhatIsThisPlace = () => {
         transition={{ duration: 0.7, delay: 0.4 }}
         className="absolute"
         style={{
-          left: '45.00%',
+          left: '44.51%',
           top: '59.10%',
-          width: '30.21%',
+          width: '29.93%',
           height: '27.72%'
         }}
       >
@@ -107,7 +109,7 @@ const WhatIsThisPlace = () => {
         />
       </motion.div>
 
-      {/* Right Image */}
+      {/* 2 right image */}
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -115,9 +117,9 @@ const WhatIsThisPlace = () => {
         transition={{ duration: 0.7, delay: 0.5 }}
         className="absolute"
         style={{
-          left: '77.03%',
+          left: '76.23%',
           top: '41.07%',
-          width: '22.19%',
+          width: '21.98%',
           height: '54.08%'
         }}
       >
