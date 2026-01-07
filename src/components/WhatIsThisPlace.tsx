@@ -6,34 +6,34 @@ import rightImage from '@/assets/2-right-image.png';
 const WhatIsThisPlace = () => {
   return (
     <section className="relative w-full min-h-screen bg-white py-16 overflow-hidden">
-      <div className="flex flex-col lg:flex-row items-start justify-between px-8 md:px-16 gap-8">
+      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-start justify-center px-8 md:px-16 gap-8 lg:gap-16">
         {/* Left Side - Composite Image */}
-        <div className="relative w-full lg:w-[40%] h-[500px] md:h-[600px]">
+        <div className="relative w-full lg:w-[35%] h-[450px] md:h-[550px]">
           <img 
             src={leftObject} 
             alt="Курияма" 
-            className="w-full h-full object-contain object-left"
+            className="w-full h-full object-contain object-center"
           />
         </div>
 
         {/* Right Side - Content */}
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col max-w-[600px]">
           {/* Title */}
           <h2 className="font-['UA-brand'] font-bold text-5xl md:text-6xl lg:text-7xl text-primary uppercase leading-tight">
             что это<br/>за место?
           </h2>
 
           {/* Description */}
-          <p className="mt-8 max-w-lg font-['Glametrix'] text-lg md:text-xl text-foreground leading-relaxed">
+          <p className="mt-8 max-w-md font-['Glametrix'] text-lg md:text-xl text-foreground leading-relaxed">
             Курияма — это уголок спокойствия, спрятанный в лесах Тульской области. 
             Здесь, на границе Московской области, мы создали уникальное пространство, 
             где философия созерцания и природная мудрость встречаются с русским раздольем.
           </p>
 
           {/* Images Row */}
-          <div className="mt-8 flex gap-6 items-end">
+          <div className="mt-8 flex gap-4 items-end">
             {/* Central Image */}
-            <div className="w-[280px] md:w-[350px] h-auto">
+            <div className="w-[250px] md:w-[320px] h-auto">
               <img 
                 src={centralImage} 
                 alt="Пчеловод" 
@@ -42,7 +42,7 @@ const WhatIsThisPlace = () => {
             </div>
 
             {/* Right Image */}
-            <div className="hidden lg:block w-[180px] md:w-[220px] h-[350px] md:h-[400px]">
+            <div className="hidden lg:block w-[160px] md:w-[200px] h-[320px] md:h-[380px]">
               <img 
                 src={rightImage} 
                 alt="Природа" 
