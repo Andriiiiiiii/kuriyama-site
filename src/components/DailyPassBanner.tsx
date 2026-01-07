@@ -6,9 +6,13 @@ const DailyPassBanner: React.FC = () => {
     <section className="relative w-full overflow-hidden">
       {/* Background image */}
       <div 
-        className="relative w-full h-[300px] md:h-[354px] bg-cover bg-center"
+        className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
+        {/* Vertical lines */}
+        <div className="absolute left-[30%] top-0 bottom-0 w-[2px] bg-primary hidden md:block" />
+        <div className="absolute right-[30%] top-0 bottom-0 w-[2px] bg-primary hidden md:block" />
+        
         {/* Content overlay */}
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 lg:px-20">
@@ -41,6 +45,11 @@ const DailyPassBanner: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Bottom line extending down */}
+      <div className="flex justify-center">
+        <div className="w-[2px] h-[40px] md:h-[60px] bg-primary" />
       </div>
     </section>
   );

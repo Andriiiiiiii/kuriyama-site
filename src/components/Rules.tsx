@@ -20,7 +20,7 @@ const Rules: React.FC = () => {
   ];
 
   return (
-    <section className="relative w-full h-screen px-8 md:px-16 lg:px-24 flex flex-col justify-center bg-white">
+    <section className="relative w-full max-w-[1204px] mx-auto px-4 md:px-8 py-12 md:py-20">
       {/* Title */}
       <h1 className="font-ua-brand text-primary text-4xl md:text-6xl lg:text-[80px] font-bold uppercase">
         правила

@@ -5,7 +5,7 @@ import photoSmall from '@/assets/8-photo.png';
 
 const SeasonalActivities: React.FC = () => {
   return (
-    <section className="relative w-full h-screen px-8 md:px-16 lg:px-24 flex items-center justify-center bg-white">
+    <section className="relative w-full max-w-[1347px] mx-auto mt-24 md:mt-32 lg:mt-40">
       {/* Background SVG */}
       <img
         src={backImage}

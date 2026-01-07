@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import mapBackground from '@/assets/3-map-background.png';
-import mainBackground from '@/assets/3-main-background.png';
 import rightCalligraphy from '@/assets/3-right-image.png';
 import object1 from '@/assets/3-object-1.png';
 import object4 from '@/assets/3-object-4.png';
@@ -18,15 +17,9 @@ const KuriyamaPlan = () => {
   ];
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-      {/* Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${mainBackground})` }}
-      />
-
+    <section className="relative w-full min-h-screen bg-[#EFE9E3] py-12 md:py-16 overflow-hidden">
       {/* Header Section */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24 flex flex-col lg:flex-row justify-between items-start gap-4 pt-12 md:pt-16 mb-6">
+      <div className="max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start gap-4 mb-6">
         {/* Title */}
         <h2 className="font-['UA-brand'] font-bold text-5xl md:text-6xl lg:text-[80px] text-foreground uppercase leading-[0.95]">
           План Куриямы
@@ -40,7 +33,7 @@ const KuriyamaPlan = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 max-w-[1400px] mx-auto relative flex px-8 md:px-16 lg:px-24">
+      <div className="max-w-[1400px] mx-auto relative flex px-8 md:px-16">
         {/* Map Section */}
         <div className="relative w-full lg:w-[75%] mx-auto">
           {/* Map Image */}
@@ -112,7 +105,7 @@ const KuriyamaPlan = () => {
       </div>
 
       {/* Bottom Section */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 lg:px-24 mt-8">
+      <div className="max-w-[1400px] mx-auto px-8 md:px-16 mt-8">
         <div className="max-w-md">
           <p className="font-['Glametrix'] text-lg lg:text-[22px] text-foreground mb-6 leading-relaxed">
             Описание в две строчки о том, что есть на Курияме. 
