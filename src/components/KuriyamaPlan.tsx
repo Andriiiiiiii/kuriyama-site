@@ -10,167 +10,255 @@ const KuriyamaPlan = () => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
   const mapItems = [
-    { id: 1, name: 'Апи-домики', x: '22%', y: '42%', image: object1 },
-    { id: 2, name: 'Пасека', x: '40%', y: '55%', image: object4 },
-    { id: 3, name: 'Магазин', x: '48%', y: '62%', image: object4 },
-    { id: 4, name: 'Чайная', x: '62%', y: '52%', image: object4 },
-    { id: 5, name: 'Сад', x: '72%', y: '38%', image: object4 },
-    { id: 6, name: 'Беседка', x: '56%', y: '44%', image: object4 },
+    { id: 1, name: 'Апи-домики', left: '18.403%', top: '35.202%', width: '14.097%', height: '5.974%', image: object1 },
+    { id: 2, name: 'Пасека', left: '31.736%', top: '46.875%', width: '4.792%', height: '6.342%', image: object4 },
+    { id: 3, name: 'Чайная', left: '41.736%', top: '54.136%', width: '4.792%', height: '6.342%', image: object4 },
+    { id: 4, name: 'Магазин', left: '49.028%', top: '43.566%', width: '4.792%', height: '6.342%', image: object4 },
+    { id: 5, name: 'Сад', left: '56.944%', top: '50.000%', width: '4.792%', height: '6.342%', image: object4 },
+    { id: 6, name: 'Беседка', left: '69.444%', top: '32.904%', width: '4.792%', height: '6.342%', image: object4 },
   ];
 
   return (
-    <section className="relative w-full min-h-screen py-12 md:py-16 overflow-hidden">
-      {/* Background Image - z-0 */}
+    <section 
+      className="relative w-full overflow-hidden"
+      style={{ 
+        aspectRatio: '1440 / 816',
+        maxHeight: '100vh'
+      }}
+    >
+      {/* 3 main background */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
-        style={{ backgroundImage: `url(${sectionBackground})` }}
+        className="absolute bg-cover bg-center bg-no-repeat"
+        style={{ 
+          left: '0%',
+          top: '8.824%',
+          width: '100%',
+          height: '82.353%',
+          backgroundImage: `url(${sectionBackground})`
+        }}
       />
 
-      {/* Header Section - z-10 */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start gap-4 mb-6">
-        {/* Title */}
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="font-['UA-brand'] font-bold text-5xl md:text-6xl lg:text-[80px] text-foreground uppercase leading-[0.95]"
-        >
-          План Куриямы
-        </motion.h2>
+      {/* 3 map background */}
+      <div 
+        className="absolute bg-cover bg-center bg-no-repeat"
+        style={{ 
+          left: '6.250%',
+          top: '11.213%',
+          width: '86.875%',
+          height: '71.783%',
+          backgroundImage: `url(${mapBackground})`
+        }}
+      />
 
-        {/* Top Right Description */}
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-sm font-['Glametrix'] text-lg lg:text-[22px] text-foreground leading-relaxed lg:text-right"
-        >
-          Описание в две строчки о том, что есть на Курияме. 
-          Про возможность выбрать и подробнее узнать про активность по клику
-        </motion.p>
-      </div>
+      {/* Title */}
+      <motion.h2 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="absolute font-['UA-brand'] font-bold text-foreground uppercase leading-[0.95]"
+        style={{
+          left: '8.833%',
+          top: '7.353%',
+          width: '53.454%',
+          height: '5.324%',
+          fontSize: 'clamp(60px, 8vw, 120px)'
+        }}
+      >
+        План Куриямы
+      </motion.h2>
 
-      {/* Main Content Container - z-10 */}
-      <div className="relative z-10 max-w-[1400px] mx-auto flex px-8 md:px-16">
-        {/* Map Section */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="relative w-full lg:w-[75%] mx-auto"
-        >
-          {/* Map Image */}
-          <img 
-            src={mapBackground} 
-            alt="Карта Куриямы" 
-            className="w-full h-auto"
-          />
+      {/* main text up */}
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="absolute font-['Glametrix'] text-foreground leading-relaxed"
+        style={{
+          left: '64.281%',
+          top: '15.655%',
+          width: '25.709%',
+          height: '5.614%',
+          fontSize: 'clamp(14px, 1.25vw, 18px)'
+        }}
+      >
+        Описание в две строчки о том, что есть на Курияме. 
+        Про возможность выбрать и подробнее узнать про активность по клику
+      </motion.p>
 
-          {/* Map Points */}
-          {mapItems.map((item, index) => {
-            const isHovered = hoveredItem === item.id;
-            
-            return (
-              <motion.div 
-                key={item.id}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
-                style={{ left: item.x, top: item.y }}
-                onMouseEnter={() => setHoveredItem(item.id)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <div className={`
-                  bg-[#EFE9E3] border border-primary 
-                  transition-all duration-300 ease-out
-                  flex items-center
-                  ${isHovered ? 'shadow-lg' : 'hover:shadow-md'}
-                `}>
-                  {/* Image container */}
-                  <div className="w-12 h-12 md:w-14 md:h-14 overflow-hidden flex-shrink-0 border-r border-primary">
-                    <img 
-                      src={item.image} 
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  {/* Text content - only visible on hover */}
-                  <div className={`
-                    flex items-center gap-2 px-3 overflow-hidden transition-all duration-300
-                    ${isHovered ? 'max-w-[180px] opacity-100' : 'max-w-0 opacity-0 px-0'}
-                  `}>
-                    <span className="font-['Glametrix'] font-bold text-sm md:text-base text-foreground whitespace-nowrap">
-                      {item.name}
-                    </span>
-                    <span className="text-primary text-lg font-light">›</span>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+      {/* main text down */}
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="absolute font-['Glametrix'] text-foreground leading-relaxed"
+        style={{
+          left: '8.449%',
+          top: '72.365%',
+          width: '25.709%',
+          height: '5.614%',
+          fontSize: 'clamp(14px, 1.25vw, 18px)'
+        }}
+      >
+        Описание в две строчки о том, что есть на Курияме. 
+        Про возможность выбрать и подробнее узнать про активность по клику
+      </motion.p>
 
-          {/* Left Point Marker */}
+      {/* 3 right image */}
+      <motion.div 
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.5 }}
+        className="absolute"
+        style={{
+          left: '81.667%',
+          top: '56.066%',
+          width: '13.472%',
+          height: '35.938%'
+        }}
+      >
+        <img 
+          src={rightCalligraphy} 
+          alt="Курияма каллиграфия" 
+          className="w-full h-full object-contain"
+        />
+      </motion.div>
+
+      {/* Map Points */}
+      {mapItems.map((item, index) => {
+        const isHovered = hoveredItem === item.id;
+        const isFirstItem = item.id === 1;
+        
+        return (
           <motion.div 
+            key={item.id}
             initial={{ opacity: 0, scale: 0 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="absolute left-[5%] top-[50%] transform -translate-y-1/2"
+            transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+            className="absolute cursor-pointer z-10"
+            style={{ 
+              left: item.left, 
+              top: item.top,
+              width: item.width,
+              height: item.height
+            }}
+            onMouseEnter={() => setHoveredItem(item.id)}
+            onMouseLeave={() => setHoveredItem(null)}
           >
-            <div className="relative">
-              <div className="w-4 h-4 rounded-full bg-primary"></div>
-              <div className="absolute inset-[-6px] rounded-full border border-primary"></div>
+            <div className={`
+              w-full h-full bg-[#EFE9E3] border border-primary 
+              transition-all duration-300 ease-out
+              flex items-center
+              ${isHovered ? 'shadow-lg' : 'hover:shadow-md'}
+            `}>
+              {/* Image container */}
+              <div className="h-full aspect-square overflow-hidden flex-shrink-0 border-r border-primary">
+                <img 
+                  src={item.image} 
+                  alt={item.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Text content - visible for first item or on hover */}
+              {isFirstItem ? (
+                <div className="flex items-center gap-1 px-2 overflow-hidden">
+                  <span className="font-['Glametrix'] font-bold text-foreground whitespace-nowrap" style={{ fontSize: 'clamp(10px, 0.9vw, 14px)' }}>
+                    {item.name}
+                  </span>
+                  <span className="text-primary font-light">›</span>
+                </div>
+              ) : (
+                <div className={`
+                  flex items-center gap-1 px-2 overflow-hidden transition-all duration-300
+                  ${isHovered ? 'max-w-[150px] opacity-100' : 'max-w-0 opacity-0 px-0'}
+                `}>
+                  <span className="font-['Glametrix'] font-bold text-foreground whitespace-nowrap" style={{ fontSize: 'clamp(10px, 0.9vw, 14px)' }}>
+                    {item.name}
+                  </span>
+                  <span className="text-primary font-light">›</span>
+                </div>
+              )}
             </div>
           </motion.div>
-        </motion.div>
+        );
+      })}
 
-        {/* Right Calligraphy Image */}
-        <motion.div 
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="hidden lg:flex absolute right-8 md:right-12 bottom-0 w-[150px] lg:w-[180px] items-end justify-end"
-        >
-          <img 
-            src={rightCalligraphy} 
-            alt="Курияма каллиграфия" 
-            className="w-full h-auto object-contain"
-          />
-        </motion.div>
-      </div>
-
-      {/* Bottom Section - z-10 */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 mt-8">
-        <div className="max-w-md">
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="font-['Glametrix'] text-lg lg:text-[22px] text-foreground mb-6 leading-relaxed"
-          >
-            Описание в две строчки о том, что есть на Курияме. 
-            Про возможность выбрать и подробнее узнать про активность по клику
-          </motion.p>
-          <motion.button 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-['Glametrix'] text-lg lg:text-xl flex items-center gap-3 hover:opacity-90 transition-opacity"
-          >
-            Подробнее
-            <span className="text-xl">›</span>
-          </motion.button>
+      {/* 3 left point */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="absolute"
+        style={{
+          left: '2.708%',
+          top: '43.566%',
+          width: '2.361%',
+          height: '3.125%'
+        }}
+      >
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="w-[70%] h-[70%] rounded-full bg-primary"></div>
+          <div className="absolute inset-0 rounded-full border border-primary"></div>
         </div>
-      </div>
+      </motion.div>
+
+      {/* 3 button more */}
+      <motion.button 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.7 }}
+        className="absolute bg-primary text-primary-foreground rounded-full font-['Glametrix'] flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+        style={{
+          left: '8.056%',
+          top: '79.504%',
+          width: '10.069%',
+          height: '3.401%',
+          fontSize: 'clamp(12px, 1.1vw, 16px)'
+        }}
+      >
+        Подробнее
+        <span>›</span>
+      </motion.button>
+
+      {/* 3 line 1 - vertical left */}
+      <div 
+        className="absolute bg-primary"
+        style={{
+          left: '3.854%',
+          top: '0%',
+          width: '1px',
+          height: '82.445%'
+        }}
+      />
+
+      {/* 3 line 2 - horizontal bottom */}
+      <div 
+        className="absolute bg-primary"
+        style={{
+          left: '3.889%',
+          top: '82.950%',
+          width: '77.361%',
+          height: '1px'
+        }}
+      />
+
+      {/* 3 line 3 - vertical right */}
+      <div 
+        className="absolute bg-primary"
+        style={{
+          left: '81.215%',
+          top: '82.996%',
+          width: '1px',
+          height: '17.555%'
+        }}
+      />
     </section>
   );
 };
