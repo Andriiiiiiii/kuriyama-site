@@ -19,14 +19,14 @@ const KuriyamaPlan = () => {
 
   return (
     <section className="relative w-full min-h-screen py-12 md:py-16 overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image - z-0 */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: `url(${sectionBackground})` }}
       />
 
-      {/* Header Section */}
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start gap-4 mb-6">
+      {/* Header Section - z-10 */}
+      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start gap-4 mb-6">
         {/* Title */}
         <h2 className="font-['UA-brand'] font-bold text-5xl md:text-6xl lg:text-[80px] text-foreground uppercase leading-[0.95]">
           План Куриямы
@@ -39,8 +39,8 @@ const KuriyamaPlan = () => {
         </p>
       </div>
 
-      {/* Main Content Container */}
-      <div className="max-w-[1400px] mx-auto relative flex px-8 md:px-16">
+      {/* Main Content Container - z-10 */}
+      <div className="relative z-10 max-w-[1400px] mx-auto flex px-8 md:px-16">
         {/* Map Section */}
         <div className="relative w-full lg:w-[75%] mx-auto">
           {/* Map Image */}
@@ -111,8 +111,8 @@ const KuriyamaPlan = () => {
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16 mt-8">
+      {/* Bottom Section - z-10 */}
+      <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16 mt-8">
         <div className="max-w-md">
           <p className="font-['Glametrix'] text-lg lg:text-[22px] text-foreground mb-6 leading-relaxed">
             Описание в две строчки о том, что есть на Курияме. 
