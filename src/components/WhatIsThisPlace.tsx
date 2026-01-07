@@ -80,7 +80,7 @@ const WhatIsThisPlace = () => {
           top: '41.58%',
           width: '24.35%',
           height: '14.94%',
-          fontSize: 'clamp(14px, 1.4vw, 20px)'
+          fontSize: 'clamp(14px, 1.25vw, 18px)'
         }}
       >
         Курияма — это уголок спокойствия, спрятанный в лесах Тульской области. 
