@@ -1,0 +1,15 @@
+﻿export { default as HeroVisit } from "./HeroVisit";
+export { default as WhatIsThisPlace } from "./WhatIsThisPlace";
+export { default as KuriyamaPlan } from "./KuriyamaPlan";
+export { default as DayPassJapan } from "./DayPassJapan";
+export { default as Products } from "./Products";
+export { default as DailyPassBanner } from "./DailyPassBanner";
+export { default as VisitProcess } from "./VisitProcess";
+export { default as SeasonalActivities } from "./SeasonalActivities";
+export { default as Rules } from "./Rules";
+export { default as HorizontalGallery } from "./HorizontalGallery";
+export { default as DailyPass } from "./DailyPass";
+export { default as FAQ } from "./FAQ";
+export { default as Reviews } from "./Reviews";
+export { default as Tariffs } from "./Tariffs";
+export { default as Footer } from "./Footer";
