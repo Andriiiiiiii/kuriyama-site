@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
-import forestImage from '@/assets/4-image-1.png';
-import gardenImage from '@/assets/4-image-2.png';
-import photoshootImage from '@/assets/4-image-3.png';
-import calligraphyImage from '@/assets/4-central-image.svg';
+import forestImage from '@/assets/visit/4-image-1.png';
+import gardenImage from '@/assets/visit/4-image-2.png';
+import photoshootImage from '@/assets/visit/4-image-3.png';
+import calligraphyImage from '@/assets/visit/4-central-image.svg';
 
 const DayPassJapan: React.FC = () => {
   return (

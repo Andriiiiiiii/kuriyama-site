@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
-import backImage from '@/assets/13-back-image.png';
-import ivanPhoto from '@/assets/ivan.png';
+import backImage from '@/assets/visit/13-back-image.png';
+import ivanPhoto from '@/assets/visit/ivan.png';
 
 interface ReviewProps {
   left: string;

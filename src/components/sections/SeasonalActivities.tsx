@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
-import backImage from '@/assets/8-back-image.svg';
-import photoSmall from '@/assets/8-photo.png';
+import backImage from '@/assets/visit/8-back-image.svg';
+import photoSmall from '@/assets/visit/8-photo.png';
 
 const SeasonalActivities: React.FC = () => {
   return (

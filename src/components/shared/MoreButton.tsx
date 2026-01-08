@@ -1,5 +1,5 @@
 import React from 'react';
-import moreButtonSvg from '@/assets/more-button.svg';
+import moreButtonSvg from '@/assets/visit/more-button.svg';
 
 interface MoreButtonProps {
   onClick?: () => void;

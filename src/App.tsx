@@ -1,11 +1,15 @@
 ﻿import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Home from "./pages/Home";
+import Visit from "./pages/Visit";
+import Beekeeping from "./pages/Beekeeping";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Index />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/visit" element={<Visit />} />
+      <Route path="/beekeeping" element={<Beekeeping />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

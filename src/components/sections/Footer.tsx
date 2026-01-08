@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import inkSplash from '@/assets/15-image-2.svg';
-import paperBackground from '@/assets/15-background.png';
+import inkSplash from '@/assets/visit/15-image-2.svg';
+import paperBackground from '@/assets/visit/15-background.png';
 
 const Footer: React.FC = () => {
   const [name, setName] = useState('');

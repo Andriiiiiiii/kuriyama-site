@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
-import woodImage from '@/assets/7-right-image.png';
-import number1 from '@/assets/number-1.svg';
-import number2 from '@/assets/number-2.svg';
-import number3 from '@/assets/number-3.svg';
+import woodImage from '@/assets/visit/7-right-image.png';
+import number1 from '@/assets/visit/number-1.svg';
+import number2 from '@/assets/visit/number-2.svg';
+import number3 from '@/assets/visit/number-3.svg';
 
 const VisitProcess: React.FC = () => {
   return (

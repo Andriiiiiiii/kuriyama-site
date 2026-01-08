@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
-import backImage from '@/assets/12-back-image.png';
+import backImage from '@/assets/visit/12-back-image.png';
 
 const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

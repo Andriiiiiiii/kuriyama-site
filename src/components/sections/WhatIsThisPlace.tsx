@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import leftObject from '@/assets/2-left-object.png';
-import centralImage from '@/assets/2-central-image.png';
-import rightImage from '@/assets/2-right-image.png';
+import leftObject from '@/assets/visit/2-left-object.png';
+import centralImage from '@/assets/visit/2-central-image.png';
+import rightImage from '@/assets/visit/2-right-image.png';
 import { FONT_SIZES } from '@/config/typography';
 
 const WhatIsThisPlace = () => {

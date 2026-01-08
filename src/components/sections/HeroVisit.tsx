@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import heroPhoto from '@/assets/1-photo.png';
-import heroBg from '@/assets/1-background.png';
-import buttonBuy from '@/assets/1-button-buy.svg';
-import buttonContact from '@/assets/1-button-contact.svg';
-import buttonAllActions from '@/assets/1-button-all-actions.svg';
+import heroPhoto from '@/assets/visit/1-photo.png';
+import heroBg from '@/assets/visit/1-background.png';
+import buttonBuy from '@/assets/visit/1-button-buy.svg';
+import buttonContact from '@/assets/visit/1-button-contact.svg';
+import buttonAllActions from '@/assets/visit/1-button-all-actions.svg';
 import { FONT_SIZES } from '@/config/typography';
 
 const HeroVisit = () => {

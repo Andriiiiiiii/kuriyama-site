@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
-import leftBackImage from '@/assets/14-left-back-image.png';
-import rightBackImage from '@/assets/14-right-back-image.png';
-import visitButton from '@/assets/visit-button.svg';
+import leftBackImage from '@/assets/visit/14-left-back-image.png';
+import rightBackImage from '@/assets/visit/14-right-back-image.png';
+import visitButton from '@/assets/visit/visit-button.svg';
 
 const Tariffs: React.FC = () => {
   return (

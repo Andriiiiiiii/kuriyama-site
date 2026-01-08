@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import backgroundImage from '@/assets/11-background.png';
-import buttonBuy from '@/assets/buy-button-2.svg';
+import backgroundImage from '@/assets/visit/11-background.png';
+import buttonBuy from '@/assets/visit/buy-button-2.svg';
 import { FONT_SIZES } from '@/config/typography';
 
 const DailyPass: React.FC = () => {

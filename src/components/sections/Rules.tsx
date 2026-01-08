@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
 import MoreButton from '@/components/shared/MoreButton';
-import photo1 from '@/assets/9-photo-1.png';
-import photo2 from '@/assets/9-photo-2.png';
+import photo1 from '@/assets/visit/9-photo-1.png';
+import photo2 from '@/assets/visit/9-photo-2.png';
 
 const Rules: React.FC = () => {
   return (

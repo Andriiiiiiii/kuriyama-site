@@ -1,11 +1,11 @@
 ﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import mapBackground from '@/assets/3-map-background.png';
-import sectionBackground from '@/assets/3-background.png';
-import rightCalligraphy from '@/assets/3-right-image.png';
-import object1 from '@/assets/3-object-1.png';
-import object4 from '@/assets/3-object-4.png';
-import moreButton from '@/assets/more-button.svg';
+import mapBackground from '@/assets/visit/3-map-background.png';
+import sectionBackground from '@/assets/visit/3-background.png';
+import rightCalligraphy from '@/assets/visit/3-right-image.png';
+import object1 from '@/assets/visit/3-object-1.png';
+import object4 from '@/assets/visit/3-object-4.png';
+import moreButton from '@/assets/visit/more-button.svg';
 import { FONT_SIZES } from '@/config/typography';
 
 const KuriyamaPlan = () => {
