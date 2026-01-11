@@ -34,6 +34,10 @@ export const TYPOGRAPHY_CONFIG = {
     min: 1,
     max: 1.4,
   },
+
+  // Decorative line stroke width relative to viewport width
+  // At 1920px width: 0.05vw ≈ 0.96px
+  lineStrokeWidth: '0.05vw',
 } as const;
 
 /**

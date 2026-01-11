@@ -1,10 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import backgroundImage from '@/assets/visit/11-background.png';
-import buttonBuy from '@/assets/visit/buy-button-2.svg';
-import { FONT_SIZES } from '@/config/typography';
+import SelectTariffButton from '@/components/shared/SelectTariffButton';
+import { FONT_SIZES, TYPOGRAPHY_CONFIG } from '@/config/typography';
 
 const DailyPass: React.FC = () => {
+  const lineStroke = TYPOGRAPHY_CONFIG.lineStrokeWidth;
+  const buttonWidth = '12vw';
+  const buttonLeft = '83%';
+  const buttonTop = '50%';
+
   return (
     <section className="relative w-screen overflow-hidden" style={{ height: '40vh' }}>
       {/* Background */}
@@ -13,6 +18,7 @@ const DailyPass: React.FC = () => {
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
       />
+      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
 
       {/* Title */}
       <motion.h2
@@ -23,8 +29,7 @@ const DailyPass: React.FC = () => {
         className="absolute font-ua-brand text-white font-bold uppercase"
         style={{
           left: '8.3472%',
-          top: '30%',
-          height: '13.51vh',
+          top: '10%',
           fontSize: FONT_SIZES.heading,
         }}
       >
@@ -40,7 +45,7 @@ const DailyPass: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="absolute font-glametrix text-white"
         style={{
-          left: '79.5%',
+          left: '8.3472%',
           top: '75%',
           width: '15.42vw',
           height: '2.85vh',
@@ -51,21 +56,48 @@ const DailyPass: React.FC = () => {
       </motion.p>
 
       {/* Buy button */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        className="absolute hover:scale-105 transition-transform"
+      <div
+        className="absolute"
         style={{
-          left: '76.49vw',
-          top: '10.34vh',
-          width: '15.21vw',
-          height: '18.56vh',
+          left: buttonLeft,
+          top: buttonTop,
+          transform: 'translate(-50%, -50%)',
+          width: buttonWidth,
         }}
       >
-        <img src={buttonBuy} alt="Выбрать тариф" className="w-full h-full object-contain" />
-      </motion.button>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="hover:scale-105 transition-transform"
+          style={{ width: '100%' }}
+        >
+          <SelectTariffButton width="100%" />
+        </motion.div>
+      </div>
+
+      {/* Decorative guide lines */}
+      <div
+        className="absolute bg-primary"
+        style={{
+          left: '88.131%',
+          top: buttonTop,
+          width: buttonWidth,
+          height: lineStroke,
+          zIndex: 5,
+        }}
+      />
+      <div
+        className="absolute bg-primary"
+        style={{
+          left: buttonLeft,
+          top: `calc(${buttonTop} + (${buttonWidth} * 0.43))`,
+          width: lineStroke,
+          height: `50vh`,
+          zIndex: 5,
+        }}
+      />
     </section>
   );
 };

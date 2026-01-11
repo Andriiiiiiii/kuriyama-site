@@ -31,7 +31,7 @@ const KuriyamaPlan = () => {
           left: '3.8542%',
           top: '0%',
           width: '1px',
-          height: '82.4449%'
+          height: '99.99%'
         }}
       />
 
@@ -40,22 +40,12 @@ const KuriyamaPlan = () => {
         className="absolute bg-primary z-[20]"
         style={{
           left: '3.8889%',
-          top: '82.3989%',
-          width: '77.3611%',
+          top: '99.9%',
+          width: '52.23%',
           height: '1px'
         }}
       />
 
-      {/* 3 line 3 - vertical right */}
-      <div 
-        className="absolute bg-primary z-[20]"
-        style={{
-          left: '81.2153%',
-          top: '82.4449%',
-          width: '1px',
-          height: '17.5551%'
-        }}
-      />
 
       {/* 3 main background - full size to show torn edges */}
       <div
@@ -167,10 +157,10 @@ const KuriyamaPlan = () => {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="absolute z-[5]"
         style={{
-          left: '2.7083%',
+          left: '2.9%',
           top: '43.5662%',
-          width: '2.3611%',
-          height: '3.125%'
+          width: '2vw',
+          height: '2vw'
         }}
       >
         <div className="relative w-full h-full flex items-center justify-center">
@@ -274,5 +264,3 @@ const KuriyamaPlan = () => {
 };
 
 export default KuriyamaPlan;
-
-

@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import { Link } from "react-router-dom";
+import Header from "@/components/shared/Header";
 import {
   HeroVisit,
   WhatIsThisPlace,
@@ -29,6 +30,7 @@ const Visit = () => {
           ← Главная
         </Link>
       </div>
+      <Header activeSection="visit" />
       <HeroVisit />
       <WhatIsThisPlace />
       <KuriyamaPlan />

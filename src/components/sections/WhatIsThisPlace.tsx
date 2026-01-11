@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import leftObject from '@/assets/visit/2-left-object.png';
 import centralImage from '@/assets/visit/2-central-image.png';
 import rightImage from '@/assets/visit/2-right-image.png';
-import { FONT_SIZES } from '@/config/typography';
+import { FONT_SIZES, TYPOGRAPHY_CONFIG } from '@/config/typography';
 
 const WhatIsThisPlace = () => {
   return (
@@ -14,7 +14,7 @@ const WhatIsThisPlace = () => {
         style={{
           left: '22.40%',
           top: '0%',
-          width: '0.07%',
+          width: TYPOGRAPHY_CONFIG.lineStrokeWidth,
           height: '99.94%'
         }}
       />
@@ -23,10 +23,10 @@ const WhatIsThisPlace = () => {
       <div 
         className="absolute bg-accent"
         style={{
-          left: '3.89%',
+          left: '3.85%',
           top: '99.89%',
           width: '18.54%',
-          height: '0.11%'
+          height: TYPOGRAPHY_CONFIG.lineStrokeWidth
         }}
       />
 

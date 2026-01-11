@@ -11,23 +11,12 @@ const DayPassJapan: React.FC = () => {
     <section
       className="relative w-full h-screen bg-white overflow-hidden"
     >
-      {/* 4 line 1 - horizontal top */}
-      <div 
-        className="absolute bg-primary z-[20]"
-        style={{
-          left: '56.11%',
-          top: '0%',
-          width: '25.14%',
-          height: '1px'
-        }}
-      />
-
       {/* 4 line 2 - vertical */}
       <div 
         className="absolute bg-primary z-[20]"
         style={{
           left: '56.08%',
-          top: '0.05%',
+          top: '0%',
           width: '1px',
           height: '26.42%'
         }}
