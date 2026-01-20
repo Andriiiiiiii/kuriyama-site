@@ -14,3 +14,5 @@ export { default as Reviews } from "./Reviews";
 export { default as Tariffs } from "./Tariffs";
 export { default as Footer } from "./Footer";
 export { default as BeekeepingHero } from "./BeekeepingHero";
+export { default as PersonalBeekeepingHero } from "./PersonalBeekeepingHero";
+export { default as PersonalBeekeepingClosing } from "./PersonalBeekeepingClosing";

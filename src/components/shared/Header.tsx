@@ -5,7 +5,7 @@ import ContactButton from './ContactButton';
 import './Header.css';
 
 interface HeaderProps {
-  activeSection?: 'visit' | 'beekeeping' | null;
+  activeSection?: 'visit' | 'beekeeping' | 'personal-beekeeping' | null;
 }
 
 const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
