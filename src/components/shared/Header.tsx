@@ -5,7 +5,7 @@ import ContactButton from './ContactButton';
 import './Header.css';
 
 interface HeaderProps {
-  activeSection?: 'visit' | 'beekeeping' | 'personal-beekeeping' | null;
+  activeSection?: 'visit' | 'beekeeping' | 'personal-beekeeping' | 'production' | null;
 }
 
 const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
@@ -54,9 +54,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
           >
             Пчеловодство
           </a>
-          <a
-            href="#products"
-            className="header__nav-link"
+          <a            href="/production"
+            className={`header__nav-link ${
+              activeSection === 'production' ? 'header__nav-link--active' : ''
+            }`}
             style={{ fontSize: FONT_SIZES.body }}
           >
             Продукция

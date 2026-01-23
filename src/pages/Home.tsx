@@ -36,7 +36,30 @@ const Home = () => {
               Информация о пчеловодстве и продукции пасеки
             </p>
           </Link>
-          <Link            to="/personal-beekeeping"            className="block w-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200"          >            <h2 className="text-2xl font-semibold mb-2 text-foreground">              ЛИЧНОЕ ПЧЕЛОВОДСТВО            </h2>            <p className="text-muted-foreground">              Станьте частью нашей пчелиной семьи, заботьтесь о своих ульях            </p>          </Link>
+
+          <Link
+            to="/production"
+            className="block w-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200"
+          >
+            <h2 className="text-2xl font-semibold mb-2 text-foreground">
+              ПРОДУКЦИЯ
+            </h2>
+            <p className="text-muted-foreground">
+              Каталог нашей продукции
+            </p>
+          </Link>
+
+          <Link
+            to="/personal-beekeeping"
+            className="block w-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200"
+          >
+            <h2 className="text-2xl font-semibold mb-2 text-foreground">
+              ЛИЧНОЕ ПЧЕЛОВОДСТВО
+            </h2>
+            <p className="text-muted-foreground">
+              Станьте частью нашей пчелиной семьи, заботьтесь о своих ульях
+            </p>
+          </Link>
         </nav>
       </div>
     </main>

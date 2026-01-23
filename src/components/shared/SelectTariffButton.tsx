@@ -4,17 +4,22 @@ import './SelectTariffButton.css';
 interface SelectTariffButtonProps {
   width?: string;
   onClick?: () => void;
+  variant?: 'orange' | 'white';
 }
 
 const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
   width = '15.2%',
-  onClick
+  onClick,
+  variant = 'orange'
 }) => {
-  const radius = 105;  // Внешняя дуга (уменьшено с 109.5)
+  const radius = 105;
+  const mainColor = variant === 'orange' ? '#C65A32' : '#FFFFFF';
+  const textColor = variant === 'orange' ? '#FFFFFF' : '#000000';
+  const fillColor = variant === 'orange' ? '#C65A32' : '#FFFFFF'; // For the inner circle
 
   return (
     <button
-      className="select-tariff-button"
+      className={`select-tariff-button ${variant === 'white' ? 'select-tariff-button--white' : ''}`}
       onClick={onClick}
       style={{ width }}
     >
@@ -29,7 +34,7 @@ const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
           cx="109.5"
           cy="109.5"
           r={radius}
-          stroke="#C65A32"
+          stroke={mainColor}
           strokeWidth="1"
           fill="none"
           strokeDasharray="165 660"
@@ -43,7 +48,7 @@ const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
           cx="109.5"
           cy="109.5"
           r={radius}
-          stroke="#C65A32"
+          stroke={mainColor}
           strokeWidth="1"
           fill="none"
           strokeDasharray="0 660"
@@ -56,7 +61,7 @@ const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
           cx="109.5"
           cy="109.5"
           r="93.5"
-          stroke="#C65A32"
+          stroke={mainColor}
           strokeWidth="1"
           fill="none"
         />
@@ -66,7 +71,7 @@ const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
           cx="109.5"
           cy="109.5"
           r="85.5"
-          fill="#C65A32"
+          fill={fillColor}
         />
 
         {/* Текст */}
@@ -76,6 +81,7 @@ const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
           textAnchor="middle"
           dominantBaseline="middle"
           className="select-tariff-button__text"
+          fill={textColor}
         >
           Выбрать тариф
         </text>

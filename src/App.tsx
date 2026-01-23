@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Visit from "./pages/Visit";
 import Beekeeping from "./pages/Beekeeping";
 import PersonalBeekeeping from "./pages/PersonalBeekeeping";
+import Production from "./pages/Production";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
@@ -12,6 +13,7 @@ const App = () => (
       <Route path="/visit" element={<Visit />} />
       <Route path="/beekeeping" element={<Beekeeping />} />
       <Route path="/personal-beekeeping" element={<PersonalBeekeeping />} />
+      <Route path="/production" element={<Production />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

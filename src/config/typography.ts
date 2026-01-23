@@ -26,6 +26,9 @@ export const TYPOGRAPHY_CONFIG = {
 
     // Regular text font size (22px at 1441.5px width)
     body: 20,
+
+    // Giant heading for poster-like slides
+    giant: 170,
   },
 
   // Line height ratios (unitless) at baseHeight
@@ -77,4 +80,5 @@ export const FONT_SIZES = {
   heading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.heading),
   subheading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.subheading),
   body: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.body),
+  giant: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.giant),
 } as const;

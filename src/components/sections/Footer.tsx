@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   return (
-    <footer className="relative w-full h-screen overflow-hidden bg-white text-[#2E261D]">
+    <footer className="relative w-full h-screen overflow-hidden bg-transparent text-[#2E261D]">
       {/* Background layers */}
       <div className="absolute inset-0">
         <div
