@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import backgroundImage from '@/assets/beekeeping/1-background.png';
 import beekeeperImage from '@/assets/beekeeping/1-image-beekeeper.png';
 import frontRightImage from '@/assets/beekeeping/1-front-right-image.svg';
-import buttonRate from '@/assets/beekeeping/1-button-rate.svg';
+import SelectTariffButton from '@/components/shared/SelectTariffButton';
 import { FONT_SIZES } from '@/config/typography';
 
 const BeekeepingHero: React.FC = () => {
@@ -85,12 +85,9 @@ const BeekeepingHero: React.FC = () => {
         />
       </motion.div>
 
-      {/* Rate Button - left 7.29%, top 31.29%, width 15.21%, height 25.76% */}
-      <motion.button
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        className="absolute z-20 hover:scale-105 transition-transform"
+      {/* Select Tariff Button - left 7.29%, top 31.29% */}
+      <div
+        className="absolute z-20"
         style={{
           left: '7.29%',
           top: '31.29%',
@@ -98,12 +95,16 @@ const BeekeepingHero: React.FC = () => {
           height: '25.76%'
         }}
       >
-        <img
-          src={buttonRate}
-          alt="Оценить пасеку"
-          className="w-full h-full object-contain"
-        />
-      </motion.button>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.6, type: "spring", stiffness: 100 }}
+          whileHover={{ scale: 1.05 }}
+          className="w-full h-full"
+        >
+          <SelectTariffButton width="100%" />
+        </motion.div>
+      </div>
 
       {/* Additional description text */}
       <motion.p

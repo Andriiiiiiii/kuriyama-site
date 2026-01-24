@@ -4,16 +4,18 @@ import './ContactButton.css';
 
 interface ContactButtonProps {
   onClick?: () => void;
+  text?: string;
+  className?: string; 
 }
 
-const ContactButton: React.FC<ContactButtonProps> = ({ onClick }) => {
+const ContactButton: React.FC<ContactButtonProps> = ({ onClick, text = "Связаться", className = "" }) => {
   return (
     <button
-      className="contact-button"
+      className={`contact-button ${className}`}
       onClick={onClick}
       style={{ fontSize: FONT_SIZES.body }}
     >
-      Связаться
+      {text}
     </button>
   );
 };
