@@ -1,10 +1,14 @@
+:root {
+  --header-height: 10vh;
+}
+
 /* Header - внешний контейнер */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 10vh;
+  height: var(--header-height);
   background-color: transparent;
   border-bottom: 2px solid transparent;
   z-index: 50;
@@ -51,6 +55,19 @@
   flex: 1;
   justify-content: center;
   margin: 0 2%;
+  height: 100%; /* Ensure nav takes full height to help with hover if needed, but flexrow is key */
+}
+
+.header__nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Ensure the hovered item is above others so dropdown overlaps neighbors */
+.header__nav-item:hover {
+  z-index: 50;
 }
 
 /* Navigation Links */
@@ -62,6 +79,9 @@
   font-weight: 400;
   white-space: nowrap;
   transition: color 0.2s ease;
+  padding: 10px 0; /* Add touch target/hover area */
+  position: relative; /* Create stacking context */
+  z-index: 2; /* Keep text above the dropdown background */
 }
 
 .header__nav-link:hover {
@@ -73,11 +93,108 @@
   font-weight: 600;
 }
 
-/* Адаптивность для очень узких экранов */
+/* Dropdown */
+.header__dropdown {
+  position: absolute;
+  /* Start slightly above the text (which centers at 5vh) but not at screen top */
+  top: 3vh; 
+  left: -10px;
+  /* fit-content ensures it's only as wide as the longest text item + padding */
+  width: max-content;
+  min-width: 150px; 
+  background-color: rgba(234, 228, 218, 0.5);
+  backdrop-filter: blur(2px);
+  border: none;
+  border-left: 1px solid #C65A32;
+  
+  /* 
+     UNIFIED SPACING VARIABLES
+     --spacing-unit: Item gap.
+  */
+  --spacing-unit: 0.8vh; 
+  
+  /* Top padding fixed to preserve distance from header */
+  padding-top: 4vh;
+  
+  /* Bottom padding equals the gap for symmetry */
+  padding-bottom: 0;
+  padding-right: 20px;
+  
+  display: flex;
+  flex-direction: column;
+  /* Consistent gap between all flex items */
+  gap: var(--spacing-unit);
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1; /* Below nav-link (z-index 2) */
+}
+
+.header__nav-item:hover > .header__nav-link {
+  color: #C65A32; /* Highlight parent when active/hovered */
+}
+
+/* Changed background when scrolled */
+.header--scrolled .header__dropdown {
+  background-color: #FFFFFF;
+  border-left: 1px solid #C65A32;
+}
+
+/* Show dropdown on hover */
+.header__nav-item:hover .header__dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.header__dropdown-link {
+  font-family: 'Glametrix', sans-serif;
+  color: #2E261D;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  display: block;
+  /* Reset margins/paddings to ensure checking gap works strictly */
+  margin: 0;
+  padding: 0 10px;
+  line-height: 1.2;
+}
+
+.header__dropdown-link:hover {
+  color: #C65A32;
+}
+
+/* Specific spacing adjustment for the last item (Pollination) */
+.header__dropdown-link:last-child {
+  margin-top: -0.5vh; /* Base gap (0.8vh) + 0.4vh = 1.2vh total */
+}
+
+.header__dropdown-link--title {
+  /* Ensure title styling exactly matches original header link if needed */
+}
+
+/* --- Mobile Menu Styles & Responsiveness --- */
+
+/* Utility classes for visibility */
+.desktop-only {
+  display: flex !important;
+}
+.mobile-only {
+  display: none !important;
+}
+
 @media (max-width: 1024px) {
   .header__nav {
-    gap: 2%;
-    margin: 0 1%;
+    display: none; /* Hide original nav logic completely */
+  }
+  
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .mobile-only {
+    display: flex !important; /* Ensure hamburger is visible */
   }
 }
 
@@ -86,9 +203,190 @@
     padding-left: 4%;
     padding-right: 4%;
   }
+}
 
-  .header__nav {
-    gap: 1.5%;
-    margin: 0 1%;
+/* Hamburger Button */
+.header__menu-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 60; /* Above everything */
+  padding: 0;
+  gap: 6px;
+}
+
+.header__menu-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #2E261D;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius: 2px;
+}
+
+/* Hamburger Animation */
+.header__menu-btn.open span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.header__menu-btn.open span:nth-child(2) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* Header state when menu is open */
+.header--menu-open {
+  background-color: #FFFFFF !important; /* Force white background */
+  border-bottom-color: transparent; /* Remove border if present */
+  transition: background-color 0.3s ease;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: #FFFFFF;
+  z-index: 40; /* Behind header content (z-index 50) but on top of page content */
+  padding-top: var(--header-height); /* push content below header */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu__content {
+  padding: 40px 8.3472% 2rem; /* Add safe top padding to ensure items are visible */
+  padding-right: 8.3472%;
+  display: flex;
+  flex-direction: column;
+  height: auto; 
+  min-height: calc(100dvh - var(--header-height));
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu__content {
+    padding-left: 6%;
+    padding-right: 6%;
   }
+}
+
+.mobile-menu__nav-container {
+  position: relative;
+  width: 100%;
+  flex: 1; /* Take up available space */
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px; /* Additional spacing from header */
+}
+
+.mobile-menu__nav, .mobile-menu__submenu-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Space between items */
+  width: 100%;
+}
+
+.mobile-menu__item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mobile-menu__link {
+  font-family: 'Glametrix', sans-serif;
+  font-weight: 500;
+  color: #2E261D;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 28px !important; /* Force size */
+  line-height: 1.2;
+}
+
+/* Ensure button styles don't look like browser default */
+.mobile-menu__link--btn {
+  margin: 0;
+  padding: 0;
+  font-family: 'Glametrix', sans-serif !important; /* Explicitly set font */
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 28px !important; /* Enforce same size as link */
+  color: #2E261D;
+}
+
+.mobile-menu__arrow {
+  font-size: 0.8em;
+  opacity: 0.5;
+  margin-left: 10px;
+}
+
+.mobile-menu__back-btn {
+  font-family: 'Glametrix', sans-serif;
+  font-weight: 500;
+  color: #888; /* Slightly lighter to indicate it's a back action/title */
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font-size: 28px; /* Match main links */
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.mobile-menu__back-btn:hover {
+  color: #2E261D;
+}
+
+.mobile-menu__submenu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Same space as main items */
+  padding-left: 0; /* No indent */
+}
+
+.mobile-menu__sublink {
+  font-family: 'Glametrix', sans-serif;
+  color: #2E261D;
+  text-decoration: none;
+  display: block;
+  font-size: 24px; /* Large readable size */
+  line-height: 1.2;
+}
+
+/* Mobile CTA Button styling workaround since ContactButton has fixed width classes */
+.mobile-menu__footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  width: 100%;
+}
+
+/* Override ContactButton styles inside mobile menu override tailwind */
+.mobile-menu__btn {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 56px !important;
+  border-radius: 28px !important;
+  font-size: 1.2rem !important;
+}
+
+/* When menu is open, ensure header logo is visible */
+.header--menu-open .header__logo {
+  z-index: 60;
+  position: relative;
 }

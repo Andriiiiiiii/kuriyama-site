@@ -24,8 +24,17 @@ export const TYPOGRAPHY_CONFIG = {
     // Subheading font size (30px at 1441.5px width)
     subheading: 30,
 
+    // Large text font size (40px at 1441.5px width)
+    large: 40,
+
+    // Medium text font size (25px at 1441.5px width) - between subheading and body
+    medium: 25,
+
     // Regular text font size (22px at 1441.5px width)
     body: 20,
+
+    // Small text font size (15px at 1441.5px width)
+    small: 15,
 
     // Giant heading for poster-like slides
     giant: 170,
@@ -39,16 +48,20 @@ export const TYPOGRAPHY_CONFIG = {
   },
 
   // Decorative line stroke width relative to viewport width
-  // At 1920px width: 0.05vw ≈ 0.96px
-  lineStrokeWidth: '0.05vw',
+  // At 1920px width: 0.1vw ≈ 1.92px
+  lineStrokeWidth: '0.07vw',
 } as const;
 
 /**
  * Generate CSS calc() string for responsive font size
  * @param fontSize - Font size in pixels at baseWidth
- * @returns CSS calc() string
+ * @param minSize - Optional minimum font size in pixels (default: uses calc only)
+ * @returns CSS calc() or max() string
  */
-export const getFontSize = (fontSize: number): string => {
+export const getFontSize = (fontSize: number, minSize?: number): string => {
+  if (minSize !== undefined) {
+    return `max(${minSize}px, calc(${fontSize} / ${TYPOGRAPHY_CONFIG.baseWidth} * 100vw))`;
+  }
   return `calc(${fontSize} / ${TYPOGRAPHY_CONFIG.baseWidth} * 100vw)`;
 };
 
@@ -77,8 +90,11 @@ export const getViewportLineHeight = (): number => {
  * Pre-calculated font size utilities
  */
 export const FONT_SIZES = {
-  heading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.heading),
-  subheading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.subheading),
-  body: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.body),
-  giant: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.giant),
+  heading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.heading, 34),
+  subheading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.subheading, 20),
+  large: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.large, 24),
+  medium: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.medium, 18),
+  body: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.body, 16),
+  small: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.small, 12),
+  giant: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.giant, 60),
 } as const;

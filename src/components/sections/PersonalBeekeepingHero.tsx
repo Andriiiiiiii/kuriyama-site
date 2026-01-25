@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
-import backgroundImage from '@/assets/personal-beekeeping/1-back.png';
+import backgroundImage from '@/assets/1-background.png';
 import rightImageBottom from '@/assets/personal-beekeeping/1-right-image.png';
 import rightImageTop from '@/assets/personal-beekeeping/1-up-image.png';
 import SelectTariffButton from '@/components/shared/SelectTariffButton';
@@ -22,7 +22,7 @@ const PersonalBeekeepingHero: React.FC = () => {
         <img
           src={backgroundImage}
           alt=""
-          className="w-full h-full object-fill"
+          className="w-full h-full object-cover"
         />
       </div>
 

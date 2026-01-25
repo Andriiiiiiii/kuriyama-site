@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             src={paperBackground}
             alt=""
             className="w-full h-full"
-            style={{ objectFit: 'fill', objectPosition: 'center top' }}
+            style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
           />
         </div>
       </div>
