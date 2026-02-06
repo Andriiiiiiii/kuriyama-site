@@ -12,7 +12,7 @@ const Vacancies = () => {
             <VacanciesHero />
             <VacanciesSlide2 />
             <VacanciesSlide3 />
-            <Footer />
+            <Footer formTitle="обсудим ваш случай" />
         </main>
     );
 };

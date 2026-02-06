@@ -3,7 +3,11 @@ import { motion } from 'framer-motion';
 import inkSplash from '@/assets/visit/15-image-2.svg';
 import paperBackground from '@/assets/visit/15-background.png';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  formTitle?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ formTitle = "обсудим ваш визит" }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   return (
@@ -102,7 +106,7 @@ const Footer: React.FC = () => {
               lineHeight: 1.05,
             }}
           >
-            обсудим ваш визит
+            {formTitle}
           </h3>
 
           <input

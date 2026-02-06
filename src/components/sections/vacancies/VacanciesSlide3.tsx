@@ -11,6 +11,13 @@ const VacanciesSlide3: React.FC = () => {
 
     const vacancies = [
         {
+            id: 0,
+            title: "Название",
+            format: "Формат работы | Тип занятости",
+            description: "Небольшое описание вакансии в две-три строчки, включая информацию о ключевых задачах",
+            requirements: ["Описание требования", "Описание требования", "Описание требования"]
+        },
+        {
             id: 1,
             title: "Название 1",
             format: "Офис | Полная занятость",
@@ -147,12 +154,12 @@ const VacanciesSlide3: React.FC = () => {
                         </p>
 
                         <h4 
-                                className="font-ua-brand font-bold uppercase mb-4"
+                                className="font-ua-brand font-bold mb-4"
                                 style={{ fontSize: FONT_SIZES.medium, color: textColor }}
                         >
                             Требования
                         </h4>
-                        <ul className="list-disc pl-5 font-glametrix space-y-2" style={{ fontSize: FONT_SIZES.small, color: textColor }}>
+                        <ul className="list-disc pl-5 font-glametrix space-y-2" style={{ fontSize: FONT_SIZES.body, color: textColor }}>
                             {currentVacancy.requirements.map((req, idx) => (
                                 <li key={idx}>{req}</li>
                             ))}

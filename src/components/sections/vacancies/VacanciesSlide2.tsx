@@ -14,7 +14,7 @@ const VacanciesSlide2: React.FC = () => {
             
             {/* 1. Header 1 (Top Left) */}
             <div
-                className="absolute z-10 font-ua-brand font-bold uppercase"
+                className="absolute z-10 font-ua-brand font-bold"
                 style={{
                     left: '15.13%',
                     top: '1.70%',
@@ -42,7 +42,7 @@ const VacanciesSlide2: React.FC = () => {
 
             {/* 2. Header 2 (Top Right) */}
             <div
-                className="absolute z-10 font-ua-brand font-bold uppercase"
+                className="absolute z-10 font-ua-brand font-bold"
                 style={{
                     left: '65.5%',
                     top: '10.74%',
@@ -85,7 +85,7 @@ const VacanciesSlide2: React.FC = () => {
 
             {/* 4. Header 3 (Bottom Left - seemingly below center) */}
             <div
-                className="absolute z-10 font-ua-brand font-bold uppercase"
+                className="absolute z-10 font-ua-brand font-bold"
                 style={{
                     left: '22.49%',
                     top: '63.35%',
