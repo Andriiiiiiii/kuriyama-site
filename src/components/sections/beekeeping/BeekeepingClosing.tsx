@@ -11,7 +11,7 @@ const BeekeepingClosing: React.FC = () => {
       <div 
         className="absolute w-[20%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         style={{
-            top: '-15%', // Moved higher up
+            top: '-5%', // Moved slightly lower to overlap with background
             zIndex: 50
         }}
       >

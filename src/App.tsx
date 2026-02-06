@@ -4,6 +4,8 @@ import Beekeeping from "./pages/Beekeeping";
 import PersonalBeekeeping from "./pages/PersonalBeekeeping";
 import CorporateBeekeeping from "./pages/CorporateBeekeeping";
 import Production from "./pages/Production";
+import Volunteering from "./pages/Volunteering";
+import Vacancies from "./pages/Vacancies";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
@@ -15,6 +17,8 @@ const App = () => (
       <Route path="/personal-beekeeping" element={<PersonalBeekeeping />} />
       <Route path="/corporate-beekeeping" element={<CorporateBeekeeping />} />
       <Route path="/production" element={<Production />} />
+      <Route path="/volunteering" element={<Volunteering />} />
+      <Route path="/vacancies" element={<Vacancies />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

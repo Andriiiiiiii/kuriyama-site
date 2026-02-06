@@ -5,7 +5,7 @@ import ContactButton from './ContactButton';
 import './Header.css';
 
 interface HeaderProps {
-  activeSection?: 'visit' | 'beekeeping' | 'personal-beekeeping' | 'corporate-beekeeping' | 'production' | null;
+  activeSection?: 'visit' | 'beekeeping' | 'personal-beekeeping' | 'corporate-beekeeping' | 'production' | 'history' | null;
 }
 
 const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
@@ -57,7 +57,16 @@ const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
       ]
     },
     { label: 'Продукция', path: '/production', key: 'production' },
-    { label: 'История', path: '/#history' },
+    { 
+      label: 'История', 
+      path: '/#history',
+      key: 'history',
+      submenu: [
+        { label: 'Идея и концепция', path: '/#concept' },
+        { label: 'Вакансии', path: '/vacancies' },
+        { label: 'Волонтерство', path: '/volunteering' },
+      ]
+    },
     { label: 'Цены', path: '/#prices' },
     { label: 'Ресурсы', path: '/#resources' },
   ];
