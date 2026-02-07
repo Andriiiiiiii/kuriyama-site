@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
       path: '/#history',
       key: 'history',
       submenu: [
-        { label: 'Идея и концепция', path: '/#concept' },
+        { label: 'Концепция и команда', path: '/concept' },
         { label: 'Вакансии', path: '/vacancies' },
         { label: 'Волонтерство', path: '/volunteering' },
       ]

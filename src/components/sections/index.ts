@@ -28,6 +28,18 @@ export { default as ProductionSlide3 } from "./production/ProductionSlide3";
 export { default as ProductionSlide4 } from "./production/ProductionSlide4";
 export { default as ProductionSlide5 } from "./production/ProductionSlide5";
 export { default as ProductionSlide6 } from "./production/ProductionSlide6";
+export { default as ConceptHero } from "./concept/ConceptHero";
+export { default as ConceptSlide2 } from "./concept/ConceptSlide2";
+export { default as ConceptSlide3 } from "./concept/ConceptSlide3";
+export { default as ConceptSlide4 } from "./concept/ConceptSlide4";
+export { default as ConceptSlide5 } from "./concept/ConceptSlide5";
+export { default as ConceptSlide6 } from "./concept/ConceptSlide6";
+
+
+
+
+
+
 export { default as ProductionSlide7 } from "./production/ProductionSlide7";
 export { default as ProductionSlide8 } from "./production/ProductionSlide8";
 export { default as CorporateBeekeepingHero } from "./corporate-beekeeping/CorporateBeekeepingHero";
