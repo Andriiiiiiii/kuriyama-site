@@ -4,7 +4,7 @@ import { FONT_SIZES } from '@/config/typography';
 
 const PersonalBeekeepingClosing: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-[#2E261D]">
+    <section className="relative w-full h-layout overflow-hidden bg-[#2E261D]" style={{ minHeight: '100vh' }}>
       {/* Decorative background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

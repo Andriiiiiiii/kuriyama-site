@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         'ua-brand': ['UA-brand', 'Impact', 'sans-serif'],
         'glametrix': ['Glametrix', 'Inter', 'sans-serif'],
+        'han-zi': ['Han-Zi_Regular', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],
       },
       colors: {

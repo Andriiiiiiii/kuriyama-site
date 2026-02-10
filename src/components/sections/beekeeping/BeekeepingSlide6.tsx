@@ -41,7 +41,7 @@ const BeekeepingSlide6: React.FC = () => {
 
   return (
     <section ref={containerRef} className="relative w-full h-[400vh] bg-white">
-      <div className="sticky top-0 w-full h-screen overflow-hidden">
+      <div className="sticky top-0 w-full h-layout overflow-hidden">
           
           {/* Background - left 14.87%, top 0.00%, width 70.26%, height 100.00% */}
           <div

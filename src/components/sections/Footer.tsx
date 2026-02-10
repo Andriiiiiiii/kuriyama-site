@@ -11,9 +11,9 @@ const Footer: React.FC<FooterProps> = ({ formTitle = "обсудим ваш ви
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   return (
-    <footer className="relative w-full h-screen overflow-hidden bg-transparent text-[#2E261D]">
+    <footer className="relative w-full h-layout bg-transparent text-[#2E261D]"> 
       {/* Background layers */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <div
           className="absolute left-0 bg-[#2E261D]"
           style={{ top: '66.38%', width: '100%', height: '33.62%', zIndex: 0 }}
@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ formTitle = "обсудим ваш ви
             src={paperBackground}
             alt=""
             className="w-full h-full"
-            style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
+            style={{ objectFit: 'fill', objectPosition: 'center top' }}
           />
         </div>
       </div>

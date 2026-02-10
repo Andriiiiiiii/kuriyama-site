@@ -22,7 +22,7 @@ const KuriyamaPlan = () => {
 
   return (
     <section
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-layout overflow-hidden"
     >
       {/* 3 line 1 - vertical left */}
       <div 

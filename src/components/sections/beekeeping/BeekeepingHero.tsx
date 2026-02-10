@@ -8,7 +8,7 @@ import { FONT_SIZES } from '@/config/typography';
 
 const BeekeepingHero: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-layout overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute"
@@ -22,7 +22,7 @@ const BeekeepingHero: React.FC = () => {
         <img
           src={backgroundImage}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
         />
       </div>
 

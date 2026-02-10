@@ -21,7 +21,7 @@ const VolunteeringSlide3: React.FC = () => {
     const [hoveredId, setHoveredId] = useState<number | null>(null);
 
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-transparent -mt-[6%] z-20">
+        <section className="relative w-full h-layout overflow-hidden bg-transparent -mt-[6%] z-20">
             
             {/* Title: направления помощи */}
             <div

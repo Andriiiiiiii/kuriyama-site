@@ -7,7 +7,7 @@ import centralPhoto from '@/assets/beekeeping/4_right_photo.svg';
 
 const BeekeepingSlide4: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-layout overflow-hidden">
       {/* Background - left 0.00%, top 19.00%, width 100.00%, height 57.00% */}
       <div
         className="absolute"

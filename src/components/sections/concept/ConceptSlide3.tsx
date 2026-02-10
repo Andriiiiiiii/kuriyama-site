@@ -6,7 +6,7 @@ import { FONT_SIZES } from '@/config/typography';
 
 const ConceptSlide3 = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-background">
+    <section className="relative w-full h-layout overflow-hidden bg-background">
       {/* Decorative Lines */}
       {/* Line connecting to 2023 (Dot 1) */}
       <div 

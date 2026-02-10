@@ -10,7 +10,7 @@ const VolunteeringSlide2: React.FC = () => {
     const accentColor = '#C65A32';
 
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-white">
+        <section className="relative w-full h-layout overflow-hidden bg-white">
             
             {/* Title: наша миссия */}
             <div

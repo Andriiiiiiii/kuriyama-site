@@ -48,6 +48,17 @@ export { default as CorporateBeekeepingSlide3 } from "./corporate-beekeeping/Cor
 export { default as CorporateBeekeepingSlide4 } from "./corporate-beekeeping/CorporateBeekeepingSlide4";
 export { default as CorporateBeekeepingSlide5 } from "./corporate-beekeeping/CorporateBeekeepingSlide5";
 export { default as CorporateBeekeepingSlide6 } from "./corporate-beekeeping/CorporateBeekeepingSlide6";
+
+export { default as PolinationHero } from "./polination/PolinationHero";
+export { default as PolinationSlide2 } from "./polination/PolinationSlide2";
+export { default as PolinationSlide3 } from "./polination/PolinationSlide3";
+export { default as PolinationSlide4 } from "./polination/PolinationSlide4";
+export { default as PolinationSlide5 } from "./polination/PolinationSlide5";
+export { default as PolinationSlide6 } from "./polination/PolinationSlide6";
+export { default as PolinationSlide7 } from "./polination/PolinationSlide7";
+export { default as PolinationSlide8 } from "./polination/PolinationSlide8";
+export { default as PolinationSlide9 } from "./polination/PolinationSlide9";
+export { default as PolinationSlide10 } from "./polination/PolinationSlide10";
 export { default as CorporateBeekeepingSlide7 } from "./corporate-beekeeping/CorporateBeekeepingSlide7";
 export { default as CorporateBeekeepingSlide8 } from "./corporate-beekeeping/CorporateBeekeepingSlide8";
 export { default as CorporateBeekeepingSlide9 } from "./corporate-beekeeping/CorporateBeekeepingSlide9";

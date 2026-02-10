@@ -7,7 +7,7 @@ import { FONT_SIZES } from '@/config/typography';
 
 const ProductionHero: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-background">
+    <section className="relative w-full h-layout overflow-hidden bg-background">
       {/* Background Image */}
       <div
         className="absolute"
@@ -21,7 +21,7 @@ const ProductionHero: React.FC = () => {
         <img
           src={backgroundImage}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
         />
       </div>
 

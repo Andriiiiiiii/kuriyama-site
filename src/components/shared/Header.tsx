@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
       submenu: [
         { label: 'Корпоративное пчеловодство', path: '/corporate-beekeeping' },
         { label: 'Личное пчеловодство', path: '/personal-beekeeping' },
-        { label: 'Опыление', path: '/beekeeping#pollination' }
+        { label: 'Опыление', path: '/pollination' }
       ]
     },
     { label: 'Продукция', path: '/production', key: 'production' },

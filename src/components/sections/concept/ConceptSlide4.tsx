@@ -5,7 +5,7 @@ import { FONT_SIZES } from '@/config/typography';
 
 const ConceptSlide4 = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-background">
+    <section className="relative w-full h-layout overflow-hidden bg-background">
       
       {/* Rectangles (Frames) */}
       {/* Outer Rectangle 223 - 429:133 */}

@@ -7,7 +7,7 @@ import { FONT_SIZES, TYPOGRAPHY_CONFIG } from '@/config/typography';
 
 const WhatIsThisPlace = () => {
   return (
-    <section className="relative w-full h-screen bg-white overflow-hidden">
+    <section className="relative w-full h-layout bg-white overflow-hidden">
       {/* 2 line 1 - Vertical Line */}
       <div 
         className="absolute bg-accent"

@@ -1,5 +1,5 @@
 :root {
-  --header-height: 10vh;
+  --header-height: 5vw;
 }
 
 /* Header - внешний контейнер */
@@ -97,7 +97,7 @@
 .header__dropdown {
   position: absolute;
   /* Start slightly above the text (which centers at 5vh) but not at screen top */
-  top: 3vh; 
+  top: 1.5vw; 
   left: -10px;
   /* fit-content ensures it's only as wide as the longest text item + padding */
   width: max-content;
@@ -111,10 +111,10 @@
      UNIFIED SPACING VARIABLES
      --spacing-unit: Item gap.
   */
-  --spacing-unit: 0.8vh; 
+  --spacing-unit: 0.4vw; 
   
   /* Top padding fixed to preserve distance from header */
-  padding-top: 4vh;
+  padding-top: 2vw;
   
   /* Bottom padding equals the gap for symmetry */
   padding-bottom: 0;
@@ -167,7 +167,7 @@
 
 /* Specific spacing adjustment for the last item (Pollination) */
 .header__dropdown-link:last-child {
-  margin-top: -0.5vh; /* Base gap (0.8vh) + 0.4vh = 1.2vh total */
+  margin-top: -0.25vw; /* Base gap (0.8vh) + 0.4vh = 1.2vh total */
 }
 
 .header__dropdown-link--title {

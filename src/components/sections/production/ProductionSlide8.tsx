@@ -9,9 +9,9 @@ const ProductionSlide8: React.FC = () => {
     const aspectRatio = 558 / 1440;
 
     return (
-        <section 
+        <section
             className="relative w-full overflow-hidden bg-[#EFE6DB]" // Approximating beige color
-            style={{ 
+            style={{
                 height: `calc(100vw * ${aspectRatio})`,
                 maxHeight: '100vh',
                 zIndex: 5 // Lower z-index so footer can overlap on top

@@ -145,7 +145,7 @@ const ReviewWithoutBorder: React.FC<ReviewProps> = ({ left, top, width, name, te
 
 const Reviews: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-white overflow-hidden">
+    <section className="relative w-full h-layout bg-white overflow-hidden">
       <div className="absolute inset-0">
         {/* 13 back image (1:307) */}
         <motion.img

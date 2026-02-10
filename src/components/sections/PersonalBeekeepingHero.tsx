@@ -8,7 +8,7 @@ import SelectTariffButton from '@/components/shared/SelectTariffButton';
 
 const PersonalBeekeepingHero: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-layout overflow-hidden">
       {/* Background Image - 241:575 */}
       <div
         className="absolute"
@@ -22,7 +22,7 @@ const PersonalBeekeepingHero: React.FC = () => {
         <img
           src={backgroundImage}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
         />
       </div>
 

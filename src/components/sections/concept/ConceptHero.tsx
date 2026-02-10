@@ -6,13 +6,13 @@ import { FONT_SIZES } from '@/config/typography';
 
 const ConceptHero = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-layout overflow-hidden">
       {/* Background Image - 429:159 */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroBg}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
         />
       </div>
 

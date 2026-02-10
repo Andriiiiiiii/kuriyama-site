@@ -7,7 +7,7 @@ import photo2 from '@/assets/visit/9-photo-2.png';
 
 const Rules: React.FC = () => {
   return (
-    <section className="relative w-full h-screen bg-white overflow-hidden">
+    <section className="relative w-full h-layout bg-white overflow-hidden">
       <div className="absolute inset-0">
         {/* 9 Title (1:121) */}
         <motion.h1

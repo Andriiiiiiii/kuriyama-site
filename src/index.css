@@ -33,6 +33,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Han-Zi_Regular';
+  src: url('/fonts/Han-Zi_Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -129,9 +137,25 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
     line-height: var(--site-line-height);
+    overflow-x: hidden;
   }
 
   body * {
     line-height: inherit !important;
+  }
+}
+
+@layer utilities {
+  .h-layout {
+    width: 100vw;
+    height: var(--layout-height-ratio, 56.25vw); /* Fallback to 16:9 if JS fails */
+  }
+  
+  .h-layout-height {
+    height: var(--layout-height-ratio, 56.25vw);
+  }
+  
+  .min-h-layout-height {
+    min-height: var(--layout-height-ratio, 56.25vw);
   }
 }

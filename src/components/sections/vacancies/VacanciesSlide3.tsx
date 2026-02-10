@@ -73,7 +73,7 @@ const VacanciesSlide3: React.FC = () => {
     const currentVacancy = vacancies[currentIndex];
 
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-white">
+        <section className="relative w-full h-layout overflow-hidden bg-white">
             
             {/* Title */}
             <div

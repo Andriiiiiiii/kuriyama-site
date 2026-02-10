@@ -12,7 +12,7 @@ const HeroVisit = () => {
 
   return (
     <section
-      className="relative w-full h-screen overflow-hidden"
+      className="relative w-full h-layout overflow-hidden"
       style={{ '--select-btn-w': selectButtonWidth } as React.CSSProperties}
     >
       {/* Background Image */}
@@ -28,7 +28,7 @@ const HeroVisit = () => {
         <img
           src={heroBg}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
         />
       </div>
 

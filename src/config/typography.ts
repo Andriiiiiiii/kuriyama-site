@@ -48,20 +48,16 @@ export const TYPOGRAPHY_CONFIG = {
   },
 
   // Decorative line stroke width relative to viewport width
-  // At 1920px width: 0.1vw ≈ 1.92px
-  lineStrokeWidth: '0.07vw',
+  // At 1920px width: 0.05vw ≈ 0.96px
+  lineStrokeWidth: '0.05vw',
 } as const;
 
 /**
  * Generate CSS calc() string for responsive font size
  * @param fontSize - Font size in pixels at baseWidth
- * @param minSize - Optional minimum font size in pixels (default: uses calc only)
- * @returns CSS calc() or max() string
+ * @returns CSS calc() string
  */
-export const getFontSize = (fontSize: number, minSize?: number): string => {
-  if (minSize !== undefined) {
-    return `max(${minSize}px, calc(${fontSize} / ${TYPOGRAPHY_CONFIG.baseWidth} * 100vw))`;
-  }
+export const getFontSize = (fontSize: number): string => {
   return `calc(${fontSize} / ${TYPOGRAPHY_CONFIG.baseWidth} * 100vw)`;
 };
 
@@ -90,11 +86,11 @@ export const getViewportLineHeight = (): number => {
  * Pre-calculated font size utilities
  */
 export const FONT_SIZES = {
-  heading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.heading, 34),
-  subheading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.subheading, 20),
-  large: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.large, 24),
-  medium: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.medium, 18),
-  body: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.body, 16),
-  small: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.small, 12),
-  giant: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.giant, 60),
+  heading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.heading),
+  subheading: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.subheading),
+  large: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.large),
+  medium: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.medium),
+  body: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.body),
+  small: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.small),
+  giant: getFontSize(TYPOGRAPHY_CONFIG.fontSizes.giant),
 } as const;

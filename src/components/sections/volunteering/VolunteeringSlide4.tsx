@@ -7,7 +7,7 @@ const VolunteeringSlide4: React.FC = () => {
     const accentColor = '#C65A32';
 
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-transparent -mt-[10%] z-30">
+        <section className="relative w-full h-layout overflow-hidden bg-transparent -mt-[10%] z-30">
             {/* Background Layer to allow transparency at bottom for overlap */}
             <div 
                 className="absolute top-0 left-0 w-full bg-white" 

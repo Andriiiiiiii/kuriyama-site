@@ -6,7 +6,7 @@ import rightPhoto from '@/assets/beekeeping/5_right_photo.png';
 
 const BeekeepingSlide5: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-white">
+    <section className="relative w-full h-layout overflow-hidden bg-white">
       {/* Left Photo - left 7.51%, top 0.00%, width 19.81%, height 100.00% */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}

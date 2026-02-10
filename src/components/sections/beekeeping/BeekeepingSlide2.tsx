@@ -9,7 +9,7 @@ import number3 from '@/assets/visit/number-3.svg';
 
 const BeekeepingSlide2: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-white">
+    <section className="relative w-full h-layout overflow-hidden bg-white">
       {/* Title - left 50.95%, top 2.81%, width 33.57%, height 21.90% */}
       <motion.h2
         initial={{ opacity: 0, x: 30 }}

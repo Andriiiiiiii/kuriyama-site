@@ -9,7 +9,7 @@ const VolunteeringSlide5: React.FC = () => {
     // const bgColor = '#EFE3D6'; // Using a beige tone similar to other slides for the shape
 
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-transparent -mt-[16.5%] z-20">
+        <section className="relative w-full h-layout overflow-hidden bg-transparent -mt-[16.5%] z-20">
             
             {/* Background Shape */}
             <div

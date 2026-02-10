@@ -8,7 +8,7 @@ import HomeButton from '@/components/shared/HomeButton';
 
 const NotFoundHero: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-layout overflow-hidden">
       {/* Background Image - 251:389 */}
       <div
         className="absolute"
@@ -22,7 +22,7 @@ const NotFoundHero: React.FC = () => {
         <img
           src={backgroundImage}
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-fill"
         />
       </div>
 

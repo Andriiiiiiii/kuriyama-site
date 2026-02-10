@@ -9,7 +9,7 @@ const VacanciesSlide2: React.FC = () => {
     const accentColor = '#C65A32';
 
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-transparent">
+        <section className="relative w-full h-layout overflow-hidden bg-transparent">
             {/* Background color approximation or use a class if defined */}
             
             {/* 1. Header 1 (Top Left) */}

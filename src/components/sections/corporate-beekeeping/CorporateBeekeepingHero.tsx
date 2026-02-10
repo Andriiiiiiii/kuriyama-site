@@ -8,7 +8,7 @@ import backgroundImage from '@/assets/corporate-beekeeping/back 1.png';
 
 const CorporateBeekeepingHero: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-white">
+    <section className="relative w-full h-layout overflow-hidden bg-white">
         {/* Background - Layer 'back 3' */}
         <div
             className="absolute"
@@ -22,7 +22,7 @@ const CorporateBeekeepingHero: React.FC = () => {
             <img
             src={backgroundImage}
             alt="Background"
-            className="w-full h-full object-cover" 
+            className="w-full h-full object-fill" 
             />
         </div>
 

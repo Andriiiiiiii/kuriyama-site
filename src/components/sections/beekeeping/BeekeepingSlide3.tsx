@@ -31,7 +31,7 @@ const BeekeepingSlide3: React.FC = () => {
   return (
     <section className="relative w-full bg-white flex">
       {/* Left Sticky Column */}
-      <div className="w-1/2 h-screen sticky top-0 flex flex-col justify-center relative overflow-hidden">
+      <div className="w-1/2 h-layout sticky top-0 flex flex-col justify-center relative overflow-hidden">
         
         {/* Title */}
         <motion.h2

@@ -12,7 +12,7 @@ import { FONT_SIZES } from '@/config/typography';
 
 const VacanciesHero = () => {
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-background">
+        <section className="relative w-full h-layout overflow-hidden bg-background">
              {/* Background */}
             <div className="absolute inset-0 z-0">
                 <img
