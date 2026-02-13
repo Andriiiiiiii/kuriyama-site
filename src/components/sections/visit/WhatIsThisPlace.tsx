@@ -1,33 +1,47 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import leftObject from '@/assets/visit/2-left-object.png';
 import centralImage from '@/assets/visit/2-central-image.png';
 import rightImage from '@/assets/visit/2-right-image.png';
 import { FONT_SIZES, TYPOGRAPHY_CONFIG } from '@/config/typography';
+import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 
 const WhatIsThisPlace = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (isInView && step === 0) {
+      setStep(1);
+    }
+  }, [isInView, step]);
+
+  const line1Start: Point = { x: '22.40%', y: '0%' };
+  const line1End: Point = { x: '22.40%', y: '99.94%' };
+
+  const line2Start: Point = { x: '3.85%', y: '99.89%' };
+  const line2End: Point = { x: 'calc(3.85% + 18.54%)', y: '99.89%' };
+
   return (
-    <section className="relative w-full h-layout bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full h-layout bg-white overflow-hidden">
       {/* 2 line 1 - Vertical Line */}
-      <div 
-        className="absolute bg-accent"
-        style={{
-          left: '22.40%',
-          top: '0%',
-          width: TYPOGRAPHY_CONFIG.lineStrokeWidth,
-          height: '99.94%'
-        }}
+      <AnimatedLine
+        start={line1Start}
+        end={line1End}
+        direction="to-bottom"
+        trigger={step >= 1}
+        thickness={TYPOGRAPHY_CONFIG.lineStrokeWidth}
+        onComplete={() => setStep(2)}
       />
       
       {/* 2 line 2 - Horizontal Line */}
-      <div 
-        className="absolute bg-accent"
-        style={{
-          left: '3.85%',
-          top: '99.89%',
-          width: '18.54%',
-          height: TYPOGRAPHY_CONFIG.lineStrokeWidth
-        }}
+      <AnimatedLine
+        start={line2Start}
+        end={line2End}
+        direction="to-right"
+        trigger={step >= 2}
+        thickness={TYPOGRAPHY_CONFIG.lineStrokeWidth}
       />
 
       {/* 2 left object 1 */}

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 
 import img1 from '@/assets/pollination/third_slide_image_1.png';
@@ -8,13 +8,27 @@ import img3 from '@/assets/pollination/third_slide_image_3.png';
 import img4 from '@/assets/pollination/third_slide_image_4.png';
 import { FONT_SIZES } from '@/config/typography'; 
 
-const PolinationSlide3: React.FC = () => {
+interface PolinationSlide3Props {
+  step: number;
+  setStep: (step: number) => void;
+  prevFinished?: boolean;
+  onInView?: () => void;
+}
+
+const PolinationSlide3: React.FC<PolinationSlide3Props> = ({ step, setStep, prevFinished = true, onInView }) => {
    // 1. Настройка ссылок
     const sectionRef = useRef<HTMLElement>(null);
-    const isInView = useInView(sectionRef, { once: true, amount: 0.2 }); 
-    // 2. Состояние последовательности анимации
-    // 0 = ничего, 1 = входная линия, 2 = взрыв из кнопки, 3 = финальные ответвления
-    const [step, setStep] = useState(1); 
+    const isInView = useInView(sectionRef, { once: true, amount: 0.45 }); 
+    
+    useEffect(() => {
+        if(isInView && onInView) onInView();
+    }, [isInView, onInView]);
+
+    useEffect(() => {
+      if (isInView && step === 0 && prevFinished) {
+        setStep(1);
+      }
+    }, [isInView, step, setStep, prevFinished]);
    
        {/**/}
     const pTop: Point    = { x:'91.59%', y: '0%' };
@@ -54,11 +68,7 @@ const PolinationSlide3: React.FC = () => {
       <div className="w-1/2 relative">
         <div className="sticky top-0 h-layout-height flex flex-col justify-center overflow-hidden">
             {/* Vertical Separator Line with Circle */}
-            <motion.h2
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+            <h2
               className="font-['UA-brand'] font-bold uppercase tracking-tight text-[#2E261D]"
               style={{
                 marginLeft: '16.24%',
@@ -68,8 +78,8 @@ const PolinationSlide3: React.FC = () => {
               }}
             >
               ДЛЯ КАКИХ<br/>ОТРАСЛЕЙ
-            </motion.h2>
-        {isInView && (
+            </h2>
+        {(isInView || step > 0) && (
           <>
             <AnimatedLine
               start={pTop}
@@ -78,7 +88,8 @@ const PolinationSlide3: React.FC = () => {
               zIndex={30}
               trigger={step >= 1}
               decoration='circle-end'
-              onComplete={() => setStep(2)}
+              initial={step > 1 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 2) setStep(2); }}
             />
              <AnimatedLine
               start={pCenter} 
@@ -86,7 +97,8 @@ const PolinationSlide3: React.FC = () => {
               direction="to-bottom"
               zIndex={30}
               trigger={step >= 2}
-              onComplete={() => setStep(3)}
+              initial={step > 2 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 3) setStep(3); }}
             />
             <AnimatedLine
               start={pBottom} 
@@ -94,6 +106,7 @@ const PolinationSlide3: React.FC = () => {
               direction="to-left"
               zIndex={30}
               trigger={step >= 3}
+              initial={step > 3 ? "visible" : "hidden"}
             />
           </>
         )}

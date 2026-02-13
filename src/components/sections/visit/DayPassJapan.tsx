@@ -1,25 +1,32 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
+import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 import forestImage from '@/assets/visit/4-image-1.png';
 import gardenImage from '@/assets/visit/4-image-2.png';
 import photoshootImage from '@/assets/visit/4-image-3.png';
 import calligraphyImage from '@/assets/visit/4-central-image.svg';
 
 const DayPassJapan: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+  const lineStart: Point = { x: '56.08%', y: '0%' };
+  const lineEnd: Point = { x: '56.08%', y: '26.42%' };
+
   return (
     <section
+      ref={sectionRef}
       className="relative w-full h-screen bg-white overflow-hidden"
     >
       {/* 4 line 2 - vertical */}
-      <div 
-        className="absolute bg-primary z-[20]"
-        style={{
-          left: '56.08%',
-          top: '0%',
-          width: '1px',
-          height: '26.42%'
-        }}
+      <AnimatedLine
+        start={lineStart}
+        end={lineEnd}
+        direction="to-bottom"
+        trigger={isInView}
+        zIndex={20}
+        thickness="1px"
       />
 
       {/* title 1 - DAY PASS */}

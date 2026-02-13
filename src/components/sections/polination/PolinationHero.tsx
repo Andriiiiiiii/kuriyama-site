@@ -1,5 +1,5 @@
 import React,  {useEffect, useState} from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLayoutEffect, useRef } from "react";
 import backOne from '@/assets/pollination/first_slide_back.png';
 import rightImage from '@/assets/pollination/first_slide_right_image.png';
@@ -9,19 +9,46 @@ import { FONT_SIZES } from '@/config/typography';
 import { useRelativePosition } from '@/hooks/useRelativePosition';
 import AnimatedLine, { Point } from '@/components/shared/AnimatedLine'; 
 
-const PolinationHero: React.FC = () => {
+interface PolinationHeroProps {
+  step: number;
+  setStep: (step: number) => void;
+  onInView?: () => void;
+}
+
+const PolinationHero: React.FC<PolinationHeroProps> = ({ step, setStep, onInView }) => {
    // 1. Настройка ссылок
   const sectionRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLDivElement>(null);
  
   // 2. Состояние последовательности анимации
-  // 0 = ничего, 1 = входная линия, 2 = взрыв из кнопки, 3 = финальные ответвления
-  const [step, setStep] = useState(0); 
-  const [btnShow, setBtnShow] = useState(false);
+  const [btnShow, setBtnShow] = useState(step > 0);
  
   // 3. Хук для координат. 
   // btnShow=true запускает расчет.
   const { isReady } = useRelativePosition(sectionRef, btnRef, 'btn', undefined, btnShow);
+  
+  useEffect(() => {
+    if (step >= 1) {
+        setBtnShow(true);
+    }
+  }, [step]);
+  
+  // Use Framer Motion InView to trigger global scheduler
+  useEffect(() => {
+     const observer = new IntersectionObserver(
+        (entries) => {
+           entries.forEach(entry => {
+              if(entry.isIntersecting) {
+                 onInView && onInView();
+              }
+           });
+        },
+        { threshold: 0.3 }
+     );
+     if(sectionRef.current) observer.observe(sectionRef.current);
+     return () => observer.disconnect();
+  }, [onInView]);
+  
   useEffect(() => {
      if (isReady && sectionRef.current) {
        // 1. Достаем значение из текущей секции (inline-стиля)
@@ -61,10 +88,10 @@ const PolinationHero: React.FC = () => {
 
       {/* Breadcrumbs - left 8.14%, top 13.44% */}
       <div 
-        className="absolute z-10 text-muted-foreground"
+        className="absolute z-10 font-['Glametrix'] text-foreground/50 whitespace-nowrap"
         style={{
-          left: '8.14%',
-          top: '13.44%',
+          left: '8.43%',
+          top: '12.67%',
           fontSize: FONT_SIZES.body
         }}
       >
@@ -72,10 +99,7 @@ const PolinationHero: React.FC = () => {
       </div>
 
       {/* Title "ОПЫЛеНИЕ" - left 8.39%, top 22.28%, width 38.14% */}
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
+      <h1
         className="absolute z-10 font-['UA-brand'] font-bold uppercase tracking-tight text-[#2E261D]"
         style={{
           left: '8.39%',
@@ -86,13 +110,10 @@ const PolinationHero: React.FC = () => {
         }}
       >
         ОПЫЛЕНИЕ
-      </motion.h1>
+      </h1>
 
       {/* Description - left 29.28%, top 39.25%, width 18.93% */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, delay: 0.4 }}
+      <div
         className="absolute z-10 text-black font-['Glametrix']"
         style={{
           left: '29.28%',
@@ -103,13 +124,10 @@ const PolinationHero: React.FC = () => {
         }}
       >
         <p>Две строчки дополнительного<br/>описания подкрепляющего заголовок</p>
-      </motion.div>
+      </div>
 
       {/* Right Image - left 50.45%, top 15.82%, width 49.33% */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+      <div
         className="absolute z-10"
         style={{
           left: '50.45%',
@@ -123,13 +141,10 @@ const PolinationHero: React.FC = () => {
           alt="Опыление"
           className="w-full h-full object-contain"
         />
-      </motion.div>
+      </div>
 
        {/* Left Images - left 8.06%, top 38.56%, width 19.38% */}
-       <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+       <div
         className="absolute z-10"
         style={{
           left: '8.06%',
@@ -143,7 +158,7 @@ const PolinationHero: React.FC = () => {
           alt="Галерея"
           className="w-full h-full object-contain"
         />
-      </motion.div>
+      </div>
       <motion.div   
         ref={btnRef}
         className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
@@ -152,12 +167,14 @@ const PolinationHero: React.FC = () => {
           top: "53.76%",
           width: "15.21%",
         }}
-        initial={{ scale: 0, opacity: 0 }}
+        initial={step > 0 ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, ease: "backOut" }}
         onAnimationComplete={() => {
-          setBtnShow(true); // Включаем расчет координат
-          setTimeout(() => setStep(1), 40); // Через 0.5с запускаем первую линию
+          if (step === 0) {
+            setBtnShow(true); // Включаем расчет координат
+            setTimeout(() => setStep(1), 40); // Через 0.5с запускаем первую линию
+          }
         }}
         >
         <SelectTariffButton width="100%" />
@@ -170,7 +187,8 @@ const PolinationHero: React.FC = () => {
               direction="to-bottom"
               zIndex={30}
               trigger={step >= 1} 
-              onComplete={() => setStep(2)}
+              initial={step > 1 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 2) setStep(2); }}
             />
              <AnimatedLine
               start={pScreenRight} 
@@ -178,6 +196,7 @@ const PolinationHero: React.FC = () => {
               direction="to-left"
               zIndex={30}
               trigger={step >= 2}
+              initial={step > 2 ? "visible" : "hidden"}
             />
             <AnimatedLine
               start={pTopLeftBranch} 
@@ -185,7 +204,8 @@ const PolinationHero: React.FC = () => {
               direction="to-right"
               zIndex={30}
               trigger={step >= 2} 
-              onComplete={() => setStep(3)}
+              initial={step > 2 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 3) setStep(3); }}
             />
              <AnimatedLine
               start={pBtnBottom} 
@@ -193,6 +213,7 @@ const PolinationHero: React.FC = () => {
               direction="to-bottom"
               zIndex={30}
               trigger={step >= 3} 
+              initial={step > 3 ? "visible" : "hidden"}
             />
           </>
         )}

@@ -9,7 +9,8 @@ export const useRelativePosition = (
     targetRef: RefObject<HTMLElement>,
     id: string = 'el',
     scaleFactor: number = 93.5 / 109.5,
-    isEnabled: boolean = true
+    isEnabled: boolean = true,
+    shouldLog: boolean = false
 ) => {
     const [isReady, setIsReady] = useState(false);
 
@@ -69,10 +70,27 @@ export const useRelativePosition = (
         container.style.setProperty(`--${id}-x-mid`, `${xMid}%`);
         container.style.setProperty(`--${id}-y-mid`, `${yMid}%`);
 
+        if (shouldLog) {
+            const realWidthPercent = (targetWidth / cRect.width) * 100;
+            const realHeightPercent = (targetHeight / cRect.height) * 100;
+            // xMid и yMid - это центр элемента в процентах.
+            // Чтобы получить left/top в %, нужно от центра отнять половину ширины/высоты в %
+            const realLeftPercent = xMid - (realWidthPercent / 2);
+            const realTopPercent = yMid - (realHeightPercent / 2);
+
+            console.log(`[${id}] Coords:`, `
+style={{
+left: '${realLeftPercent.toFixed(2)}%',
+top: '${realTopPercent.toFixed(2)}%',
+width: '${realWidthPercent.toFixed(2)}%',
+height: '${realHeightPercent.toFixed(2)}%'
+}}`);
+        }
+
         if(isEnabled) {
              setIsReady(true);
         }
-    }, [containerRef, targetRef, id, scaleFactor, isEnabled]);
+    }, [containerRef, targetRef, id, scaleFactor, isEnabled, shouldLog]);
 
     useLayoutEffect(() => {
         if (!isEnabled) {

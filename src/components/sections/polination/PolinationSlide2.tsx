@@ -1,18 +1,35 @@
 import React, { useRef, useState, useEffect, useLayoutEffect  } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRelativePosition } from '@/hooks/useRelativePosition';
 import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 import leftImages from '@/assets/pollination/second_slide_left_lower_corner_images.png';
 import rightImages from '@/assets/pollination/second_slide_right_upper_corner_images.png';
 import { FONT_SIZES } from '@/config/typography';
 
-const PolinationSlide2: React.FC = () => {
+interface PolinationSlide2Props {
+  step: number;
+  setStep: (step: number) => void;
+  prevFinished?: boolean;
+  onInView?: () => void;
+}
+
+const PolinationSlide2: React.FC<PolinationSlide2Props> = ({ step, setStep, prevFinished = true, onInView }) => {
      // 1. Настройка ссылок
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.5 }); 
-    // 2. Состояние последовательности анимации
-    // 0 = ничего, 1 = входная линия, 2 = взрыв из кнопки, 3 = финальные ответвления
-    const [step, setStep] = useState(1); 
+    
+    // Notify parent
+    useEffect(() => {
+        if(isInView && onInView) onInView();
+    }, [isInView, onInView]);
+
+    useEffect(() => {
+      // Start ONLY if prev finished OR if step forced higher (handled by parent prop)
+      // But here we set step 1.
+      if (isInView && step === 0 && prevFinished) {
+        setStep(1);
+      }
+    }, [isInView, step, setStep, prevFinished]);
    
        {/**/}
     const pTop: Point    = { x: 'var(--hero-center-x)', y: '0%' };
@@ -27,11 +44,7 @@ const PolinationSlide2: React.FC = () => {
       
 
       {/* Title "ЧТО ЭТО?" */}
-      <motion.h2
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
+      <h2
         className="absolute font-['UA-brand'] font-bold uppercase tracking-tight text-[#C65A32] whitespace-nowrap"
         style={{
           left: '8.43%',
@@ -42,14 +55,10 @@ const PolinationSlide2: React.FC = () => {
         }}
       >
         ЧТО ЭТО?
-      </motion.h2>
+      </h2>
 
       {/* Main Description */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        viewport={{ once: true }}
+      <div
         className="absolute font-['Glametrix'] text-[#2E261D]"
         style={{
           left: '21%',
@@ -64,14 +73,10 @@ const PolinationSlide2: React.FC = () => {
           <br/> и зачем в три строчки максимум. Про главную цель, процесс, суть 
           помощи и пользу результата
         </p>
-      </motion.div>
+      </div>
 
       {/* Secondary Description */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        viewport={{ once: true }}
+      <div
         className="absolute font-['Glametrix'] text-[#2E261D]"
         style={{
           left: '52.1%',
@@ -85,14 +90,10 @@ const PolinationSlide2: React.FC = () => {
           Продолжение описания услуги,
           для чего и зачем
         </p>
-      </motion.div>
+      </div>
 
       {/* Right Images (Bee + Calligraphy) */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        viewport={{ once: true }}
+      <div
         className="absolute"
         style={{
           left: '49%',
@@ -106,14 +107,10 @@ const PolinationSlide2: React.FC = () => {
           alt="Пчела и каллиграфия"
           className="w-full h-full object-contain object-top"
         />
-      </motion.div>
+      </div>
 
       {/* Left Images (Greenhouse + Ink Wash) */}
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        viewport={{ once: true }}
+      <div
         className="absolute"
         style={{
           left: '10.5%',
@@ -127,8 +124,8 @@ const PolinationSlide2: React.FC = () => {
           alt="Теплица"
           className="w-full h-full object-contain object-left-top"
         />
-      </motion.div>
-      {isInView && (
+      </div>
+      {(isInView || step > 0) && (
           <>
             <AnimatedLine
               start={pTop}
@@ -136,7 +133,8 @@ const PolinationSlide2: React.FC = () => {
               direction="to-bottom"
               zIndex={30}
               trigger={step >= 1} 
-              onComplete={() => setStep(2)}
+              initial={step > 1 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 2) setStep(2); }}
             />
              <AnimatedLine
               start={pTopEnd} 
@@ -144,7 +142,8 @@ const PolinationSlide2: React.FC = () => {
               direction="to-right"
               zIndex={30}
               trigger={step >= 2}
-              onComplete={() => setStep(3)}
+              initial={step > 2 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 3) setStep(3); }}
             />
             <AnimatedLine
               start={pSomewhereRight} 
@@ -152,7 +151,8 @@ const PolinationSlide2: React.FC = () => {
               direction="to-bottom"
               zIndex={30}
               trigger={step >= 3} 
-              onComplete={() => setStep(4)}
+              initial={step > 3 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 4) setStep(4); }}
               decoration='ring-end'
               ringSize='15vw'
             />
@@ -162,7 +162,8 @@ const PolinationSlide2: React.FC = () => {
               direction="to-left"
               zIndex={30}
               trigger={step >= 4}
-              onComplete={() => setStep(5)} 
+              initial={step > 4 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 5) setStep(5); }} 
             />
             <AnimatedLine
               start={pBottomCenter} 
@@ -170,6 +171,7 @@ const PolinationSlide2: React.FC = () => {
               direction="to-bottom"
               zIndex={30}
               trigger={step >= 5} 
+              initial={step > 5 ? "visible" : "hidden"}
             />
           </>
         )}

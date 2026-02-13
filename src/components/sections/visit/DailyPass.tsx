@@ -1,17 +1,37 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import backgroundImage from '@/assets/visit/11-background.png';
 import SelectTariffButton from '@/components/shared/SelectTariffButton';
+import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 import { FONT_SIZES, TYPOGRAPHY_CONFIG } from '@/config/typography';
 
 const DailyPass: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (isInView && step === 0) {
+      setStep(1);
+    }
+  }, [isInView, step]);
+
   const lineStroke = TYPOGRAPHY_CONFIG.lineStrokeWidth;
   const buttonWidth = '12vw';
   const buttonLeft = '83%';
   const buttonTop = '50%';
+  
+  // Line 1: Horizontal right from button
+  const line1Start: Point = { x: '88.131%', y: buttonTop };
+  const line1End: Point = { x: `calc(88.131% + ${buttonWidth})`, y: buttonTop };
+
+  // Line 2: Vertical down from button
+  const line2StartY = `calc(${buttonTop} + (${buttonWidth} * 0.43))`;
+  const line2Start: Point = { x: buttonLeft, y: line2StartY };
+  const line2End: Point = { x: buttonLeft, y: `calc(${line2StartY} + 50vh)` };
 
   return (
-    <section className="relative w-screen overflow-hidden" style={{ height: '40vh' }}>
+    <section ref={sectionRef} className="relative w-screen overflow-hidden" style={{ height: '40vh' }}>
       {/* Background */}
       <img
         src={backgroundImage}
@@ -78,25 +98,20 @@ const DailyPass: React.FC = () => {
       </div>
 
       {/* Decorative guide lines */}
-      <div
-        className="absolute bg-primary"
-        style={{
-          left: '88.131%',
-          top: buttonTop,
-          width: buttonWidth,
-          height: lineStroke,
-          zIndex: 5,
-        }}
+      <AnimatedLine
+        start={line1Start}
+        end={line1End}
+        direction="to-right"
+        trigger={step >= 1}
+        thickness={lineStroke}
+        onComplete={() => setStep(2)}
       />
-      <div
-        className="absolute bg-primary"
-        style={{
-          left: buttonLeft,
-          top: `calc(${buttonTop} + (${buttonWidth} * 0.43))`,
-          width: lineStroke,
-          height: `50vh`,
-          zIndex: 5,
-        }}
+      <AnimatedLine
+        start={line2Start}
+        end={line2End}
+        direction="to-bottom"
+        trigger={step >= 2}
+        thickness={lineStroke}
       />
     </section>
   );

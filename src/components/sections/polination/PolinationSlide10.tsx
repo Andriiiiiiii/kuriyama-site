@@ -6,36 +6,48 @@ import { FONT_SIZES } from '@/config/typography';
 import slideImage from '@/assets/pollination/tenth_slide_image.png';
 import SelectTariffButton from '@/components/shared/SelectTariffButton';
 
-const PolinationSlide10: React.FC = () => {
+interface PolinationSlide10Props {
+  step: number; 
+  setStep: (step: number) => void;
+  prevFinished?: boolean;
+  onInView?: () => void;
+}
+
+const PolinationSlide10: React.FC<PolinationSlide10Props> = ({ step, setStep, prevFinished = true, onInView }) => {
      // 1. Настройка ссылок
         const sectionRef = useRef<HTMLElement>(null);
         const btnRef = useRef<HTMLDivElement>(null);
        
         // 2. Состояние последовательности анимации
         // 0 = ничего, 1 = входная линия, 2 = взрыв из кнопки, 3 = финальные ответвления
-        const [step, setStep] = useState(0); 
-        const [btnShow, setBtnShow] = useState(false);
+        const [btnShow, setBtnShow] = useState(step > 0);
        
         // 3. Хук для координат. 
         // btnShow=true запускает расчет.
         const { isReady } = useRelativePosition(sectionRef, btnRef, 'btn', undefined, btnShow);
+
+        const isInView = useInView(sectionRef, { once: true, margin: "-10%" });
+
         useEffect(() => {
-           if (isReady && sectionRef.current) {
-             // 1. Достаем значение из текущей секции (inline-стиля)
-             const val = sectionRef.current.style.getPropertyValue('--btn-x-mid');
-             
-             // 2. Записываем его глобально в :root под уникальным именем
-             if (val) {
-               document.documentElement.style.setProperty('--five-center-x', val);
-             }
+            if(isInView && onInView) onInView();
+        }, [isInView, onInView]);
+
+        useEffect(() => {
+          if (isInView && step === 0 && prevFinished) {
+            setStep(1);
+          }
+        }, [isInView, step, setStep, prevFinished]);
+
+        useEffect(() => {
+           if (step >= 1) {
+             setBtnShow(true);
            }
-         }, [isReady]);
-       
+        }, [step]);
         
            {/**/}
         const pScreenRight: Point   = { x: '100%', y: 'var(--btn-y-mid)' };
-        const pScreenBottom: Point    = { x: 'var(--btn-x-mid)', y: '94%' };
-        const pBtnBottom: Point    = { x: 'var(--btn-x-mid)', y: 'var(--btn-y-mid)' };
+        const pScreenBottom: Point    = { x: 'var(--btn-x-mid)', y: '91.7%' };
+        const pBtnBottom: Point    = { x: 'var(--btn-x-mid)', y: 'var(--btn-y-bottom)' };
         const pBtnRight: Point  = { x: 'var(--btn-x-right)', y: 'var(--btn-y-mid)' };
     return (
         <section
@@ -56,10 +68,7 @@ const PolinationSlide10: React.FC = () => {
             />
 
             {/* Main Image (Flower Branch + Bee) */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+            <div
                 className="absolute z-10"
                 style={{
                     left: '46.04%',
@@ -73,13 +82,10 @@ const PolinationSlide10: React.FC = () => {
                     alt="Flowering branch with bees" 
                     className="w-full h-full object-contain object-top" 
                 />
-            </motion.div>
+            </div>
 
             {/* Title */}
-            <motion.h2
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+            <h2
                 className="absolute font-['UA-brand'] font-bold text-[#2E261D] uppercase leading-none z-20"
                 style={{
                     left: '8.5%',
@@ -91,13 +97,10 @@ const PolinationSlide10: React.FC = () => {
                 ОСТАВЬТЕ
                 <br />
                 ЗАЯВКУ
-            </motion.h2>
+            </h2>
 
             {/* Description Text */}
-            <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+            <p
                 className="absolute font-['Glametrix'] text-[#2E261D]/80 z-20"
                 style={{
                     left: '8.23%',
@@ -110,7 +113,7 @@ const PolinationSlide10: React.FC = () => {
                 Пропуск на посещение на день
                 <br />
                 со всеми активностями
-            </motion.p>
+            </p>
 
              {/* Button */}
             <motion.div   
@@ -121,32 +124,34 @@ const PolinationSlide10: React.FC = () => {
           top: "24.8%",
           width: "15.21%",
         }}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={step >= 1 ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+        animate={step >= 1 ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
         transition={{ duration: 0.6, ease: "backOut" }}
         onAnimationComplete={() => {
-          setBtnShow(true); // Включаем расчет координат
-          setTimeout(() => setStep(1), 40); // Через 0.5с запускаем первую линию
+           if (step === 1) setStep(2);
         }}
         >
         <SelectTariffButton width="100%" />
         </motion.div>
-        {isReady && (
+        {isReady && step >= 2 && (
           <>
             <AnimatedLine
               start={pScreenRight}
               end={pBtnRight}
               direction="to-left"
               zIndex={30}
-              trigger={step >= 1}
-              onComplete={() => setStep(2)} 
+              trigger={step >= 2}
+              initial={step > 2 ? "visible" : "hidden"} 
+              onComplete={() => setStep(3)} 
             />
             <AnimatedLine
               start={pBtnBottom}
               end={pScreenBottom}
               direction="to-bottom"
               zIndex={30}
-              trigger={step >= 2} 
+              trigger={step >= 3} 
+              initial={step > 3 ? "visible" : "hidden"}
+              delay={0.1}
             />
           
           </>

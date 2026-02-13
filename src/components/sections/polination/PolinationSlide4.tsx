@@ -1,9 +1,29 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { useInView } from "framer-motion";
 import { FONT_SIZES } from '@/config/typography';
 import centerImg from '@/assets/pollination/fourth_slide_center_images.png';
 
-const PolinationSlide4: React.FC = () => {
+interface PolinationSlide4Props {
+    step: number; 
+    setStep: (step: number) => void;
+    prevFinished?: boolean;
+    onInView?: () => void;
+}
+
+const PolinationSlide4: React.FC<PolinationSlide4Props> = ({ step, setStep, prevFinished = true, onInView }) => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+    useEffect(() => {
+        if(isInView && onInView) onInView();
+    }, [isInView, onInView]);
+
+    useEffect(() => {
+        if (isInView && step === 0 && prevFinished) {
+            setStep(1);
+        }
+    }, [isInView, step, setStep, prevFinished]);
+
     // Original Size: 1439 x 817
     // Inner Border: x=21449, y=13268, w=1200, h=477
     // Group "frame": x=21440, y=13259, w=1218, h=495 (Outer context)
@@ -60,7 +80,7 @@ const PolinationSlide4: React.FC = () => {
   ];
 
   return (
-    <section className="relative h-layout bg-white overflow-hidden flex items-center justify-center">
+    <section ref={sectionRef} className="relative w-full overflow-hidden bg-white" style={{ height: '56.77vw' }}>
         {/* Outer Frame */}
         <div 
             className="absolute border border-[#C65A32]"
@@ -73,7 +93,7 @@ const PolinationSlide4: React.FC = () => {
             }}
         />
 
-        {/* Inner Frame - Thicker (implied by "в два раза больше") */}
+        {/* Inner Frame */}
         <div 
             className="absolute border-[2px] border-[#C65A32]"
             style={{
@@ -85,26 +105,20 @@ const PolinationSlide4: React.FC = () => {
             }}
         />
         {/* Center Image */}
-        <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
+        <div
             className="absolute z-0"
             style={{
-                left: '42.04%', // 21934 - 21329 = 605 ; 605/1439 = 42.04%
-                top: '21.33%', // 13278 - 13028 = 250 ; 250/817 = 30.60%
-                width: '16.67%', // 240/1439
-                height: '58.62%', // 479/817
+                left: '42.04%', 
+                top: '21.33%', 
+                width: '16.67%', 
+                height: '58.62%', 
             }}
         >
              <img src={centerImg} alt="Pollination Process" className="w-full h-full object-contain" />
-        </motion.div>
+        </div>
 
-        {/* Title "ПРЕИМУЩЕСТВА" */}
-        <motion.h2
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+        {/* Title */}
+        <h2
             className="absolute font-['UA-brand'] font-bold text-[#C65A32] uppercase tracking-tight w-full"
             style={{
                 top: '5%',
@@ -113,15 +127,12 @@ const PolinationSlide4: React.FC = () => {
             }}
         >
             ПРЕИМУЩЕСТВА
-        </motion.h2>
+        </h2>
 
       {/* Text Items */}
       {items.map((item) => (
         <React.Fragment key={item.id}>
-          <motion.div
-            initial={{ opacity: 0, x: item.id % 2 !== 0 ? -20 : 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 * item.id }}
+          <div
             className="absolute z-20 font-['Glametrix'] font-bold text-[#2E261D]"
             style={{
               left: `${item.titleLeft}%`,
@@ -130,11 +141,8 @@ const PolinationSlide4: React.FC = () => {
             }}
           >
             {item.title}
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 * item.id }}
+          </div>
+          <div
             className="absolute z-20 font-['Glametrix'] text-[#2E261D]/70"
             style={{
               left: `${item.descLeft}%`,
@@ -145,7 +153,7 @@ const PolinationSlide4: React.FC = () => {
             }}
           >
             {item.desc}
-          </motion.div>
+          </div>
         </React.Fragment>
       ))}
     </section>

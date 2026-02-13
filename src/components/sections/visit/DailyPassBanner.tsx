@@ -1,12 +1,29 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import backgroundImage from '@/assets/visit/6-background.png';
 import buttonBuy from '@/assets/visit/1-button-buy.svg';
+import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 import { FONT_SIZES } from '@/config/typography';
 
 const DailyPassBanner: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (isInView && step === 0) {
+      setStep(1);
+    }
+  }, [isInView, step]);
+
+  const line1Start: Point = { x: '84%', y: '0vh' };
+  const line1End: Point = { x: '84%', y: '11.27vh' };
+
+  const line2Start: Point = { x: '84%', y: '27.88vh' };
+  const line2End: Point = { x: '84%', y: 'calc(27.88vh + 30%)' };
+
   return (
-    <section className="relative w-screen overflow-hidden" style={{ height: '40vh' }}>
+    <section ref={sectionRef} className="relative w-screen overflow-hidden" style={{ height: '40vh' }}>
       {/* Background */}
       <img
         src={backgroundImage}
@@ -68,23 +85,20 @@ const DailyPassBanner: React.FC = () => {
       </motion.button>
 
       {/* Lines */}
-      <div
-        className="absolute bg-primary"
-        style={{
-          left: '84%',
-          top: '0vh',
-          width: 'max(1px, 0.07vw)',
-          height: '11.27vh',
-        }}
+      <AnimatedLine
+        start={line1Start}
+        end={line1End}
+        direction="to-bottom"
+        trigger={step >= 1}
+        thickness="max(1px, 0.07vw)"
+        onComplete={() => setStep(2)}
       />
-      <div
-        className="absolute bg-primary"
-        style={{
-          left: '84%',
-          top: '27.88vh',
-          width: 'max(1px, 0.07vw)',
-          height: '30%',
-        }}
+      <AnimatedLine
+        start={line2Start}
+        end={line2End}
+        direction="to-bottom"
+        trigger={step >= 2}
+        thickness="max(1px, 0.07vw)"
       />
     </section>
   );

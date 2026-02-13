@@ -1,15 +1,31 @@
-﻿import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+﻿import React, { useState, useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import mapBackground from '@/assets/visit/3-map-background.png';
 import sectionBackground from '@/assets/visit/3-background.png';
 import rightCalligraphy from '@/assets/visit/3-right-image.png';
 import object1 from '@/assets/visit/3-object-1.png';
 import object4 from '@/assets/visit/3-object-4.png';
 import moreButton from '@/assets/visit/more-button.svg';
+import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 import { FONT_SIZES } from '@/config/typography';
 
 const KuriyamaPlan = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (isInView && step === 0) {
+      setStep(1);
+    }
+  }, [isInView, step]);
+
+  const line1Start: Point = { x: '3.8542%', y: '0%' };
+  const line1End: Point = { x: '3.8542%', y: '99.99%' };
+
+  const line2Start: Point = { x: '3.8889%', y: '99.9%' };
+  const line2End: Point = { x: 'calc(3.8889% + 52.23%)', y: '99.9%' };
 
     const mapItems = [
     { id: 1, name: 'Вход', left: '18.403%', top: '35.202%', image: object1 },
@@ -22,28 +38,28 @@ const KuriyamaPlan = () => {
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-full h-layout overflow-hidden"
     >
       {/* 3 line 1 - vertical left */}
-      <div 
-        className="absolute bg-primary z-[20]"
-        style={{
-          left: '3.8542%',
-          top: '0%',
-          width: '1px',
-          height: '99.99%'
-        }}
+      <AnimatedLine
+         start={line1Start}
+         end={line1End}
+         direction="to-bottom"
+         trigger={step >= 1}
+         zIndex={20}
+         thickness="1px"
+         onComplete={() => setStep(2)}
       />
 
       {/* 3 line 2 - horizontal bottom */}
-      <div 
-        className="absolute bg-primary z-[20]"
-        style={{
-          left: '3.8889%',
-          top: '99.9%',
-          width: '52.23%',
-          height: '1px'
-        }}
+      <AnimatedLine
+         start={line2Start}
+         end={line2End}
+         direction="to-right"
+         trigger={step >= 2}
+         zIndex={20}
+         thickness="1px"
       />
 
 

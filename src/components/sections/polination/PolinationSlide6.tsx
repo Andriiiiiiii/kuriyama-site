@@ -1,17 +1,30 @@
 import React, { useRef, useState, useEffect, useLayoutEffect  } from "react";
 import { useInView } from 'framer-motion';
 import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
-import { motion } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
 import rightImg from '@/assets/pollination/six_slide_right_image.png';
 
-const PolinationSlide6: React.FC = () => {
+interface PolinationSlide6Props {
+  step: number;
+  setStep: (step: number) => void;
+  prevFinished?: boolean;
+  onInView?: () => void;
+}
+
+const PolinationSlide6: React.FC<PolinationSlide6Props> = ({ step, setStep, prevFinished = true, onInView }) => {
 // 1. Настройка ссылок
 const sectionRef = useRef<HTMLElement>(null);
 const isInView = useInView(sectionRef, { once: true, amount: 0.5 }); 
-// 2. Состояние последовательности анимации
-// 0 = ничего, 1 = входная линия, 2 = взрыв из кнопки, 3 = финальные ответвления
-const [step, setStep] = useState(1); 
+
+    useEffect(() => {
+        if(isInView && onInView) onInView();
+    }, [isInView, onInView]);
+
+    useEffect(() => {
+      if (isInView && step === 0 && prevFinished) {
+        setStep(1);
+      }
+    }, [isInView, step, setStep, prevFinished]);
    
        {/**/}
     const pTop: Point    = { x: 'var(--five-center-x)', y: '0%' };
@@ -24,30 +37,33 @@ const [step, setStep] = useState(1);
       num: "1",
       title: "Заявка и выезд",
       desc: "Описание, подробнее раскрывающее заголовок",
-      lineLeft: 8.30, lineTop: 25.00,
-      numLeft: 9.66, numTop: 25.50,
-      textLeft: 9.77, textTop: 39.0,
-      descLeft: 9.77, descTop: 44.0
+      // Row 1, Col 1
+      lineLeft: 8.30, lineTop: 32.00,
+      numLeft: 9.70, numTop: 32.22,
+      textLeft: 9.80, textTop: 44.10,
+      descLeft: 9.80, descTop: 48.36
     },
     {
       id: 2,
       num: "2",
       title: "Расчет и договор",
       desc: "Описание, подробнее раскрывающее заголовок",
-      lineLeft: 36.42, lineTop: 25.00,
-      numLeft: 37.55, numTop: 25.50,
-      textLeft: 37.97, textTop: 39.0,
-      descLeft: 37.89, descTop: 44.0
+      // Row 1, Col 2
+      lineLeft: 36.40, lineTop: 32.00,
+      numLeft: 37.80, numTop: 32.22,
+      textLeft: 37.90, textTop: 44.10,
+      descLeft: 37.90, descTop: 48.36
     },
     {
       id: 3,
       num: "3",
       title: "Доставка и размещение",
       desc: "Описание, подробнее раскрывающее заголовок",
-      lineLeft: 64.76, lineTop: 25.00,
-      numLeft: 65.68, numTop: 25.50,
-      textLeft: 66.22, textTop: 39.0,
-      descLeft: 66.22, descTop: 44.0,
+      // Row 1, Col 3
+      lineLeft: 64.50, lineTop: 32.00,
+      numLeft: 65.90, numTop: 32.22,
+      textLeft: 66.00, textTop: 44.10,
+      descLeft: 66.00, descTop: 48.36,
       onWood: true,
     },
     {
@@ -55,43 +71,41 @@ const [step, setStep] = useState(1);
       num: "4",
       title: "Контроль на месте",
       desc: "Описание, подробнее раскрывающее заголовок",
-      lineLeft: 8.30, lineTop: 56.00,
-      numLeft: 9.50, numTop: 56.50,
-      textLeft: 9.84, textTop: 70.0,
-      descLeft: 9.77, descTop: 75.0
+      // Row 2, Col 1
+      lineLeft: 8.30, lineTop: 58.00,
+      numLeft: 9.70, numTop: 58.22,
+      textLeft: 9.80, textTop: 70.10,
+      descLeft: 9.80, descTop: 74.36
     },
     {
       id: 5,
       num: "5",
       title: "Результат и вызов",
       desc: "Описание, подробнее раскрывающее заголовок",
-      lineLeft: 36.42, lineTop: 56.00,
-      numLeft: 36.90, numTop: 56.50,
-      textLeft: 37.97, textTop: 70.0,
-      descLeft: 37.89, descTop: 75.0
+      // Row 2, Col 2
+      lineLeft: 36.40, lineTop: 58.00,
+      numLeft: 37.80, numTop: 58.22,
+      textLeft: 37.90, textTop: 70.10,
+      descLeft: 37.90, descTop: 74.36
     }
-    
   ];
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-white overflow-hidden" style={{ height: '56.25vw' }}>
+    <section ref={sectionRef} className="relative w-full h-[140vh] bg-white overflow-hidden">
       {/* Title */}
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+      <h2
         className="absolute font-['UA-brand'] font-bold uppercase tracking-tight text-[#2E261D]"
         style={{
           left: '8.8%',
-          top: '8%',
+          top: '15.8%',
           width: '35.2%',
           fontSize: FONT_SIZES.heading,
           lineHeight: '1'
         }}
       >
         КАК МЫ<br/>РАБОТАЕМ
-      </motion.h2>
-      {isInView && (
+      </h2>
+      {(isInView || step > 0) && (
           <>
             <AnimatedLine
               start={pTop}
@@ -99,10 +113,11 @@ const [step, setStep] = useState(1);
               direction="to-bottom"
               zIndex={0}
               trigger={step >= 1} 
+              initial={step > 1 ? "visible" : "hidden"}
               decoration='ring-end'
               ringSize='30vw'
               decorationZIndex={0}
-              onComplete={() => setStep(2)}
+              onComplete={() => { if (step < 2) setStep(2); }}
             />
              <AnimatedLine
               start={pCenter} 
@@ -110,7 +125,8 @@ const [step, setStep] = useState(1);
               direction="to-bottom"
               zIndex={0}
               trigger={step >= 2}
-              onComplete={() => setStep(3)}
+              initial={step > 2 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 3) setStep(3); }}
             />
             <AnimatedLine
               start={pBottom} 
@@ -118,7 +134,8 @@ const [step, setStep] = useState(1);
               direction="to-left"
               zIndex={30}
               trigger={step >= 3} 
-              onComplete={() => setStep(4)}
+              initial={step > 3 ? "visible" : "hidden"}
+              onComplete={() => { if (step < 4) setStep(4); }}
             />
             
           </>
@@ -126,30 +143,23 @@ const [step, setStep] = useState(1);
     
     
       {/* Right Image (Wood) */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
+      <div
         className="absolute"
         style={{
             left: '63.4%',
-            top: '8%',
-            height: '84%',
-            width: 'auto'
+            top: '15.8%',
+            height: '77.65%',
+            width: '29.1%'
         }}
       >
-          <img src={rightImg} alt="Wood texture" className="h-full w-auto object-contain shadow-lg" />
-      </motion.div>
+          <img src={rightImg} alt="Wood texture" className="w-full h-auto shadow-lg" />
+      </div>
 
       {/* Staps */}
       {staps.map((step) => (
         <React.Fragment key={step.id}>
            {/* Vertical Line */}
-           <motion.div
-             initial={{ scaleY: 0 }}
-             whileInView={{ scaleY: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.5, delay: 0.2 + step.id * 0.1 }}
+           <div
              className="absolute origin-top bg-[#D97858]"
              style={{
                 left: `${step.lineLeft}%`,
@@ -160,12 +170,8 @@ const [step, setStep] = useState(1);
            />
 
            {/* Number */}
-           <motion.div
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.5, delay: 0.3 + step.id * 0.1 }}
-             className="absolute font-['han-zi'] text-[#2E261D]"
+           <div
+             className="absolute font-['Han-Zi'] text-[#2E261D]"
              style={{
                 left: `${step.numLeft}%`,
                 top: `${step.numTop}%`,
@@ -174,14 +180,10 @@ const [step, setStep] = useState(1);
              }}
            >
               {step.num}
-           </motion.div>
+           </div>
 
            {/* Title */}
-           <motion.div
-             initial={{ opacity: 0, x: -10 }}
-             whileInView={{ opacity: 1, x: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.5, delay: 0.4 + step.id * 0.1 }}
+           <div
              className="absolute font-['Glametrix'] font-bold text-[#2E261D]"
              style={{
                 left: `${step.textLeft}%`,
@@ -190,14 +192,10 @@ const [step, setStep] = useState(1);
              }}
            >
               {step.title}
-           </motion.div>
+           </div>
 
            {/* Desc */}
-           <motion.div
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.5, delay: 0.5 + step.id * 0.1 }}
+           <div
              className="absolute font-['Glametrix'] text-[#2E261D]/70"
              style={{
                 left: `${step.descLeft}%`,
@@ -208,7 +206,7 @@ const [step, setStep] = useState(1);
              }}
            >
               {step.desc}
-           </motion.div>
+           </div>
 
         </React.Fragment>
         

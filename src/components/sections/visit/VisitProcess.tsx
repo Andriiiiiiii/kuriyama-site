@@ -1,14 +1,31 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
+import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 import woodImage from '@/assets/visit/7-right-image.png';
 import number1 from '@/assets/visit/number-1.svg';
 import number2 from '@/assets/visit/number-2.svg';
 import number3 from '@/assets/visit/number-3.svg';
 
 const VisitProcess: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (isInView && step === 0) {
+      setStep(1);
+    }
+  }, [isInView, step]);
+
+  const line1Start: Point = { x: '8.2986%', y: '42.5743%' };
+  const line1End: Point = { x: '8.2986%', y: 'calc(42.5743% + 24.8762%)' };
+
+  const line2Start: Point = { x: '36.5625%', y: '42.5743%' };
+  const line2End: Point = { x: '36.5625%', y: 'calc(42.5743% + 24.8762%)' };
+
   return (
-    <section className="relative w-full bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative w-full bg-white overflow-hidden">
       <div className="relative w-full mx-auto" style={{ paddingTop: '56.111%' }}>
         <div className="absolute inset-0">
           {/* 7 Title (1:120) */}
@@ -31,33 +48,22 @@ const VisitProcess: React.FC = () => {
           </motion.h2>
 
           {/* 7 line 1 (37:493) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="absolute bg-primary"
-            style={{
-              left: '8.2986%',
-              top: '42.5743%',
-              width: '0.0694%',
-              height: '24.8762%',
-            }}
+          <AnimatedLine
+            start={line1Start}
+            end={line1End}
+            direction="to-bottom"
+            trigger={step >= 1}
+            thickness="0.0694%"
+            onComplete={() => setStep(2)}
           />
 
           {/* 7 line 2 (37:491) */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="absolute bg-primary"
-            style={{
-              left: '36.5625%',
-              top: '42.5743%',
-              width: '0.0694%',
-              height: '24.8762%',
-            }}
+          <AnimatedLine
+            start={line2Start}
+            end={line2End}
+            direction="to-bottom"
+            trigger={step >= 2}
+            thickness="0.0694%"
           />
 
           {/* 7 text 1 (group) (37:499) */}

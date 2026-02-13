@@ -1,17 +1,31 @@
 import React, { useRef, useState, useEffect, useLayoutEffect  } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { FONT_SIZES } from '@/config/typography';
 import AnimatedLine, { Point } from '@/components/shared/AnimatedLine';
 import leftImg from '@/assets/pollination/seventh_slide_left_image.png';
 import rightImg from '@/assets/pollination/seventh_slide_right_image.png';
 
-const PolinationSlide7: React.FC = () => {
+interface PolinationSlide7Props {
+  step: number;
+  setStep: (step: number) => void;
+  prevFinished?: boolean;
+  onInView?: () => void;
+}
+
+const PolinationSlide7: React.FC<PolinationSlide7Props> = ({ step, setStep, prevFinished = true, onInView }) => {
     // 1. Настройка ссылок
     const sectionRef = useRef<HTMLElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.5 }); 
-    // 2. Состояние последовательности анимации
-    // 0 = ничего, 1 = входная линия, 2 = взрыв из кнопки, 3 = финальные ответвления
-    const [step, setStep] = useState(1); 
+    
+    useEffect(() => {
+        if(isInView && onInView) onInView();
+    }, [isInView, onInView]);
+
+    useEffect(() => {
+      if (isInView && step === 0 && prevFinished) {
+        setStep(1);
+      }
+    }, [isInView, step, setStep, prevFinished]);
    
        {/**/}
     const pTop: Point    = { x: '70%', y: '0%' };
@@ -52,10 +66,7 @@ const PolinationSlide7: React.FC = () => {
             }}
         >
              {/* Left Image (Ink Wash) */}
-             <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+             <div
                 className="absolute"
                 style={{
                     left: '5.07%',
@@ -66,13 +77,10 @@ const PolinationSlide7: React.FC = () => {
                 }}
              >
                 <img src={leftImg} alt="Abstract Ink Wash" className="w-full h-full object-contain" />
-             </motion.div>
+             </div>
 
              {/* Right Image (Bee on flower) */}
-             <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+             <div
                 className="absolute"
                 style={{
                     left: '64.79%',
@@ -83,13 +91,10 @@ const PolinationSlide7: React.FC = () => {
                 }}
              >
                 <img src={rightImg} alt="Bee on flower" className="w-full h-full object-cover" />
-             </motion.div>
+             </div>
 
              {/* Main Title "РЕЗУЛЬТАТ" */}
-             <motion.h2
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
+             <h2
                 className="absolute font-['UA-brand'] font-bold text-[#C65A32] uppercase tracking-tight text-center flex items-center justify-center z-20"
                 style={{
                     left: '32.37%',
@@ -100,15 +105,12 @@ const PolinationSlide7: React.FC = () => {
                 }}
              >
                 РЕЗУЛЬТАТ
-             </motion.h2>
+             </h2>
 
              {/* Text Items */}
              {items.map((item) => (
                 <React.Fragment key={item.id}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 * item.id }}
+                    <div
                         className="absolute font-['Glametrix'] font-bold text-[#2E261D] z-20"
                         style={{
                             left: `${item.headLeft}%`,
@@ -117,11 +119,8 @@ const PolinationSlide7: React.FC = () => {
                         }}
                     >
                         {item.head}
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0.25 * item.id }}
+                    </div>
+                    <div
                         className="absolute font-['Glametrix'] text-[#2E261D]/70 whitespace-pre-line z-20"
                         style={{
                             left: `${item.descLeft}%`,
@@ -132,12 +131,12 @@ const PolinationSlide7: React.FC = () => {
                         }}
                     >
                         {item.desc}
-                    </motion.div>
+                    </div>
                 </React.Fragment>
              ))}
              
              {/* Lines (inferred from design style as they were missing in JSON but requested 'by analogy') */}
-             {isInView && (
+             {(isInView || step > 0) && (
                 <>
                     <AnimatedLine
                         start={pTop}
@@ -145,6 +144,7 @@ const PolinationSlide7: React.FC = () => {
                         direction="to-bottom"
                         zIndex={0}
                         trigger={step >= 1} 
+                        initial={step > 1 ? "visible" : "hidden"}
                     />
                 </>
 

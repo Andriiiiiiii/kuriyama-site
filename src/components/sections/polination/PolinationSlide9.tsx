@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { FONT_SIZES } from '@/config/typography';
 import centerImg from '@/assets/pollination/ninth_slide_center_image.png';
 
-const PolinationSlide9: React.FC = () => {
+interface PolinationSlide9Props {
+  step: number; 
+  setStep: (step: number) => void;
+  prevFinished?: boolean;
+  onInView?: () => void;
+}
+
+const PolinationSlide9: React.FC<PolinationSlide9Props> = ({ step, setStep, prevFinished = true, onInView }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+      if(isInView && onInView) onInView();
+  }, [isInView, onInView]);
+
+  useEffect(() => {
+      if (isInView && step === 0 && prevFinished) {
+          setStep(1);
+      }
+  }, [isInView, step, setStep, prevFinished]);
+
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleItem = (index: number) => {
@@ -20,16 +40,14 @@ const PolinationSlide9: React.FC = () => {
 
   return (
     <section 
+        ref={sectionRef}
         className="relative w-full bg-white overflow-hidden"
         style={{ 
             height: '42.29vw' // 609/1440
         }}
     >
       {/* Title */}
-      <motion.h2
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
+      <h2
         className="absolute font-['UA-brand'] font-bold text-[#C65A32] uppercase leading-none"
         style={{
           left: '8.15%',
@@ -41,13 +59,10 @@ const PolinationSlide9: React.FC = () => {
         ЧАСТЫЕ
         <br />
         ВОПРОСЫ
-      </motion.h2>
+      </h2>
 
       {/* Center Image */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+      <div
         className="absolute"
         style={{
             left: '37.5%',
@@ -59,7 +74,7 @@ const PolinationSlide9: React.FC = () => {
         }}
       >
         <img src={centerImg} alt="" className="w-full h-full object-contain" />
-      </motion.div>
+      </div>
 
       {/* FAQ Container */}
       <div 
@@ -71,12 +86,8 @@ const PolinationSlide9: React.FC = () => {
         }}
       >
         {questions.map((item, index) => (
-             <motion.div
+             <div
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
                 className="w-full"
              >
                 {/* Item Header */}
@@ -129,7 +140,7 @@ const PolinationSlide9: React.FC = () => {
                         </motion.div>
                     )}
                 </AnimatePresence>
-             </motion.div>
+             </div>
         ))}
       </div>
 
