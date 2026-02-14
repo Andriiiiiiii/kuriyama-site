@@ -9,6 +9,7 @@ import Concept from "./pages/Concept";
 import Volunteering from "./pages/Volunteering";
 import Vacancies from "./pages/Vacancies";
 import Polination from "./pages/Polination";
+import PhotoVideo from "./pages/PhotoVideo";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/volunteering" element={<Volunteering />} />
         <Route path="/vacancies" element={<Vacancies />} />
         <Route path="/pollination" element={<Polination />} />
+        <Route path="/photo-video" element={<PhotoVideo />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -17,7 +17,7 @@ import {
 const PhotoVideo = () => {
   return (
     <main className="w-full bg-background">
-      <Header />
+      <Header activeSection="photo-video" />
       <PhotoVideoHero />
       <PhotoVideoSlide2 />
       <PhotoVideoSlide3 />

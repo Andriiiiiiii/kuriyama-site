@@ -76,3 +76,14 @@ export { default as CorporateBeekeepingSlide10 } from "./corporate-beekeeping/Co
 export { default as CorporateBeekeepingSlide11 } from "./corporate-beekeeping/CorporateBeekeepingSlide11";
 export { default as CorporateBeekeepingSlide12 } from "./corporate-beekeeping/CorporateBeekeepingSlide12";
 export { default as CorporateBeekeepingClosing } from "./corporate-beekeeping/CorporateBeekeepingClosing";
+
+export { default as PhotoVideoHero } from "./photo-video/PhotoVideoHero";
+export { default as PhotoVideoSlide2 } from "./photo-video/PhotoVideoSlide2";
+export { default as PhotoVideoSlide3 } from "./photo-video/PhotoVideoSlide3";
+export { default as PhotoVideoSlide4 } from "./photo-video/PhotoVideoSlide4";
+export { default as PhotoVideoSlide5 } from "./photo-video/PhotoVideoSlide5";
+export { default as PhotoVideoSlide6 } from "./photo-video/PhotoVideoSlide6";
+export { default as PhotoVideoSlide7 } from "./photo-video/PhotoVideoSlide7";
+export { default as PhotoVideoSlide8 } from "./photo-video/PhotoVideoSlide8";
+export { default as PhotoVideoSlide9 } from "./photo-video/PhotoVideoSlide9";
+export { default as PhotoVideoClosing } from "./photo-video/PhotoVideoClosing";

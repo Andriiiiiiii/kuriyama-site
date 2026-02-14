@@ -5,7 +5,7 @@ import ContactButton from './ContactButton';
 import './Header.css';
 
 interface HeaderProps {
-  activeSection?: 'visit' | 'beekeeping' | 'personal-beekeeping' | 'corporate-beekeeping' | 'production' | 'history' | null;
+  activeSection?: 'visit' | 'beekeeping' | 'personal-beekeeping' | 'corporate-beekeeping' | 'production' | 'history' | 'photo-video' | null;
 }
 
 const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
@@ -69,6 +69,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection = null }) => {
     },
     { label: 'Цены', path: '/#prices' },
     { label: 'Ресурсы', path: '/#resources' },
+    { label: 'Фото и видео', path: '/photo-video', key: 'photo-video' },
   ];
 
   const currentSubmenu = navItems.find(item => item.key === activeSubmenu);
