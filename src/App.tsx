@@ -1,5 +1,6 @@
 ﻿import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
 import Visit from "./pages/Visit";
 import Beekeeping from "./pages/Beekeeping";
 import PersonalBeekeeping from "./pages/PersonalBeekeeping";
@@ -32,7 +33,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/visit" replace />} />
+        <Route path="/" element={<Home />} />
         <Route path="/visit" element={<Visit />} />
         <Route path="/beekeeping" element={<Beekeeping />} />
         <Route path="/personal-beekeeping" element={<PersonalBeekeeping />} />
