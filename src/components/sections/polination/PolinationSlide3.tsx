@@ -18,7 +18,7 @@ interface PolinationSlide3Props {
 const PolinationSlide3: React.FC<PolinationSlide3Props> = ({ step, setStep, prevFinished = true, onInView }) => {
    // 1. Настройка ссылок
     const sectionRef = useRef<HTMLElement>(null);
-    const isInView = useInView(sectionRef, { once: true, amount: 0.45 }); 
+    const isInView = useInView(sectionRef, { once: true, amount: 0.40 }); 
     
     useEffect(() => {
         if(isInView && onInView) onInView();
