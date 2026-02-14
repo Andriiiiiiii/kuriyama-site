@@ -3,7 +3,16 @@ import { Link } from "react-router-dom";
 import Header from "@/components/shared/Header";
 import {
   PersonalBeekeepingHero,
-  PersonalBeekeepingClosing,
+  PersonalBeekeepingSlide2,
+  PersonalBeekeepingSlide3,
+  PersonalBeekeepingSlide4,
+  PersonalBeekeepingSlide5,
+  PersonalBeekeepingSlide6,
+  PersonalBeekeepingSlide7,
+  PersonalBeekeepingSlide8,
+  PersonalBeekeepingSlide9,
+  PersonalBeekeepingSlide10,
+  PersonalBeekeepingSlide11,
   Footer,
 } from "@/components/sections";
 
@@ -12,7 +21,16 @@ const PersonalBeekeeping = () => {
     <main className="w-full bg-background">
       <Header activeSection="personal-beekeeping" />
       <PersonalBeekeepingHero />
-      <PersonalBeekeepingClosing />
+      <PersonalBeekeepingSlide2 />
+      <PersonalBeekeepingSlide3 />
+      <PersonalBeekeepingSlide4 />
+      <PersonalBeekeepingSlide5 />
+      <PersonalBeekeepingSlide6 />
+      <PersonalBeekeepingSlide7 />
+      <PersonalBeekeepingSlide8 />
+      <PersonalBeekeepingSlide9 />
+      <PersonalBeekeepingSlide10 />
+      <PersonalBeekeepingSlide11 />
       <Footer />
     </main>
   );
