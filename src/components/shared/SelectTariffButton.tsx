@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SelectTariffButton.css';
 
 interface SelectTariffButtonProps {
@@ -14,6 +15,7 @@ const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
   variant = 'orange',
   text = 'Выбрать тариф',
 }) => {
+  const navigate = useNavigate();
   const radius = 105;
   const mainColor = variant === 'orange' ? '#C65A32' : '#FFFFFF';
   const textColor = variant === 'orange' ? '#FFFFFF' : '#000000';
@@ -25,7 +27,7 @@ const SelectTariffButton: React.FC<SelectTariffButtonProps> = ({
       return;
     }
 
-    window.location.href = 'http://localhost:8080/prices-visit';
+    navigate('/prices-visit');
   };
 
   return (
