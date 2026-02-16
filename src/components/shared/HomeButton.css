@@ -1,0 +1,32 @@
+/* Home Button - same styling as Contact Button */
+.contact-button {
+  width: 8.4%;
+  height: 50%;
+  min-width: fit-content;
+  padding: 0 2%;
+  background-color: #C65A32;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50vh; /* Радиус равен половине высоты для полукруглых краев */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Glametrix', sans-serif;
+  line-height: 1;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.contact-button:hover {
+  opacity: 0.9;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .contact-button {
+    width: 10%;
+    padding: 0 1.5%;
+  }
+}
