@@ -24,10 +24,10 @@ const ApiaryVisit = () => {
         <ApiaryVisitSlide4 />
       </div>
       <ApiaryVisitSlide5 />
-      <Reviews />
-      <ApiaryVisitSlide6 />
-      <FAQ questionText="Вопрос о мероприятии" />
-      <CorporateBeekeepingSlide12 />
+      <Reviews enableEditor />
+      <ApiaryVisitSlide6 enableEditor />
+      <FAQ questionText="Вопрос о мероприятии" enableEditor />
+      <CorporateBeekeepingSlide12 enableEditor />
       <div className="-mt-[8%] relative z-10">
         <Footer />
       </div>
