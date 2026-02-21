@@ -487,7 +487,10 @@ const ApiaryVisitHero: React.FC = () => {
         <div style={editorButtonRowStyle}>
           <button
             type="button"
-            onClick={saveContent}
+            onClick={() => {
+              saveContent();
+              window.dispatchEvent(new Event("apiary-visit-editor-save"));
+            }}
             className={editorButtonClass}
             style={editorButtonStyle}
           >
@@ -495,7 +498,10 @@ const ApiaryVisitHero: React.FC = () => {
           </button>
           <button
             type="button"
-            onClick={resetContent}
+            onClick={() => {
+              resetContent();
+              window.dispatchEvent(new Event("apiary-visit-editor-reset"));
+            }}
             className={editorButtonClass}
             style={editorButtonStyle}
           >

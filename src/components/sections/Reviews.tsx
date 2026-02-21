@@ -290,6 +290,18 @@ const Reviews: React.FC<ReviewsProps> = ({ enableEditor = false }) => {
     return () => window.removeEventListener("apiary-visit-editor-change", syncFromStorage);
   }, [enableEditor]);
 
+  useEffect(() => {
+    if (!enableEditor) return;
+    const onSave = () => saveContent();
+    const onReset = () => resetContent();
+    window.addEventListener("apiary-visit-editor-save", onSave);
+    window.addEventListener("apiary-visit-editor-reset", onReset);
+    return () => {
+      window.removeEventListener("apiary-visit-editor-save", onSave);
+      window.removeEventListener("apiary-visit-editor-reset", onReset);
+    };
+  }, [content, isEditing, enableEditor]);
+
   const pushHistory = (nextContent: ReviewsContent) => {
     const history = historyRef.current.slice(0, historyIndexRef.current + 1);
     history.push(nextContent);
@@ -299,6 +311,21 @@ const Reviews: React.FC<ReviewsProps> = ({ enableEditor = false }) => {
     if (isEditing) {
       window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(nextContent));
     }
+  };
+
+  const saveContent = (nextContent: ReviewsContent = content) => {
+    if (!enableEditor) return;
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextContent));
+    historyRef.current = [nextContent];
+    historyIndexRef.current = 0;
+    setContent(nextContent);
+    if (isEditing) {
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(nextContent));
+    }
+  };
+
+  const resetContent = () => {
+    saveContent(DEFAULT_CONTENT);
   };
 
   const updateReview = (index: number, key: "name" | "text", value: string) => {

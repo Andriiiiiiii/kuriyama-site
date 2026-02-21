@@ -111,6 +111,20 @@ const ApiaryVisitSlide2: React.FC = () => {
     }
   };
 
+  const saveContent = (nextContent: SlideContent = content) => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextContent));
+    historyRef.current = [nextContent];
+    historyIndexRef.current = 0;
+    setContent(nextContent);
+    if (isEditing) {
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(nextContent));
+    }
+  };
+
+  const resetContent = () => {
+    saveContent(DEFAULT_CONTENT);
+  };
+
   const updateContent = <K extends keyof SlideContent>(key: K, value: SlideContent[K]) => {
     pushHistory({ ...content, [key]: value });
   };
@@ -135,6 +149,17 @@ const ApiaryVisitSlide2: React.FC = () => {
     window.addEventListener("apiary-visit-editor-change", syncFromStorage);
     return () => window.removeEventListener("apiary-visit-editor-change", syncFromStorage);
   }, []);
+
+  useEffect(() => {
+    const onSave = () => saveContent();
+    const onReset = () => resetContent();
+    window.addEventListener("apiary-visit-editor-save", onSave);
+    window.addEventListener("apiary-visit-editor-reset", onReset);
+    return () => {
+      window.removeEventListener("apiary-visit-editor-save", onSave);
+      window.removeEventListener("apiary-visit-editor-reset", onReset);
+    };
+  }, [content, isEditing]);
 
 
   const openImagePicker = (key: "left" | "right") => {

@@ -124,6 +124,17 @@ const ApiaryVisitSlide4: React.FC = () => {
     return () => window.removeEventListener("apiary-visit-editor-change", syncFromStorage);
   }, []);
 
+  useEffect(() => {
+    const onSave = () => saveContent();
+    const onReset = () => resetContent();
+    window.addEventListener("apiary-visit-editor-save", onSave);
+    window.addEventListener("apiary-visit-editor-reset", onReset);
+    return () => {
+      window.removeEventListener("apiary-visit-editor-save", onSave);
+      window.removeEventListener("apiary-visit-editor-reset", onReset);
+    };
+  }, [content, isEditing]);
+
   const pushHistory = (nextContent: SlideContent) => {
     const history = historyRef.current.slice(0, historyIndexRef.current + 1);
     history.push(nextContent);
@@ -133,6 +144,20 @@ const ApiaryVisitSlide4: React.FC = () => {
     if (isEditing) {
       window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(nextContent));
     }
+  };
+
+  const saveContent = (nextContent: SlideContent = content) => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextContent));
+    historyRef.current = [nextContent];
+    historyIndexRef.current = 0;
+    setContent(nextContent);
+    if (isEditing) {
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(nextContent));
+    }
+  };
+
+  const resetContent = () => {
+    saveContent(DEFAULT_CONTENT);
   };
 
   const updateTitle = (value: string) => {

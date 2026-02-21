@@ -127,6 +127,18 @@ const FAQ: React.FC<FAQProps> = ({
     return () => window.removeEventListener("apiary-visit-editor-change", syncFromStorage);
   }, [enableEditor]);
 
+  useEffect(() => {
+    if (!enableEditor) return;
+    const onSave = () => saveContent();
+    const onReset = () => resetContent();
+    window.addEventListener("apiary-visit-editor-save", onSave);
+    window.addEventListener("apiary-visit-editor-reset", onReset);
+    return () => {
+      window.removeEventListener("apiary-visit-editor-save", onSave);
+      window.removeEventListener("apiary-visit-editor-reset", onReset);
+    };
+  }, [content, isEditing, enableEditor, questionText]);
+
   const pushHistory = (nextContent: FAQContent) => {
     const history = historyRef.current.slice(0, historyIndexRef.current + 1);
     history.push(nextContent);
@@ -136,6 +148,29 @@ const FAQ: React.FC<FAQProps> = ({
     if (isEditing) {
       window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(nextContent));
     }
+  };
+
+  const saveContent = (nextContent: FAQContent = content) => {
+    if (!enableEditor) return;
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextContent));
+    historyRef.current = [nextContent];
+    historyIndexRef.current = 0;
+    setContent(nextContent);
+    if (isEditing) {
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(nextContent));
+    }
+  };
+
+  const resetContent = () => {
+    saveContent({
+      titleLines: DEFAULT_TITLE_LINES,
+      backgroundImage: DEFAULT_BACKGROUND_IMAGE,
+      leftImage: DEFAULT_LEFT_IMAGE,
+      questions: Array.from({ length: 5 }, () => ({
+        question: questionText,
+        answer: "Описание, подробнее раскрывающее заголовок",
+      })),
+    });
   };
 
   const updateTitleLine = (index: number, value: string) => {
